@@ -60,7 +60,7 @@ tests, generated files, and verbatim copies of the provided design files.
 | react-router | 1564 |
 | sveltekit | 1611 |
 | gracile | 1717 |
-| angular | 1944 |
+| angular | 2009 |
 
 ## Versions
 
