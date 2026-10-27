@@ -2,8 +2,8 @@
 
 Run `20261026-stitched`, started 2026-10-25T14:37:12.976Z.
 5 iteration(s) per framework; numbers are medians across iterations.
-Lighthouse values are means over 6 URLs of each URL's median over 5 runs. Medians are
-taken per metric, so one URL's LCP and TBT can come from different runs.
+Lighthouse values are for the home page (`/`): the median of 5 runs, taken per metric, so LCP
+and TBT can come from different runs. Each iteration's measure/results.json has all 6 URLs.
 Sorted by total tokens.
 
 ## Building the app (agent)
@@ -29,18 +29,18 @@ Total tokens = cache reads + uncached input (input and cache writes) + output.
 
 | Framework | Mobile perf | LCP (ms) | FCP (ms) | TBT (ms) | CLS | JS (KiB) | A11y |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nuxt | 100 | 1715 | 1252 | 50 | 0.000 | 85 | 100 |
-| astro | 100 | 1025 | 804 | 0 | 0.000 | 0 | 100 |
-| hono-htmx | 100 | 1176 | 793 | 0 | 0.000 | 18 | 100 |
-| next | 99 | 1982 | 859 | 65 | 0.000 | 142 | 100 |
-| vanilla | 94 | 2087 | 762 | 19 | 0.111 | 7 | 100 |
-| qwik | 100 | 1264 | 1036 | 1 | 0.000 | 41 | 100 |
-| tanstack-start | 99 | 1953 | 799 | 3 | 0.000 | 118 | 100 |
-| solidstart | 100 | 1342 | 1054 | 11 | 0.000 | 40 | 100 |
-| react-router | 100 | 1679 | 1355 | 14 | 0.000 | 115 | 100 |
-| sveltekit | 100 | 1292 | 1054 | 0 | 0.000 | 36 | 100 |
-| gracile | 100 | 1088 | 808 | 0 | 0.000 | 3 | 100 |
-| angular | 97 | 1855 | 1310 | 145 | 0.000 | 93 | 100 |
+| nuxt | 100 | 1727 | 1352 | 40 | 0.000 | 84 | 100 |
+| astro | 100 | 810 | 808 | 0 | 0.000 | 0 | 100 |
+| hono-htmx | 100 | 978 | 791 | 0 | 0.000 | 18 | 100 |
+| next | 99 | 2090 | 949 | 71 | 0.000 | 142 | 100 |
+| vanilla | 97 | 1667 | 766 | 0 | 0.111 | 7 | 100 |
+| qwik | 100 | 979 | 955 | 3 | 0.000 | 40 | 100 |
+| tanstack-start | 99 | 2028 | 797 | 1 | 0.000 | 118 | 100 |
+| solidstart | 100 | 1204 | 1054 | 11 | 0.000 | 40 | 100 |
+| react-router | 100 | 1729 | 1355 | 17 | 0.000 | 115 | 100 |
+| sveltekit | 100 | 1130 | 1055 | 0 | 0.000 | 36 | 100 |
+| gracile | 100 | 956 | 809 | 0 | 0.000 | 8 | 100 |
+| angular | 98 | 1954 | 1355 | 103 | 0.000 | 93 | 100 |
 
 ## Code
 
