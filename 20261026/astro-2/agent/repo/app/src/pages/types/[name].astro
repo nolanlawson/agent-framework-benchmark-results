@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import PokemonCard from '../../components/PokemonCard.astro';
+import NotFound from '../../components/NotFound.astro';
+import { englishName, getJson, getTypeLabels, humanize, pokemonRefsToSpecies } from '../../lib/api';
+
+const RELATIONS = [
+  ['Super effective against', 'double_damage_to'],
+  ['Not very effective against', 'half_damage_to'],
+  ['No effect against', 'no_damage_to'],
+  ['Weak to', 'double_damage_from'],
+  ['Resists', 'half_damage_from'],
+  ['Immune to', 'no_damage_from'],
+] as const;
+
+const type = await getJson(`type/${encodeURIComponent(Astro.params.name!.toLowerCase())}`);
+if (!type) Astro.response.status = 404;
+
+const [typeLabels, pokemon] = type
+  ? await Promise.all([getTypeLabels(), pokemonRefsToSpecies((type.pokemon ?? []).map((p: any) => p.pokemon))])
+  : [new Map<string, string>(), []];
+const name = type ? englishName(type) : '';
+const label = (t: string) => typeLabels.get(t) ?? humanize(t);
+const moves = type
+  ? (type.moves ?? [])
+      .map((m: any) => ({ name: m.name as string, label: humanize(m.name) }))
+      .sort((a: { label: string }, b: { label: string }) => a.label.localeCompare(b.label))
+  : [];
+---
+
+{
+  !type ? (
+    <NotFound />
+  ) : (
+    <Layout title={name}>
+      <h1>{name}</h1>
+
+      <Section id="damage" heading="Damage relations">
+        <dl class="relations">
+          {RELATIONS.map(([term, key]) => {
+            const related: { name: string }[] = type.damage_relations?.[key] ?? [];
+            return (
+              <div>
+                <dt>{term}</dt>
+                <dd>
+                  {related.length === 0
+                    ? 'None'
+                    : related.map((t) => <TypeBadge name={t.name} label={label(t.name)} link />)}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
+      </Section>
+
+      <Section id="pokemon" heading="Pokémon">
+        <p class="count">{pokemon.length} Pokémon</p>
+        {pokemon.length > 0 && (
+          <ul class="card-grid">
+            {pokemon.map((p) => (
+              <PokemonCard id={p.id} name={p.name} />
+            ))}
+          </ul>
+        )}
+      </Section>
+
+      <Section id="moves" heading="Moves">
+        <p class="count">{moves.length} moves</p>
+        {moves.length > 0 && (
+          <ul class="move-columns">
+            {moves.map((m: { name: string; label: string }) => (
+              <li>
+                <a href={`/moves/${m.name}`}>{m.label}</a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Section>
+    </Layout>
+  )
+}

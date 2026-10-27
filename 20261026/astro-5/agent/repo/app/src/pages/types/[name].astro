@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import NotFound from '../../components/NotFound.astro';
+import { api, resourcePath } from '../../lib/api';
+import { cardsForPokemon, englishName, getSpeciesIndex, humanize } from '../../lib/pokedex';
+
+const RELATIONS = [
+  ['Super effective against', 'double_damage_to'],
+  ['Not very effective against', 'half_damage_to'],
+  ['No effect against', 'no_damage_to'],
+  ['Weak to', 'double_damage_from'],
+  ['Resists', 'half_damage_from'],
+  ['Immune to', 'no_damage_from'],
+] as const;
+
+const [record, index] = await Promise.all([api(resourcePath('type', Astro.params.name!)), getSpeciesIndex()]);
+if (!record) Astro.response.status = 404;
+
+const name = record ? englishName(record.names, record.name) : '';
+const labels = new Map(index.types.map((t) => [t.name, t.label]));
+const relations = RELATIONS.map(([term, key]) => ({
+  term,
+  types: ((record?.damage_relations?.[key] ?? []) as { name: string }[]).map((t) => t.name),
+}));
+const cards = record ? cardsForPokemon(index, record.pokemon ?? []) : [];
+const moves = ((record?.moves ?? []) as { name: string }[])
+  .map((m) => ({ name: m.name, label: humanize(m.name) }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+---
+
+{
+  record ? (
+    <Layout title={name}>
+      <h1>{name}</h1>
+
+      <Section id="damage-relations" title="Damage relations">
+        <dl class="relations">
+          {relations.map((r) => (
+            <div>
+              <dt>{r.term}</dt>
+              <dd>
+                {r.types.length > 0 ? (
+                  <span class="badges">
+                    {r.types.map((t) => (
+                      <TypeBadge name={t} label={labels.get(t) ?? humanize(t)} />
+                    ))}
+                  </span>
+                ) : (
+                  'None'
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      <Section id="pokemon" title="Pokémon">
+        <p class="count">{cards.length} Pokémon</p>
+        {cards.length > 0 && <CardGrid cards={cards} />}
+      </Section>
+
+      <Section id="moves" title="Moves">
+        <p class="count">{moves.length} moves</p>
+        {moves.length > 0 && (
+          <ul class="move-list">
+            {moves.map((m) => (
+              <li>
+                <a href={`/moves/${m.name}`}>{m.label}</a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Section>
+    </Layout>
+  ) : (
+    <NotFound />
+  )
+}
+
+<style>
+  .relations {
+    display: grid;
+    gap: var(--space-4) var(--space-5);
+  }
+
+  @media (min-width: 48rem) {
+    .relations {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  dt {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-1);
+  }
+
+  dd {
+    font-size: var(--text-sm);
+  }
+
+  .move-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 6 10rem;
+    column-gap: var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .move-list li {
+    padding-block: var(--space-1);
+    break-inside: avoid;
+  }
+</style>

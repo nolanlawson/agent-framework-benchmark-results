@@ -1,0 +1,25 @@
+Measuring /repo/app
+
+added 17 packages in 692ms
+
+> pokedex-app@1.0.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 15 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  1.06 kB │ gzip: 0.51 kB
+dist/assets/index-DYdW_xRD.css   9.64 kB │ gzip: 2.48 kB
+dist/assets/index-DT-XLsUT.js   17.07 kB │ gzip: 6.51 kB
+
+✓ built in 40ms
+Lighthouse:
+  home           perf 0.97  LCP 1676ms  TBT 0ms  CLS 0.111  JS 7KiB
+  home-filtered  perf 0.97  LCP 1528ms  TBT 0ms  CLS 0.111  JS 7KiB
+  pokemon        perf 0.95  LCP 2260ms  TBT 107ms  CLS 0.111  JS 7KiB
+  move           perf 0.97  LCP 1715ms  TBT 49ms  CLS 0.111  JS 7KiB
+  ability        perf 0.97  LCP 1506ms  TBT 0ms  CLS 0.111  JS 7KiB
+  type           perf 0.97  LCP 1666ms  TBT 0ms  CLS 0.111  JS 7KiB
+Wrote /results/results.json

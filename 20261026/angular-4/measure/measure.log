@@ -1,0 +1,79 @@
+Measuring /repo/app
+
+added 356 packages in 3s
+npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   lmdb@3.5.6 (install: node-gyp-build-optional-packages)
+npm warn install-scripts   msgpackr-extract@3.0.4 (install: node-gyp-build-optional-packages)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+> app@0.0.0 build
+> ng build
+
+❯ Building...
+✔ Building...
+Browser bundles     
+Initial chunk files  | Names            |  Raw size | Estimated transfer size
+main-V3FRIEI3.js     | main             | 283.21 kB |                78.97 kB
+styles-YC3GN4UA.css  | styles           |   5.69 kB |                 1.50 kB
+
+                     | Initial total    | 288.90 kB |                80.46 kB
+
+Lazy chunk files     | Names            |  Raw size | Estimated transfer size
+chunk-D4DQGXIu.js    | pokemon          |  11.08 kB |                 3.42 kB
+chunk-Bwt9mBbB.js    | home             |   5.27 kB |                 1.91 kB
+chunk-D_JwhK8E.js    | type             |   2.90 kB |                 1.16 kB
+chunk-CxGxuVAA.js    | move             |   1.86 kB |               847 bytes
+chunk-pQ79xWVF.js    | -                |   1.67 kB |               824 bytes
+chunk-5R7NBfsJ.js    | types            |   1.34 kB |               680 bytes
+chunk-BKVSzrfQ.js    | ability          |   1.29 kB |               679 bytes
+chunk-DlbHEfJm.js    | -                |   1.04 kB |               529 bytes
+chunk-R1eJMBe6.js    | -                | 552 bytes |               552 bytes
+chunk-CesrDw-F.js    | not-found        |  89 bytes |                89 bytes
+chunk-BDjj3UBt.js    | load-error       |  76 bytes |                76 bytes
+
+
+Server bundles      
+Initial chunk files  | Names            |  Raw size
+server.mjs           | server           | 918.04 kB |                        
+main.server.mjs      | main.server      | 292.03 kB |                        
+chunk-Z4N7TAQX.mjs   | -                | 269.96 kB |                        
+polyfills.server.mjs | polyfills.server | 235.58 kB |                        
+chunk-WF43BLEM.mjs   | -                |   2.38 kB |                        
+chunk-C2KJ4ATU.mjs   | -                |   1.54 kB |                        
+chunk-KYQQYI4M.mjs   | -                |   1.01 kB |                        
+chunk-X5MIYNNP.mjs   | -                | 738 bytes |                        
+chunk-AHVGANC4.mjs   | -                | 712 bytes |                        
+
+Lazy chunk files     | Names            |  Raw size
+chunk-RBXOAK24.mjs   | xhr2             |  12.17 kB |                        
+chunk-XDZ7ZLR6.mjs   | xhr2             |  12.08 kB |                        
+chunk-5RXNFUHN.mjs   | pokemon          |  10.83 kB |                        
+chunk-L3HLN7PW.mjs   | home             |   5.27 kB |                        
+chunk-NVLJYS47.mjs   | type             |   2.91 kB |                        
+chunk-KY4WYGJD.mjs   | move             |   1.89 kB |                        
+chunk-T6KITNSB.mjs   | -                |   1.67 kB |                        
+chunk-RWMU6JAL.mjs   | types            |   1.38 kB |                        
+chunk-JSWWI7AE.mjs   | ability          |   1.36 kB |                        
+chunk-LQRXP2LE.mjs   | -                |   1.05 kB |                        
+chunk-TDCNUONY.mjs   | -                | 584 bytes |                        
+chunk-BWFL7VT4.mjs   | load-error       | 204 bytes |                        
+chunk-VL6CYLDT.mjs   | not-found        | 150 bytes |                        
+
+Prerendered 0 static routes.
+Application bundle generation complete. [2.380 seconds] - 2026-10-26T09:16:40.321Z
+
+Output location: /repo/app/dist/app
+
+Lighthouse:
+file:///home/agent/bench/measure.mjs:87
+        if (lhr.runtimeError) throw new Error(`${urlPath}: ${lhr.runtimeError.message}`);
+                                    ^
+
+Error: /: Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct URL and that the server is properly responding to all requests. (Status code: 400)
+    at runLighthouse (file:///home/agent/bench/measure.mjs:87:37)
+    at async file:///home/agent/bench/measure.mjs:140:24
+
+Node.js v24.22.1

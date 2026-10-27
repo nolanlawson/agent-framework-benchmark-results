@@ -1,0 +1,137 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NotFound from '../../components/NotFound.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import Evolution from '../../components/Evolution.astro';
+import MovesTables from '../../components/MovesTables.astro';
+import { dexNumber, getPokemonPage } from '../../lib/api';
+
+const data = await getPokemonPage(Astro.params.name ?? '', Astro.url.searchParams.get('game'));
+if (!data) Astro.response.status = 404;
+const maxStat = 255;
+---
+
+{!data && <NotFound />}
+{
+  data && (
+    <Layout title={data.label}>
+      <article class="pokemon">
+        <div class="pokemon-hero">
+          <div class="pokemon-hero__art">
+            {data.artwork && <img src={data.artwork} alt={data.label} width="475" height="475" fetchpriority="high" />}
+          </div>
+          <div class="pokemon-hero__info">
+            <p class="pokemon-hero__dex">{dexNumber(data.id)}</p>
+            <h1>{data.label}</h1>
+            {data.genus && <p class="pokemon-hero__genus">{data.genus}</p>}
+            <p class="type-list">
+              {data.types.map((t) => <TypeBadge name={t.name} label={t.label} link />)}
+            </p>
+            <dl class="facts">
+              <div>
+                <dt>Height</dt>
+                <dd>{(data.height / 10).toFixed(1)} m</dd>
+              </div>
+              <div>
+                <dt>Weight</dt>
+                <dd>{(data.weight / 10).toFixed(1)} kg</dd>
+              </div>
+            </dl>
+            {data.flavor && <p class="pokemon-hero__flavor">{data.flavor}</p>}
+          </div>
+        </div>
+
+        <Section id="stats" title="Base stats">
+          <table class="stats">
+            <tbody>
+              {data.stats.map((s) => (
+                <tr>
+                  <th scope="row">{s.label}</th>
+                  <td class="stats__value">{s.value}</td>
+                  <td class="stats__bar" aria-hidden="true">
+                    <span class="bar"><span style={`width: ${Math.min(100, (s.value / maxStat) * 100).toFixed(1)}%`} /></span>
+                  </td>
+                </tr>
+              ))}
+              <tr class="stats__total">
+                <th scope="row">Total</th>
+                <td class="stats__value">{data.total}</td>
+                <td class="stats__bar" aria-hidden="true">
+                  <span class="bar"><span style={`width: ${Math.min(100, (data.total / (maxStat * 6)) * 100).toFixed(1)}%`} /></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
+
+        <Section id="abilities" title="Abilities">
+          <ul class="bullets">
+            {data.abilities.map((a) => (
+              <li>
+                <a href={`/abilities/${a.name}`}>{a.label}</a>
+                {a.hidden && ' (hidden)'}
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section id="evolution" title="Evolution">
+          <div class="evolution">
+            <Evolution nodes={[data.evolution]} current={data.name} />
+          </div>
+        </Section>
+
+        <Section id="moves" title="Moves">
+          {data.groups.length > 0 ? (
+            <>
+              <form class="game-picker" method="get" action="#moves" data-game-picker>
+                <label for="game">Game</label>
+                <select id="game" name="game">
+                  {data.groups.map((g) => <option value={g.name} selected={g.name === data.selected}>{g.label}</option>)}
+                </select>
+                <noscript><button type="submit">Show</button></noscript>
+              </form>
+              <div data-moves-content>
+                <MovesTables tables={data.tables} />
+              </div>
+            </>
+          ) : (
+            <p class="muted">This Pokémon doesn't learn any moves.</p>
+          )}
+        </Section>
+      </article>
+    </Layout>
+  )
+}
+
+<script>
+  import { initSortableTables } from '../../scripts/sortable';
+
+  initSortableTables(document);
+
+  const picker = document.querySelector<HTMLFormElement>('[data-game-picker]');
+  const select = picker?.querySelector('select');
+  let controller: AbortController | undefined;
+
+  select?.addEventListener('change', async () => {
+    const url = new URL(location.href);
+    url.searchParams.set('game', select.value);
+    url.hash = 'moves';
+    history.replaceState(history.state, '', url);
+    controller?.abort();
+    controller = new AbortController();
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      if (!res.ok) throw new Error(String(res.status));
+      const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+      const fresh = doc.querySelector('[data-moves-content]');
+      const current = document.querySelector('[data-moves-content]');
+      if (!fresh || !current) throw new Error('missing moves content');
+      current.replaceWith(fresh);
+      initSortableTables(fresh);
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') location.assign(url);
+    }
+  });
+</script>

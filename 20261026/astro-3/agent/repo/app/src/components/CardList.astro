@@ -1,0 +1,14 @@
+---
+import PokemonCard from './PokemonCard.astro';
+import type { CardData } from '../lib/api';
+
+interface Props {
+  items: CardData[];
+  typeLabels?: Map<string, string>;
+}
+const { items, typeLabels } = Astro.props;
+---
+
+<ul class="card-grid" role="list">
+  {items.map((p) => <PokemonCard pokemon={p} typeLabels={typeLabels} />)}
+</ul>

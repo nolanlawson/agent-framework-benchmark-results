@@ -1,0 +1,228 @@
+{
+  "cpus": 4,
+  "memory": "8g",
+  "agentTimeoutMin": 240,
+  "lighthouseRuns": 5,
+  "model": "claude-opus-5-5",
+  "effort": "high",
+  "claudeVersion": "2.1.310",
+  "nodeVersion": "24.22.1",
+  "podman": "podman version 4.9.3",
+  "host": {
+    "platform": "linux",
+    "release": "7.0.0-38-generic",
+    "cpus": "AMD Ryzen 5 7640U w/ Radeon 760M Graphics",
+    "cores": 12,
+    "memoryGiB": 61
+  },
+  "iterations": 5,
+  "frameworks": [
+    "next",
+    "nuxt",
+    "tanstack-start",
+    "react-router",
+    "solidstart",
+    "sveltekit",
+    "angular",
+    "astro",
+    "qwik",
+    "gracile",
+    "hono-htmx",
+    "vanilla"
+  ],
+  "prompts": {
+    "next": "Implement the app described in SPEC.md using Next.js. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "nuxt": "Implement the app described in SPEC.md using Nuxt. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "tanstack-start": "Implement the app described in SPEC.md using TanStack Start with React. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "react-router": "Implement the app described in SPEC.md using React Router in framework mode. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "solidstart": "Implement the app described in SPEC.md using SolidStart. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "sveltekit": "Implement the app described in SPEC.md using SvelteKit. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "angular": "Implement the app described in SPEC.md using Angular. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "astro": "Implement the app described in SPEC.md using Astro. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "qwik": "Implement the app described in SPEC.md using Qwik with Qwik City. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "gracile": "Implement the app described in SPEC.md using Gracile with Lit. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "hono-htmx": "Implement the app described in SPEC.md using Hono and htmx. Use the latest stable version. Work autonomously until `npm test` passes.",
+    "vanilla": "Implement the app described in SPEC.md using vanilla JavaScript or TypeScript with Vite, without a UI framework. Use the latest stable version. Work autonomously until `npm test` passes."
+  },
+  "startedAt": "2026-10-25T14:37:12.976Z",
+  "stitched": {
+    "note": "Agent runs stitched from three runs; measured together with --measure-only. Iteration 1 of every framework but react-router comes from 20261025-143712; its react-router-1 was dropped because the React Router skill was not installed (fixed in bdc9300).",
+    "runs": {
+      "20261025-143712": {
+        "startedAt": "2026-10-25T14:37:12.976Z",
+        "frameworks": [
+          "next",
+          "nuxt",
+          "tanstack-start",
+          "react-router",
+          "solidstart",
+          "sveltekit",
+          "angular",
+          "astro",
+          "qwik",
+          "gracile",
+          "hono-htmx",
+          "vanilla"
+        ],
+        "harnessCommit": "4247b968fbc5667343db28eb442cbd9a17905d44",
+        "harnessDirty": false,
+        "images": {
+          "ubuntu": "sha256:66460d557b25769b102175144d538d88219c077c678a49af4afca6fbfc1b5252",
+          "pokedex-base": "ead01d607ae5a74e0fd770eb54c213ee392fabddb4d5fa3b3c1ff55e280d2c3d",
+          "pokedex-agent": "f6e50e0ffd3019f35195abb50523f0117da43adc7b1c3c8771cc64fe4db83e7b",
+          "pokedex-measure": "b6ba09d7cff35cdde6ca93649794e0e690ba33f197fd29fb3971eab83c69c10d"
+        },
+        "note": "iteration 1 (not react-router); its sveltekit-1 is the rerun from 20261025-170320"
+      },
+      "20261025-170320": {
+        "startedAt": "2026-10-25T17:03:20.333Z",
+        "frameworks": [
+          "sveltekit"
+        ],
+        "harnessCommit": "0fd7d5e4109d315d28f6732e23e3197d51cc733e",
+        "harnessDirty": false,
+        "images": {
+          "ubuntu": "sha256:66460d557b25769b102175144d538d88219c077c678a49af4afca6fbfc1b5252",
+          "pokedex-base": "7cc8b74b4f34e9d6d717f458421adf39b110024968b6ed52b90cf07dee5ae7e3",
+          "pokedex-agent": "fd034f831183340722e6bd9b0c2a77947dafd83e8b3a40c2fe08900d0937d710",
+          "pokedex-measure": "afa0212d350fe7a7da544c0b2978d2f7e24b5375ad75e218852043eb2e513e5b"
+        },
+        "note": "sveltekit-1 rerun after fixing the Svelte plugin ID (0fd7d5e)"
+      },
+      "20261025-230625": {
+        "startedAt": "2026-10-25T23:06:25.629Z",
+        "frameworks": [
+          "next",
+          "nuxt",
+          "tanstack-start",
+          "solidstart",
+          "sveltekit",
+          "angular",
+          "astro",
+          "qwik",
+          "gracile",
+          "hono-htmx",
+          "vanilla"
+        ],
+        "harnessCommit": "6c3a694609bbde1d712116b5fa88afc22e54f7b3",
+        "harnessDirty": false,
+        "images": {
+          "ubuntu": "sha256:66460d557b25769b102175144d538d88219c077c678a49af4afca6fbfc1b5252",
+          "pokedex-base": "240365de8eb44e5e703215eae953750a79c1bf4e264f40c2365bdf3810f17998",
+          "pokedex-agent": "094b3f22ccb0c102a64d54d77ae0999c60d6b80cc8fc95ae27dff1697fd3da94",
+          "pokedex-measure": "550343680c0598b4d460d28c44b505a1b5483721b23631819e24bbdfaff4bced"
+        },
+        "note": "iterations 2 and 3 (not react-router)"
+      },
+      "20261026-032837": {
+        "startedAt": "2026-10-26T03:28:37.475Z",
+        "frameworks": [
+          "react-router"
+        ],
+        "harnessCommit": "6c3a694609bbde1d712116b5fa88afc22e54f7b3",
+        "harnessDirty": false,
+        "images": {
+          "ubuntu": "sha256:66460d557b25769b102175144d538d88219c077c678a49af4afca6fbfc1b5252",
+          "pokedex-base": "04d7d18eeea0621611d4f9f909f3eabe4c2cd8d6475b6dd0488e68cca5ef75ba",
+          "pokedex-agent": "a8afbf56561c467b8e8fdddf8c0979211e05a2028962cc72881cfdaac4dfa5d8",
+          "pokedex-measure": "9f2320c9afda898413718dd61b4f89423dca7aac0b76f42aa302d4411e10bed0"
+        },
+        "note": "react-router iterations 1-3"
+      }
+    },
+    "sources": {
+      "next-1": "20261025-143712/next-1",
+      "next-2": "20261025-230625/next-1",
+      "next-3": "20261025-230625/next-2",
+      "nuxt-1": "20261025-143712/nuxt-1",
+      "nuxt-2": "20261025-230625/nuxt-1",
+      "nuxt-3": "20261025-230625/nuxt-2",
+      "tanstack-start-1": "20261025-143712/tanstack-start-1",
+      "tanstack-start-2": "20261025-230625/tanstack-start-1",
+      "tanstack-start-3": "20261025-230625/tanstack-start-2",
+      "react-router-1": "20261026-032837/react-router-1",
+      "react-router-2": "20261026-032837/react-router-2",
+      "react-router-3": "20261026-032837/react-router-3",
+      "solidstart-1": "20261025-143712/solidstart-1",
+      "solidstart-2": "20261025-230625/solidstart-1",
+      "solidstart-3": "20261025-230625/solidstart-2",
+      "sveltekit-1": "20261025-143712/sveltekit-1",
+      "sveltekit-2": "20261025-230625/sveltekit-1",
+      "sveltekit-3": "20261025-230625/sveltekit-2",
+      "angular-1": "20261025-143712/angular-1",
+      "angular-2": "20261025-230625/angular-1",
+      "angular-3": "20261025-230625/angular-2",
+      "astro-1": "20261025-143712/astro-1",
+      "astro-2": "20261025-230625/astro-1",
+      "astro-3": "20261025-230625/astro-2",
+      "qwik-1": "20261025-143712/qwik-1",
+      "qwik-2": "20261025-230625/qwik-1",
+      "qwik-3": "20261025-230625/qwik-2",
+      "gracile-1": "20261025-143712/gracile-1",
+      "gracile-2": "20261025-230625/gracile-1",
+      "gracile-3": "20261025-230625/gracile-2",
+      "hono-htmx-1": "20261025-143712/hono-htmx-1",
+      "hono-htmx-2": "20261025-230625/hono-htmx-1",
+      "hono-htmx-3": "20261025-230625/hono-htmx-2",
+      "vanilla-1": "20261025-143712/vanilla-1",
+      "vanilla-2": "20261025-230625/vanilla-1",
+      "vanilla-3": "20261025-230625/vanilla-2"
+    }
+  },
+  "appended-20261026-043912": {
+    "iterations": 2,
+    "cpus": 4,
+    "memory": "8g",
+    "agentTimeoutMin": 240,
+    "lighthouseRuns": 5,
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "claudeVersion": "2.1.310",
+    "frameworks": [
+      "next",
+      "nuxt",
+      "tanstack-start",
+      "react-router",
+      "solidstart",
+      "sveltekit",
+      "angular",
+      "astro",
+      "qwik",
+      "gracile",
+      "hono-htmx",
+      "vanilla"
+    ],
+    "prompts": {
+      "next": "Implement the app described in SPEC.md using Next.js. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "nuxt": "Implement the app described in SPEC.md using Nuxt. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "tanstack-start": "Implement the app described in SPEC.md using TanStack Start with React. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "react-router": "Implement the app described in SPEC.md using React Router in framework mode. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "solidstart": "Implement the app described in SPEC.md using SolidStart. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "sveltekit": "Implement the app described in SPEC.md using SvelteKit. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "angular": "Implement the app described in SPEC.md using Angular. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "astro": "Implement the app described in SPEC.md using Astro. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "qwik": "Implement the app described in SPEC.md using Qwik with Qwik City. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "gracile": "Implement the app described in SPEC.md using Gracile with Lit. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "hono-htmx": "Implement the app described in SPEC.md using Hono and htmx. Use the latest stable version. Work autonomously until `npm test` passes.",
+      "vanilla": "Implement the app described in SPEC.md using vanilla JavaScript or TypeScript with Vite, without a UI framework. Use the latest stable version. Work autonomously until `npm test` passes."
+    },
+    "startedAt": "2026-10-26T04:39:12.636Z",
+    "nodeVersion": "24.22.1",
+    "harnessCommit": "c1ba47e7a16307a3f3e9f0591d7c3cf296713556",
+    "harnessDirty": false,
+    "podman": "podman version 4.9.3",
+    "host": {
+      "platform": "linux",
+      "release": "7.0.0-38-generic",
+      "cpus": "AMD Ryzen 5 7640U w/ Radeon 760M Graphics",
+      "cores": 12,
+      "memoryGiB": 61
+    }
+  },
+  "appended-20261026-043912-images": {
+    "ubuntu": "sha256:66460d557b25769b102175144d538d88219c077c678a49af4afca6fbfc1b5252",
+    "pokedex-base": "c521afb77dbfa3c610bad143c7067574146173a1f0eb254a75a0b57500ace2b3",
+    "pokedex-agent": "9b9aa87ee23c1e3eae313afc87393579487e013ab8f0366feb83db6f275750ac",
+    "pokedex-measure": "fc425a8c7b9e3dd945e40ef241b4cdf4cb37f9b3f1ea65a1eb911234ef1699b1"
+  }
+}

@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NotFound from '../../components/NotFound.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import EvolutionTree from '../../components/EvolutionTree.astro';
+import MoveTables from '../../components/MoveTables.astro';
+import { loadPokemonPage } from '../../lib/pokemon.js';
+import { dexNumber } from '../../lib/format.js';
+
+const data = await loadPokemonPage(Astro.params.name, Astro.url.searchParams.get('game'));
+const STAT_MAX = 255;
+const total = data?.stats.reduce((sum, s) => sum + s.value, 0) ?? 0;
+const barWidth = (value: number, max: number) => `width: ${Math.min(100, (value / max) * 100).toFixed(1)}%`;
+---
+
+{
+  !data ? (
+    <NotFound />
+  ) : (
+    <Layout title={data.title}>
+      <div class="profile">
+        <div class="profile__art">
+          {data.artwork && <img src={data.artwork} alt={data.title} width="475" height="475" />}
+        </div>
+        <div class="profile__info">
+          <p class="profile__dex">{dexNumber(data.id)}</p>
+          <h1>{data.title}</h1>
+          {data.genus && <p class="profile__genus">{data.genus}</p>}
+          <ul class="badge-list" aria-label="Types">
+            {data.types.map((t) => (
+              <li>
+                <TypeBadge name={t.name} label={t.label} />
+              </li>
+            ))}
+          </ul>
+          <dl class="facts">
+            <div>
+              <dt>Height</dt>
+              <dd>{data.height} m</dd>
+            </div>
+            <div>
+              <dt>Weight</dt>
+              <dd>{data.weight} kg</dd>
+            </div>
+          </dl>
+          {data.flavor && <p class="profile__flavor">{data.flavor}</p>}
+        </div>
+      </div>
+
+      <Section id="stats" title="Base stats">
+        <table class="stats">
+          <tbody>
+            {data.stats.map((s) => (
+              <tr>
+                <th scope="row">{s.label}</th>
+                <td class="stats__value">{s.value}</td>
+                <td class="stats__bar" aria-hidden="true">
+                  <span style={barWidth(s.value, STAT_MAX)} />
+                </td>
+              </tr>
+            ))}
+            <tr class="stats__total">
+              <th scope="row">Total</th>
+              <td class="stats__value">{total}</td>
+              <td class="stats__bar" aria-hidden="true">
+                <span style={barWidth(total, STAT_MAX * Math.max(1, data.stats.length))} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Section>
+
+      <Section id="abilities" title="Abilities">
+        <ul class="plain-bullets">
+          {data.abilities.map((a) => (
+            <li>
+              <a href={`/abilities/${a.name}`}>{a.label}</a>
+              {a.hidden && ' (hidden)'}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="evolution" title="Evolution">
+        <EvolutionTree links={[data.chain]} current={data.name} />
+      </Section>
+
+      <Section id="moves" title="Moves">
+        {data.games.length ? (
+          <>
+            <form class="game-picker" method="get" data-game-picker>
+              <label for="game">Game</label>
+              <select id="game" name="game">
+                {data.games.map((g) => (
+                  <option value={g.name} selected={g.name === data.game}>
+                    {g.label}
+                  </option>
+                ))}
+              </select>
+            </form>
+            <div id="move-tables">
+              <MoveTables tables={data.tables} />
+            </div>
+          </>
+        ) : (
+          <p>No moves.</p>
+        )}
+      </Section>
+    </Layout>
+  )
+}
+
+<script>
+  import { swapFrom } from '../../lib/swap.js';
+
+  const picker = document.querySelector<HTMLFormElement>('[data-game-picker]');
+  picker?.addEventListener('change', () => {
+    const select = picker.querySelector('select');
+    if (!select) return;
+    const url = new URL(location.href);
+    url.searchParams.set('game', select.value);
+    url.hash = 'moves';
+    history.replaceState(null, '', url);
+    swapFrom(url.pathname + url.search, ['#move-tables']);
+  });
+  picker?.addEventListener('submit', (event) => event.preventDefault());
+</script>
+
+<script>
+  import '../../lib/sort-tables.js';
+</script>

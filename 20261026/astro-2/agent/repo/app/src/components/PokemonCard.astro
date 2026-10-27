@@ -1,0 +1,30 @@
+---
+import { dexNumber, humanize, spriteUrl } from '../lib/api';
+import TypeBadge from './TypeBadge.astro';
+
+interface Props {
+  id: number;
+  name: string;
+  types?: { name: string; label: string }[];
+  note?: string;
+}
+const { id, name, types, note } = Astro.props;
+---
+
+<li class="card">
+  <a class="card__link" href={`/pokemon/${name}`}>
+    <img class="card__sprite" src={spriteUrl(id)} alt="" width="96" height="96" decoding="async" />
+    <span class="card__dex">{dexNumber(id)}</span>
+    <span class="card__name">{humanize(name)}</span>
+    {
+      types && types.length > 0 && (
+        <span class="card__types">
+          {types.map((t) => (
+            <TypeBadge name={t.name} label={t.label} />
+          ))}
+        </span>
+      )
+    }
+    {note && <span class="card__note">{note}</span>}
+  </a>
+</li>

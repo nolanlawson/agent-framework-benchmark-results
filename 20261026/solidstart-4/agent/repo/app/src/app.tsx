@@ -1,0 +1,44 @@
+import { MetaProvider } from "@solidjs/meta";
+import { A, Router } from "@solidjs/router";
+import { FileRoutes } from "@solidjs/start/router";
+import { Suspense } from "solid-js";
+import "./styles/tokens.css";
+import "./styles/app.css";
+
+export default function App() {
+  return (
+    <Router
+      root={(props) => (
+        <MetaProvider>
+          <header class="site-header">
+            <div class="container site-header-inner">
+              <A href="/" class="brand" end>
+                Pokédex
+              </A>
+              <nav aria-label="Main">
+                <ul class="site-nav">
+                  <li>
+                    <A href="/" end>
+                      Pokémon
+                    </A>
+                  </li>
+                  <li>
+                    <A href="/types">Types</A>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </header>
+          <main class="container site-main">
+            <Suspense>{props.children}</Suspense>
+          </main>
+          <footer class="site-footer">
+            <p class="container">Data from PokéAPI. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
+          </footer>
+        </MetaProvider>
+      )}
+    >
+      <FileRoutes />
+    </Router>
+  );
+}

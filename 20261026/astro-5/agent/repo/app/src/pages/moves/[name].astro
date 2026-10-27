@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import NotFound from '../../components/NotFound.astro';
+import { api, resourcePath } from '../../lib/api';
+import {
+  cardsForPokemon,
+  display,
+  englishShortEffect,
+  getSpeciesIndex,
+  humanize,
+  latestFlavorText,
+  moveInfo,
+  MISSING,
+} from '../../lib/pokedex';
+
+const [record, index] = await Promise.all([api(resourcePath('move', Astro.params.name!)), getSpeciesIndex()]);
+if (!record) Astro.response.status = 404;
+
+const move = record && moveInfo(record);
+const typeLabel = move?.type ? (index.types.find((t) => t.name === move.type)?.label ?? humanize(move.type)) : undefined;
+const effect = record
+  ? (englishShortEffect(record.effect_entries) ?? latestFlavorText(record.flavor_text_entries) ?? MISSING)
+  : '';
+const cards = record
+  ? cardsForPokemon(
+      index,
+      (record.learned_by_pokemon ?? []).map((p: any) => ({ pokemon: p })),
+    )
+  : [];
+---
+
+{
+  move ? (
+    <Layout title={move.label}>
+      <h1>{move.label}</h1>
+      <dl class="facts panel">
+        <div>
+          <dt>Type</dt>
+          <dd>{move.type ? <TypeBadge name={move.type} label={typeLabel!} /> : MISSING}</dd>
+        </div>
+        <div>
+          <dt>Category</dt>
+          <dd>{move.category}</dd>
+        </div>
+        <div>
+          <dt>Power</dt>
+          <dd>{display(move.power)}</dd>
+        </div>
+        <div>
+          <dt>Accuracy</dt>
+          <dd>{display(move.accuracy)}</dd>
+        </div>
+        <div>
+          <dt>PP</dt>
+          <dd>{display(move.pp)}</dd>
+        </div>
+      </dl>
+
+      <Section id="effect" title="Effect">
+        <p>{effect}</p>
+      </Section>
+
+      <Section id="learned-by" title="Learned by">
+        <p class="count">{cards.length} Pokémon</p>
+        {cards.length > 0 && <CardGrid cards={cards} />}
+      </Section>
+    </Layout>
+  ) : (
+    <NotFound />
+  )
+}
+
+<style>
+  .facts {
+    margin-top: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  dt {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+</style>

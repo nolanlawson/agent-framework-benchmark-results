@@ -1,0 +1,144 @@
+app-section {
+  margin-top: var(--space-5);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: var(--artwork-size) 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.artwork {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.artwork img {
+  width: 100%;
+  height: auto;
+}
+
+.info {
+  padding-top: var(--space-4);
+}
+
+.info p {
+  margin: 0;
+}
+
+.dex {
+  color: var(--color-text-muted);
+}
+
+.info h1 {
+  margin: 0 0 var(--space-1);
+}
+
+.genus {
+  color: var(--color-text-muted);
+}
+
+.info .types {
+  display: flex;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.measures {
+  display: flex;
+  gap: var(--space-5);
+  margin: var(--space-4) 0;
+}
+
+.measures dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.measures dd {
+  margin: 0;
+}
+
+.stats {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats th,
+.stats td {
+  padding: var(--space-1) 0;
+  text-align: left;
+  font-weight: var(--weight-normal);
+}
+
+.stats th {
+  width: 6rem;
+  color: var(--color-text-muted);
+}
+
+.stats__value {
+  width: 3rem;
+}
+
+.stats__bar span {
+  display: block;
+  max-width: 100%;
+  height: 0.375rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-stat-bar);
+}
+
+.stats__bar {
+  background: linear-gradient(var(--color-stat-track), var(--color-stat-track)) no-repeat center / 100% 0.375rem;
+}
+
+.stats__total > * {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2) !important;
+}
+
+app-moves-table + app-moves-table {
+  margin-top: var(--space-6);
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.game label {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.game select {
+  width: 16.5rem;
+  max-width: 100%;
+}
+
+@media (max-width: 40rem) {
+  .summary {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .artwork {
+    width: var(--artwork-size);
+    max-width: 100%;
+    justify-self: center;
+  }
+
+  .info {
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,27 @@
+---
+import CardList from './CardList.astro';
+import { getPokemonList, listQueryString, typeLabels, type ListQuery } from '../lib/api';
+
+interface Props {
+  query: ListQuery;
+}
+const { query } = Astro.props;
+const [result, labels] = await Promise.all([getPokemonList(query), typeLabels()]);
+const { count, page, pages, items } = result;
+---
+
+<p class="count">{count} Pokémon</p>
+{
+  count === 0 ? (
+    <p class="empty">No Pokémon found</p>
+  ) : (
+    <>
+      <CardList items={items} typeLabels={labels} />
+      <nav class="pagination" aria-label="Pagination">
+        {page > 1 && <a href={`/${listQueryString(query, page - 1)}`} rel="prev">Previous page</a>}
+        <span>Page {page} of {pages}</span>
+        {page < pages && <a href={`/${listQueryString(query, page + 1)}`} rel="next">Next page</a>}
+      </nav>
+    </>
+  )
+}

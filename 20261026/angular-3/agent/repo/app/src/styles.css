@@ -1,0 +1,155 @@
+/* Global styles. Design tokens live in tokens.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+a {
+  color: var(--color-link);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+}
+
+h2 {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+}
+
+/* A white panel holding a page section. */
+.panel {
+  margin-top: var(--space-5);
+  padding: var(--space-5) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.count {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Type badges */
+.type-badge {
+  display: inline-block;
+  padding: 0.125rem var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--type-color, var(--type-normal));
+  color: var(--color-on-type);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.type-badge:hover {
+  text-decoration: underline;
+}
+
+.type-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.type-normal { --type-color: var(--type-normal); }
+.type-fighting { --type-color: var(--type-fighting); }
+.type-flying { --type-color: var(--type-flying); }
+.type-poison { --type-color: var(--type-poison); }
+.type-ground { --type-color: var(--type-ground); }
+.type-rock { --type-color: var(--type-rock); }
+.type-bug { --type-color: var(--type-bug); }
+.type-ghost { --type-color: var(--type-ghost); }
+.type-steel { --type-color: var(--type-steel); }
+.type-fire { --type-color: var(--type-fire); }
+.type-water { --type-color: var(--type-water); }
+.type-grass { --type-color: var(--type-grass); }
+.type-electric { --type-color: var(--type-electric); }
+.type-psychic { --type-color: var(--type-psychic); }
+.type-ice { --type-color: var(--type-ice); }
+.type-dragon { --type-color: var(--type-dragon); }
+.type-dark { --type-color: var(--type-dark); }
+.type-fairy { --type-color: var(--type-fairy); }
+
+/* Small label/value pairs (move details, height/weight). */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+}
+
+.facts dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+/* Form controls */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.field label {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}

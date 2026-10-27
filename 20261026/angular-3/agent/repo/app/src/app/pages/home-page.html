@@ -1,0 +1,62 @@
+@if (index(); as index) {
+  <h1>Pokémon</h1>
+
+  <form class="filters" role="search" (submit)="$event.preventDefault()">
+    <div class="field filters__search">
+      <label for="search">Search</label>
+      <input
+        id="search"
+        type="search"
+        autocomplete="off"
+        [value]="searchText()"
+        (input)="onSearch($any($event.target).value)"
+      />
+    </div>
+    <div class="field">
+      <label for="type-filter">Type</label>
+      <select id="type-filter" (change)="onSelect('type', $any($event.target).value)">
+        <option value="" [selected]="!type()" [attr.selected]="!type() ? '' : null">All types</option>
+        @for (t of index.types; track t.name) {
+          <option [value]="t.name" [selected]="type() === t.name" [attr.selected]="type() === t.name ? '' : null">
+            {{ t.label }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="field">
+      <label for="generation-filter">Generation</label>
+      <select id="generation-filter" (change)="onSelect('generation', $any($event.target).value)">
+        <option value="" [selected]="!generation()" [attr.selected]="!generation() ? '' : null">
+          All generations
+        </option>
+        @for (g of index.generations; track g.name) {
+          <option
+            [value]="g.name"
+            [selected]="generation() === g.name"
+            [attr.selected]="generation() === g.name ? '' : null"
+          >
+            {{ g.label }}
+          </option>
+        }
+      </select>
+    </div>
+  </form>
+
+  @if (matches().length) {
+    <p class="count">{{ matches().length }} Pokémon</p>
+    <app-pokemon-cards [cards]="cards()" [spriteBase]="index.spriteBase" />
+    <nav class="pagination" aria-label="Pagination">
+      @if (currentPage() > 1) {
+        <a [routerLink]="[]" [queryParams]="pageParams(currentPage() - 1)" queryParamsHandling="merge">Previous page</a>
+      }
+      <span>Page {{ currentPage() }} of {{ pageCount() }}</span>
+      @if (currentPage() < pageCount()) {
+        <a [routerLink]="[]" [queryParams]="pageParams(currentPage() + 1)" queryParamsHandling="merge">Next page</a>
+      }
+    </nav>
+  } @else {
+    <p class="empty">No Pokémon found</p>
+  }
+} @else {
+  <app-not-found />
+}

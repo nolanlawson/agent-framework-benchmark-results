@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CardGrid from '../components/CardGrid.astro';
+import { getSpeciesIndex } from '../lib/pokedex';
+
+const PAGE_SIZE = 48;
+
+const index = await getSpeciesIndex();
+const params = Astro.url.searchParams;
+const q = params.get('q')?.trim() ?? '';
+const type = index.types.some((t) => t.name === params.get('type')) ? params.get('type')! : '';
+const generation = index.generations.some((g) => g.name === params.get('generation')) ? params.get('generation')! : '';
+
+const needle = q.toLowerCase();
+const matches = index.species.filter(
+  (s) =>
+    (!needle || s.label.toLowerCase().includes(needle)) &&
+    (!type || s.types.includes(type)) &&
+    (!generation || s.generation === generation),
+);
+
+const totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE));
+const requested = Number.parseInt(params.get('page') ?? '1', 10);
+const page = Number.isFinite(requested) ? Math.min(Math.max(requested, 1), totalPages) : 1;
+const cards = matches.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+const typeLabels = new Map(index.types.map((t) => [t.name, t.label]));
+
+function pageHref(n: number) {
+  const search = new URLSearchParams();
+  if (q) search.set('q', q);
+  if (type) search.set('type', type);
+  if (generation) search.set('generation', generation);
+  if (n > 1) search.set('page', String(n));
+  const query = search.toString();
+  return query ? `/?${query}` : '/';
+}
+---
+
+<Layout>
+  <h1>Pokémon</h1>
+  <form class="filters" method="get" action="/" role="search" data-filters>
+    <div class="field field-search">
+      <label for="filter-q">Search</label>
+      <input id="filter-q" type="search" name="q" value={q} autocomplete="off" spellcheck="false" />
+    </div>
+    <div class="field">
+      <label for="filter-type">Type</label>
+      <select id="filter-type" name="type">
+        <option value="" selected={!type}>All types</option>
+        {index.types.map((t) => <option value={t.name} selected={t.name === type}>{t.label}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="filter-generation">Generation</label>
+      <select id="filter-generation" name="generation">
+        <option value="" selected={!generation}>All generations</option>
+        {index.generations.map((g) => <option value={g.name} selected={g.name === generation}>{g.label}</option>)}
+      </select>
+    </div>
+    <noscript><button type="submit">Apply filters</button></noscript>
+  </form>
+
+  <div class="results" data-results>
+    {
+      matches.length === 0 ? (
+        <p class="count">No Pokémon found</p>
+      ) : (
+        <>
+          <p class="count">{matches.length} Pokémon</p>
+          <CardGrid cards={cards} typeLabels={typeLabels} />
+          <nav class="pagination" aria-label="Pagination">
+            {page > 1 && <a href={pageHref(page - 1)}>Previous page</a>}
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            {page < totalPages && <a href={pageHref(page + 1)}>Next page</a>}
+          </nav>
+        </>
+      )
+    }
+  </div>
+</Layout>
+
+<script>
+  // Progressive enhancement: filter as the user types or picks an option, updating the
+  // URL and swapping in the server-rendered results without a full page load.
+  const form = document.querySelector<HTMLFormElement>('[data-filters]')!;
+  const search = form.querySelector<HTMLInputElement>('input[name="q"]')!;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let latest = 0;
+
+  function urlFromForm() {
+    const params = new URLSearchParams();
+    for (const [key, value] of new FormData(form)) {
+      const text = String(value).trim();
+      if (text) params.set(key, text);
+    }
+    const query = params.toString();
+    return query ? `/?${query}` : '/';
+  }
+
+  async function render(url: string) {
+    const request = ++latest;
+    try {
+      const res = await fetch(url, { headers: { Accept: 'text/html' } });
+      const html = await res.text();
+      if (request !== latest) return;
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const fresh = doc.querySelector('[data-results]');
+      const current = document.querySelector('[data-results]');
+      if (fresh && current) current.replaceWith(document.importNode(fresh, true));
+    } catch {
+      if (request === latest) location.assign(url);
+    }
+  }
+
+  function update(mode: 'push' | 'replace') {
+    clearTimeout(timer);
+    const url = urlFromForm();
+    if (url !== location.pathname + location.search) {
+      history[mode === 'push' ? 'pushState' : 'replaceState'](null, '', url);
+    }
+    render(url);
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    update('push');
+  });
+  search.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => update('replace'), 150);
+  });
+  form.addEventListener('change', (event) => {
+    if (event.target instanceof HTMLSelectElement) update('push');
+  });
+
+  window.addEventListener('popstate', () => {
+    const params = new URLSearchParams(location.search);
+    search.value = params.get('q') ?? '';
+    for (const select of form.querySelectorAll('select')) select.value = params.get(select.name) ?? '';
+    render(location.pathname + location.search);
+  });
+</script>
+
+<style>
+  .filters {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 48rem) {
+    .filters {
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-3);
+    }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  input,
+  select {
+    height: 2.5rem;
+    padding: 0 var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+  }
+
+  .results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-5);
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+  }
+</style>

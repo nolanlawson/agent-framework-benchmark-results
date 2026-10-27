@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NotFound from '../../components/NotFound.astro';
+import Section from '../../components/Section.astro';
+import CardList from '../../components/CardList.astro';
+import { getAbilityPage } from '../../lib/api';
+
+const data = await getAbilityPage(Astro.params.name ?? '');
+if (!data) Astro.response.status = 404;
+---
+
+{!data && <NotFound />}
+{
+  data && (
+    <Layout title={data.label}>
+      <h1>{data.label}</h1>
+      <Section id="effect" title="Effect">
+        <p>{data.effect ?? '—'}</p>
+      </Section>
+      <Section id="pokemon" title="Pokémon">
+        <p class="count">{data.pokemon.length} Pokémon</p>
+        <CardList items={data.pokemon} />
+      </Section>
+    </Layout>
+  )
+}

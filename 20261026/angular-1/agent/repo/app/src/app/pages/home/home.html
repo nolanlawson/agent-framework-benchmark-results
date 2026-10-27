@@ -1,0 +1,56 @@
+<h1>Pokémon</h1>
+
+@if (data.error()) {
+  <p class="notice">The Pokédex data couldn't be loaded. Please try again.</p>
+} @else if (!data.hasValue()) {
+  <p class="loading" role="status">Loading…</p>
+} @else {
+  @let home = data.value();
+  <form class="filters" role="search" (submit)="$event.preventDefault()">
+    <div class="field field-search">
+      <label for="search">Search</label>
+      <input
+        id="search"
+        type="search"
+        autocomplete="off"
+        spellcheck="false"
+        [value]="searchText()"
+        (input)="onSearch($any($event.target).value)"
+      />
+    </div>
+    <div class="field">
+      <label for="type-filter">Type</label>
+      <select id="type-filter" (change)="onSelect('type', $event)">
+        <option value="" [selected]="!filters().type">All types</option>
+        @for (option of home.types; track option.name) {
+          <option [value]="option.name" [selected]="option.name === filters().type">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+    <div class="field">
+      <label for="generation-filter">Generation</label>
+      <select id="generation-filter" (change)="onSelect('generation', $event)">
+        <option value="" [selected]="!filters().generation">All generations</option>
+        @for (option of home.generations; track option.name) {
+          <option [value]="option.name" [selected]="option.name === filters().generation">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+  </form>
+
+  @if (matches().length === 0) {
+    <p class="notice">No Pokémon found</p>
+  } @else {
+    <p class="count">{{ matches().length }} Pokémon</p>
+    <app-pokemon-card-list [cards]="cards()" />
+    <nav class="pagination" aria-label="Pagination">
+      <span>Page {{ currentPage() }} of {{ pageCount() }}</span>
+      @if (currentPage() > 1) {
+        <a routerLink="/" [queryParams]="queryParams(filters(), currentPage() - 1)">Previous page</a>
+      }
+      @if (currentPage() < pageCount()) {
+        <a routerLink="/" [queryParams]="queryParams(filters(), currentPage() + 1)">Next page</a>
+      }
+    </nav>
+  }
+}

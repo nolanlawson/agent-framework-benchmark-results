@@ -1,0 +1,77 @@
+---
+import TypeBadge from './TypeBadge.astro';
+import { DASH } from '../lib/format.js';
+
+export interface MoveRow {
+  level: number | null;
+  name: string;
+  label: string;
+  type: { name: string; label: string } | null;
+  category: string | null;
+  power: number | null;
+  accuracy: number | null;
+  pp: number | null;
+}
+export interface MoveTable {
+  method: string;
+  label: string;
+  rows: MoveRow[];
+}
+interface Props {
+  tables: MoveTable[];
+}
+const { tables } = Astro.props;
+
+const sortValue = (v: number | string | null | undefined) => (v === null || v === undefined ? '' : String(v));
+const show = (v: number | string | null | undefined) => (v === null || v === undefined ? DASH : String(v));
+---
+
+{
+  tables.map((table) => {
+    const levels = table.method === 'level-up';
+    const columns = [
+      ...(levels ? [{ key: 'level', label: 'Level', numeric: true }] : []),
+      { key: 'move', label: 'Move', numeric: false },
+      { key: 'type', label: 'Type', numeric: false },
+      { key: 'category', label: 'Category', numeric: false },
+      { key: 'power', label: 'Power', numeric: true },
+      { key: 'accuracy', label: 'Accuracy', numeric: true },
+      { key: 'pp', label: 'PP', numeric: true },
+    ];
+    return (
+      <div class="move-table">
+        <div class="table-scroll">
+          <table class="data-table" data-sortable>
+            <caption>{table.label}</caption>
+            <thead>
+              <tr>
+                {columns.map((c, i) => (
+                  <th scope="col" data-column={i} data-numeric={c.numeric ? '' : undefined}>
+                    <button type="button">{c.label}</button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {table.rows.map((row) => (
+                <tr>
+                  {levels && <td data-value={sortValue(row.level)}>{show(row.level)}</td>}
+                  <td data-value={row.label}>
+                    <a href={`/moves/${row.name}`}>{row.label}</a>
+                  </td>
+                  <td data-value={row.type?.label ?? ''}>
+                    {row.type ? <TypeBadge name={row.type.name} label={row.type.label} /> : DASH}
+                  </td>
+                  <td data-value={sortValue(row.category)}>{show(row.category)}</td>
+                  <td data-value={sortValue(row.power)}>{show(row.power)}</td>
+                  <td data-value={sortValue(row.accuracy)}>{show(row.accuracy)}</td>
+                  <td data-value={sortValue(row.pp)}>{show(row.pp)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  })
+}

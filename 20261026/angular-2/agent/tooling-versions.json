@@ -1,0 +1,15 @@
+[
+  {
+    "kind": "mcp (stdio)",
+    "name": "angular-cli",
+    "package": "@angular/cli",
+    "version": "22.2.4"
+  },
+  {
+    "kind": "skill",
+    "repo": "angular/skills",
+    "commit": "3c880aa88f88872b74c88ec2041e3dfd955dfb36",
+    "args": [],
+    "skillsCli": "1.7.4"
+  }
+]

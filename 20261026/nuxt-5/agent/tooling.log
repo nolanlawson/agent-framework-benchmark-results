@@ -1,0 +1,28 @@
+Tooling for nuxt:
+{ "mcpServers": {"nuxt":{"type":"http","url":"https://nuxt.com/mcp"}} }
+[
+  {
+    "kind": "mcp (hosted)",
+    "name": "nuxt",
+    "url": "https://nuxt.com/mcp",
+    "serverInfo": {
+      "name": "Nuxt",
+      "version": "1.0.0"
+    },
+    "tools": [
+      "get-blog-post",
+      "list-blog-posts",
+      "get-changelog",
+      "get-deploy-provider",
+      "list-deploy-providers",
+      "get-module",
+      "list-modules",
+      "get-documentation-page",
+      "get-getting-started-guide",
+      "list-documentation-pages",
+      "get-nuxter",
+      "list-nuxters"
+    ],
+    "toolsSha256": "9bfa5394495b8f3f3f6f48012b5bf19cfa675c5720c24606ad9298c8f183eea5"
+  }
+]

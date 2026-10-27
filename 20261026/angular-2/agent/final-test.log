@@ -1,0 +1,133 @@
+
+> test
+> node tests/run.mjs
+
+$ npm install --no-audit --no-fund --include=dev  (in app)
+
+added 356 packages in 3s
+npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   lmdb@3.5.6 (install: node-gyp-build-optional-packages)
+npm warn install-scripts   msgpackr-extract@3.0.4 (install: node-gyp-build-optional-packages)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+$ npm run build  (in app)
+
+> app@0.0.0 build
+> ng build
+
+❯ Building...
+Allowing all hosts via "*" is a security risk. This configuration should only be used when validation for "Host" and "X-Forwarded-Host" headers is performed in another layer, such as a load balancer or reverse proxy. For more information see: https://angular.dev/best-practices/security#preventing-server-side-request-forgery-ssrf
+✔ Building...
+Browser bundles     
+Initial chunk files  | Names            |  Raw size | Estimated transfer size
+main-3Y5HXBHH.js     | main             | 270.13 kB |                75.25 kB
+styles-VMGMBX6B.css  | styles           |   8.83 kB |                 2.07 kB
+
+                     | Initial total    | 278.97 kB |                77.32 kB
+
+Lazy chunk files     | Names            |  Raw size | Estimated transfer size
+chunk-BkN3iCKX.js    | pokemon-page     |   8.54 kB |                 2.92 kB
+chunk-C8RLdVl1.js    | home             |   5.32 kB |                 2.05 kB
+chunk-QIjHTOCj.js    | -                |   2.03 kB |               935 bytes
+chunk-aKlx6oDT.js    | type-page        |   2.01 kB |               883 bytes
+chunk-DBEUeNt3.js    | move-page        |   1.83 kB |               823 bytes
+chunk-BzWuZud6.js    | -                |   1.26 kB |               643 bytes
+chunk-DXH3juCH.js    | ability-page     |   1.14 kB |               602 bytes
+chunk-DINO064M.js    | types-page       | 788 bytes |               788 bytes
+chunk-dA-JyG6R.js    | -                | 776 bytes |               776 bytes
+chunk-BDVhussF.js    | -                | 514 bytes |               514 bytes
+chunk-Cfvj5enr.js    | not-found        |  88 bytes |                88 bytes
+
+
+Server bundles      
+Initial chunk files  | Names            |  Raw size
+server.mjs           | server           | 925.15 kB |                        
+main.server.mjs      | main.server      | 293.64 kB |                        
+chunk-YKO4DOTX.mjs   | -                | 267.69 kB |                        
+polyfills.server.mjs | polyfills.server | 235.58 kB |                        
+chunk-C2KJ4ATU.mjs   | -                |   1.54 kB |                        
+chunk-QDAVZZHN.mjs   | -                |   1.03 kB |                        
+chunk-KYQQYI4M.mjs   | -                |   1.01 kB |                        
+chunk-YPFW2EDO.mjs   | -                | 276 bytes |                        
+
+Lazy chunk files     | Names            |  Raw size
+chunk-RBXOAK24.mjs   | xhr2             |  12.17 kB |                        
+chunk-XDZ7ZLR6.mjs   | xhr2             |  12.08 kB |                        
+chunk-MD34OQCV.mjs   | pokemon-page     |   8.33 kB |                        
+chunk-Y4REVWTW.mjs   | home             |   5.31 kB |                        
+chunk-PICWZDJP.mjs   | -                |   2.07 kB |                        
+chunk-7W63WGHU.mjs   | type-page        |   2.06 kB |                        
+chunk-55MWAZME.mjs   | move-page        |   1.88 kB |                        
+chunk-6HL2XR6Q.mjs   | ability-page     |   1.23 kB |                        
+chunk-FVTLWIKR.mjs   | -                |   1.04 kB |                        
+chunk-T4GSQ2KB.mjs   | types-page       | 827 bytes |                        
+chunk-K2MOZ6HM.mjs   | -                | 796 bytes |                        
+chunk-26YTKIAO.mjs   | -                | 547 bytes |                        
+chunk-LNIHI4RK.mjs   | not-found        | 149 bytes |                        
+
+Prerendered 0 static routes.
+Application bundle generation complete. [2.330 seconds] - 2026-10-26T01:24:57.128Z
+
+Output location: /home/agent/work/app/dist/app
+
+
+Running 54 tests using 4 workers
+
+  ✓   1 tests/specs/details.spec.mjs:44:3 › Move page › falls back to flavor text when there is no effect text (842ms)
+  ✓   4 tests/specs/details.spec.mjs:32:3 › Move page › maps Pokémon to their species and leaves out alternate forms (960ms)
+  ✓   6 tests/specs/details.spec.mjs:56:3 › Move page › includes Pokémon added after the build (494ms)
+  ✓   3 tests/specs/details.spec.mjs:21:3 › Move page › lists the Pokémon that learn it (1.7s)
+  ✓   5 tests/specs/details.spec.mjs:51:3 › Move page › shows a missing power as an em dash (901ms)
+  ✓   7 tests/specs/details.spec.mjs:63:3 › Ability page › shows the effect and the Pokémon with the ability (543ms)
+  ✓   2 tests/specs/details.spec.mjs:7:3 › Move page › shows the move details (2.1s)
+  ✓   8 tests/specs/details.spec.mjs:74:3 › Ability page › marks hidden abilities (438ms)
+  ✓   9 tests/specs/details.spec.mjs:82:3 › Ability page › uses the English name for the heading (451ms)
+  ✓  10 tests/specs/details.spec.mjs:87:3 › Ability page › includes Pokémon added after the build (502ms)
+  ✓  11 tests/specs/details.spec.mjs:94:3 › Type list › links to the 18 types in order (507ms)
+  ✓  13 tests/specs/details.spec.mjs:129:3 › Type page › lists Pokémon and moves of the type (1.3s)
+  ✓  14 tests/specs/details.spec.mjs:146:3 › Type page › cards link to species pages (1.0s)
+  ✓  12 tests/specs/details.spec.mjs:104:3 › Type page › shows damage relations (1.5s)
+  ✓  15 tests/specs/details.spec.mjs:153:3 › Type page › includes Pokémon added after the build (1.1s)
+  ✓  16 tests/specs/details.spec.mjs:161:5 › Not found › /pokemon/missingno shows a not-found page (407ms)
+  ✓  17 tests/specs/details.spec.mjs:161:5 › Not found › /moves/not-a-move shows a not-found page (441ms)
+  ✓  18 tests/specs/details.spec.mjs:161:5 › Not found › /abilities/not-an-ability shows a not-found page (440ms)
+  ✓  19 tests/specs/details.spec.mjs:161:5 › Not found › /types/not-a-type shows a not-found page (417ms)
+  ✓  20 tests/specs/details.spec.mjs:161:5 › Not found › /no/such/page shows a not-found page (531ms)
+  ✓  22 tests/specs/home.spec.mjs:29:3 › Pokémon list › has labelled search, type and generation controls (871ms)
+  ✓  24 tests/specs/home.spec.mjs:54:3 › Pokémon list › last page includes species added after the build (754ms)
+  ✓  21 tests/specs/home.spec.mjs:8:3 › Pokémon list › shows the first page of all species (1.3s)
+  ✓  23 tests/specs/home.spec.mjs:43:3 › Pokémon list › paginates with Previous and Next links (1.2s)
+  ✓  25 tests/specs/home.spec.mjs:66:3 › Pokémon list › filters by type and generation from the URL (808ms)
+  ✓  28 tests/specs/home.spec.mjs:96:3 › Pokémon list › search matches humanized names (493ms)
+  ✓  26 tests/specs/home.spec.mjs:80:3 › Pokémon list › type filter matches either type slot (640ms)
+  ✓  31 tests/specs/home.spec.mjs:120:3 › Pokémon list › shows a message when nothing matches (418ms)
+  ✓  27 tests/specs/home.spec.mjs:85:3 › Pokémon list › search updates the results while typing (1.5s)
+  ✓  30 tests/specs/home.spec.mjs:108:3 › Pokémon list › changing a filter updates the URL and resets to page 1 (1.1s)
+  ✓  29 tests/specs/home.spec.mjs:101:3 › Pokémon list › search finds species added after the build (1.3s)
+  ✓  32 tests/specs/layout.spec.mjs:16:5 › Every page › / has the shared layout (851ms)
+  ✓  33 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/pikachu has the shared layout (1.0s)
+  ✓  36 tests/specs/layout.spec.mjs:16:5 › Every page › /types has the shared layout (461ms)
+  ✓  35 tests/specs/layout.spec.mjs:16:5 › Every page › /abilities/static has the shared layout (636ms)
+  ✓  38 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/missingno has the shared layout (508ms)
+  ✓  34 tests/specs/layout.spec.mjs:16:5 › Every page › /moves/thunderbolt has the shared layout (1.5s)
+  ✓  40 tests/specs/pokemon.spec.mjs:32:3 › Pokémon page › uses the English name for the heading (297ms)
+  ✓  39 tests/specs/pokemon.spec.mjs:13:3 › Pokémon page › shows the summary (844ms)
+  ✓  37 tests/specs/layout.spec.mjs:16:5 › Every page › /types/fire has the shared layout (904ms)
+  ✓  41 tests/specs/pokemon.spec.mjs:38:3 › Pokémon page › works for species whose default Pokémon has a different name (555ms)
+  ✓  44 tests/specs/pokemon.spec.mjs:64:3 › Pokémon page › shows the evolution chain as a nested list (649ms)
+  ✓  43 tests/specs/pokemon.spec.mjs:55:3 › Pokémon page › lists abilities with the hidden one marked (739ms)
+  ✓  42 tests/specs/pokemon.spec.mjs:44:3 › Pokémon page › shows base stats in a table (991ms)
+  ✓  45 tests/specs/pokemon.spec.mjs:75:3 › Pokémon page › shows branching evolutions (555ms)
+  ✓  47 tests/specs/pokemon.spec.mjs:94:3 › Pokémon page › defaults to the latest game and lists games in order (547ms)
+  ✓  46 tests/specs/pokemon.spec.mjs:86:3 › Pokémon page › #moves jumps to the moves section (646ms)
+  ✓  48 tests/specs/pokemon.spec.mjs:102:3 › Pokémon page › shows one table per learn method in a fixed order (945ms)
+  ✓  51 tests/specs/pokemon.spec.mjs:167:3 › Pokémon page › changing the game updates the URL and the tables (800ms)
+  ✓  52 tests/specs/pokemon.spec.mjs:177:3 › Pokémon page › links point at species pages (447ms)
+  ✓  54 tests/specs/pokemon.spec.mjs:197:3 › Pokémon page with live data › shows a species added after the build (352ms)
+  ✓  49 tests/specs/pokemon.spec.mjs:119:3 › Pokémon page › shows move details in each row (1.8s)
+  ✓  53 tests/specs/pokemon.spec.mjs:186:3 › Pokémon page with live data › reflects changed values (686ms)
+  ✓  50 tests/specs/pokemon.spec.mjs:137:3 › Pokémon page › sorts a table by clicking a column header (2.3s)
+
+  54 passed (13.2s)

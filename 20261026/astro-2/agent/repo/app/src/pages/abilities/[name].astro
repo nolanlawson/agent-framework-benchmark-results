@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import PokemonCard from '../../components/PokemonCard.astro';
+import NotFound from '../../components/NotFound.astro';
+import { englishName, englishShortEffect, getJson, latestEnglishFlavorText, pokemonRefsToSpecies } from '../../lib/api';
+
+const ability = await getJson(`ability/${encodeURIComponent(Astro.params.name!.toLowerCase())}`);
+if (!ability) Astro.response.status = 404;
+
+const pokemon = ability
+  ? await pokemonRefsToSpecies(
+      (ability.pokemon ?? []).map((p: any) => ({ name: p.pokemon.name, url: p.pokemon.url, hidden: p.is_hidden as boolean })),
+    )
+  : [];
+const name = ability ? englishName(ability) : '';
+const effect = ability ? (englishShortEffect(ability) ?? latestEnglishFlavorText(ability.flavor_text_entries) ?? '—') : '';
+---
+
+{
+  !ability ? (
+    <NotFound />
+  ) : (
+    <Layout title={name}>
+      <h1>{name}</h1>
+
+      <Section id="effect" heading="Effect">
+        <p>{effect}</p>
+      </Section>
+
+      <Section id="pokemon" heading="Pokémon">
+        <p class="count">{pokemon.length} Pokémon</p>
+        {pokemon.length > 0 && (
+          <ul class="card-grid">
+            {pokemon.map((p) => (
+              <PokemonCard id={p.id} name={p.name} note={p.ref.hidden ? 'Hidden ability' : undefined} />
+            ))}
+          </ul>
+        )}
+      </Section>
+    </Layout>
+  )
+}

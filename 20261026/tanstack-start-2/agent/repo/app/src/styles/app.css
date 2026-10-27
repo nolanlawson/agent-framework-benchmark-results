@@ -1,0 +1,536 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+h1,
+h2,
+p,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+h2 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+a {
+  color: var(--color-link);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* Header and footer */
+
+.site-header {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.header-inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.site-header a {
+  color: var(--color-on-accent);
+  text-decoration: none;
+}
+
+.site-header a:hover {
+  text-decoration: underline;
+}
+
+.brand {
+  font-size: var(--text-lg);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-5);
+  list-style: none;
+  padding: 0;
+}
+
+.main {
+  flex: 1;
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-7);
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+/* Panels and sections */
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+h1 + section.panel {
+  margin-top: var(--space-5);
+}
+
+.facts-panel {
+  padding: var(--space-4);
+}
+
+.panel:last-child {
+  margin-bottom: 0;
+}
+
+.count {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+
+.plain-list {
+  padding-left: var(--space-5);
+}
+
+.plain-list.evolution {
+  padding-left: var(--space-4);
+}
+
+.evolution ul {
+  padding-left: var(--space-5);
+}
+
+/* Badges */
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: inherit;
+  gap: var(--space-1);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.1875rem var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--badge-bg);
+  color: var(--color-on-type);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.badge:hover {
+  text-decoration: underline;
+}
+
+/* Forms */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.field label {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.field input,
+.field select {
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  width: 100%;
+}
+
+.field select {
+  height: 2.5rem;
+  padding-block: 0;
+}
+
+.field-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.field-inline select {
+  width: auto;
+  min-width: 16.5rem;
+  max-width: 100%;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .filters {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+/* Pokémon cards */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+  text-align: center;
+}
+
+.card:hover {
+  border-color: var(--color-link);
+}
+
+.card:hover .card-name {
+  text-decoration: underline;
+}
+
+.card-sprite {
+  width: var(--sprite-size);
+  height: var(--sprite-size);
+  image-rendering: pixelated;
+}
+
+.card-dex {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.card .badges {
+  justify-content: center;
+}
+
+.card-note {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+}
+
+/* Pokémon page */
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.artwork {
+  align-self: center;
+  width: var(--artwork-size);
+  max-width: 100%;
+  aspect-ratio: 1;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+}
+
+.artwork img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.summary-info h1 {
+  margin-bottom: var(--space-1);
+}
+
+.dex {
+  color: var(--color-text-muted);
+}
+
+.genus {
+  margin-bottom: var(--space-3);
+}
+
+.summary-info .badges {
+  margin-bottom: var(--space-4);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+
+.facts dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.summary .facts {
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .summary {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-6);
+  }
+
+  .artwork {
+    align-self: flex-start;
+    flex: none;
+  }
+
+  .summary-info {
+    padding-top: 1.125rem;
+  }
+}
+
+.stats {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats th {
+  text-align: left;
+  font-weight: var(--weight-normal);
+  color: var(--color-text-muted);
+  width: 6rem;
+  padding: var(--space-1) 0;
+}
+
+.stats td {
+  padding: var(--space-1) 0;
+}
+
+.stats td:nth-child(2) {
+  width: 3rem;
+}
+
+.stats-total th,
+.stats-total td {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+
+.stat-bar {
+  display: block;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-stat-track);
+  overflow: hidden;
+}
+
+.stat-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-stat-bar);
+}
+
+#moves {
+  scroll-margin-top: 0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin-bottom: var(--space-5);
+}
+
+.table-scroll:last-child {
+  margin-bottom: 0;
+}
+
+.moves {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.moves caption {
+  text-align: left;
+  font-size: var(--text-base);
+  padding-bottom: var(--space-2);
+}
+
+.moves th {
+  text-align: left;
+  font-weight: var(--weight-normal);
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0;
+}
+
+.moves td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  height: 2.5625rem;
+}
+
+.sort-button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: var(--space-2) var(--space-3);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sort-indicator {
+  font-size: var(--text-xs);
+  margin-left: var(--space-1);
+}
+
+.sort-indicator:empty {
+  display: none;
+}
+
+/* Type list and type page */
+
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+}
+
+.type-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  background: var(--badge-bg);
+  color: var(--color-on-type);
+  text-decoration: none;
+}
+
+.type-tile:hover {
+  text-decoration: underline;
+}
+
+.relations {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3) var(--space-5);
+}
+
+@media (min-width: 48rem) {
+  .relations {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.relations dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+}
+
+.move-columns {
+  columns: 10rem;
+  column-gap: var(--space-5);
+  list-style: none;
+  padding: 0;
+  font-size: var(--text-sm);
+}
+
+.move-columns li {
+  break-inside: avoid;
+  padding-block: var(--space-1);
+}

@@ -1,0 +1,34 @@
+<div class="scroller">
+  <table>
+    <caption>{{ table().label }}</caption>
+    <thead>
+      <tr>
+        @for (column of columns(); track column.key) {
+          <th scope="col" [attr.aria-sort]="ariaSort(column.key)">
+            <button type="button" (click)="toggleSort(column.key)">
+              {{ column.label }}
+              @if (ariaSort(column.key); as direction) {
+                <span class="indicator" aria-hidden="true">{{ direction === 'ascending' ? '▲' : '▼' }}</span>
+              }
+            </button>
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track row.name + '-' + row.level) {
+        <tr>
+          @if (table().method === 'level-up') {
+            <td>{{ orMissing(row.level) }}</td>
+          }
+          <td><a [routerLink]="['/moves', row.name]">{{ row.label }}</a></td>
+          <td><app-type-badge [type]="row.type" /></td>
+          <td>{{ orMissing(row.category) }}</td>
+          <td>{{ orMissing(row.power) }}</td>
+          <td>{{ orMissing(row.accuracy) }}</td>
+          <td>{{ orMissing(row.pp) }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

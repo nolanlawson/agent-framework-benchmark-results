@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import PokemonCard from '../../components/PokemonCard.astro';
+import NotFound from '../../components/NotFound.astro';
+import {
+  englishName,
+  englishShortEffect,
+  getJson,
+  getTypeLabels,
+  humanize,
+  latestEnglishFlavorText,
+  pokemonRefsToSpecies,
+  show,
+} from '../../lib/api';
+
+const move = await getJson(`move/${encodeURIComponent(Astro.params.name!.toLowerCase())}`);
+if (!move) Astro.response.status = 404;
+
+const [typeLabels, learnedBy] = move
+  ? await Promise.all([getTypeLabels(), pokemonRefsToSpecies(move.learned_by_pokemon ?? [])])
+  : [null, []];
+const name = move ? englishName(move) : '';
+const effect = move ? (englishShortEffect(move) ?? latestEnglishFlavorText(move.flavor_text_entries) ?? '—') : '';
+---
+
+{
+  !move ? (
+    <NotFound />
+  ) : (
+    <Layout title={name}>
+      <h1>{name}</h1>
+      <dl class="facts facts--panel">
+        <div>
+          <dt>Type</dt>
+          <dd>
+            {move.type ? (
+              <TypeBadge name={move.type.name} label={typeLabels?.get(move.type.name) ?? humanize(move.type.name)} link />
+            ) : (
+              '—'
+            )}
+          </dd>
+        </div>
+        <div>
+          <dt>Category</dt>
+          <dd>{move.damage_class ? humanize(move.damage_class.name) : '—'}</dd>
+        </div>
+        <div>
+          <dt>Power</dt>
+          <dd>{show(move.power)}</dd>
+        </div>
+        <div>
+          <dt>Accuracy</dt>
+          <dd>{show(move.accuracy)}</dd>
+        </div>
+        <div>
+          <dt>PP</dt>
+          <dd>{show(move.pp)}</dd>
+        </div>
+      </dl>
+
+      <Section id="effect" heading="Effect">
+        <p>{effect}</p>
+      </Section>
+
+      <Section id="learned-by" heading="Learned by">
+        <p class="count">{learnedBy.length} Pokémon</p>
+        {learnedBy.length > 0 && (
+          <ul class="card-grid">
+            {learnedBy.map((p) => (
+              <PokemonCard id={p.id} name={p.name} />
+            ))}
+          </ul>
+        )}
+      </Section>
+    </Layout>
+  )
+}

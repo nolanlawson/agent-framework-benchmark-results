@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NotFound from '../../components/NotFound.astro';
+import Section from '../../components/Section.astro';
+import PokemonCards from '../../components/PokemonCards.astro';
+import { getByName, cardsFor } from '../../lib/api.js';
+import { englishName, shortEffect, latestFlavorText, DASH } from '../../lib/format.js';
+
+const ability = await getByName('ability', Astro.params.name);
+const cards = ability
+  ? await cardsFor(ability.pokemon ?? [], (ref) => (ref.is_hidden ? { note: 'Hidden ability' } : {}))
+  : [];
+const effect = ability ? shortEffect(ability) || latestFlavorText(ability) || DASH : DASH;
+---
+
+{
+  !ability ? (
+    <NotFound />
+  ) : (
+    <Layout title={englishName(ability)}>
+      <h1>{englishName(ability)}</h1>
+
+      <Section id="effect" title="Effect">
+        <p>{effect}</p>
+      </Section>
+
+      <Section id="pokemon" title="Pokémon">
+        <p class="count">{cards.length} Pokémon</p>
+        <PokemonCards cards={cards} />
+      </Section>
+    </Layout>
+  )
+}

@@ -1,0 +1,106 @@
+Measuring /repo/app
+
+added 179 packages in 2s
+
+> build
+> vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 125 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/public/.vite/manifest.json                        5.46 kB │ gzip:  0.74 kB
+.output/public/_build/assets/entry-client-BFh_BMTA.css    8.38 kB │ gzip:  2.24 kB
+.output/public/_build/assets/HttpStatusCode-CflkD89z.js   0.05 kB │ gzip:  0.07 kB
+.output/public/_build/assets/_...404_-CF6VUcm-.js         0.07 kB │ gzip:  0.08 kB
+.output/public/_build/assets/PageTitle-DooFwGHs.js        0.27 kB │ gzip:  0.23 kB
+.output/public/_build/assets/NotFound-Cl3s8C5Y.js         0.31 kB │ gzip:  0.25 kB
+.output/public/_build/assets/Section-q03xFOgt.js          0.53 kB │ gzip:  0.35 kB
+.output/public/_build/assets/index-FStVxArx.js            0.69 kB │ gzip:  0.43 kB
+.output/public/_build/assets/createAsync-CR0DgSRJ.js      0.73 kB │ gzip:  0.39 kB
+.output/public/_build/assets/TypeBadge-BsFRM1rJ.js        0.78 kB │ gzip:  0.43 kB
+.output/public/_build/assets/_name_-DfjGcD0D.js           1.03 kB │ gzip:  0.54 kB
+.output/public/_build/assets/PokemonCard-h2DVHcjL.js      1.18 kB │ gzip:  0.60 kB
+.output/public/_build/assets/_name_-CRiJgmIu.js           1.71 kB │ gzip:  0.77 kB
+.output/public/_build/assets/_name_-BOSCc3lH.js           1.89 kB │ gzip:  0.82 kB
+.output/public/_build/assets/index-B8E3X7P1.js            3.58 kB │ gzip:  1.45 kB
+.output/public/_build/assets/_name_-JrcLu0wV.js           6.79 kB │ gzip:  2.42 kB
+.output/public/_build/assets/entry-client-DS1WKNd4.js    17.09 kB │ gzip:  6.55 kB
+.output/public/_build/assets/dist-BIUe1sq8.js            28.83 kB │ gzip: 11.00 kB
+.output/public/_build/assets/queries-BexnczNr.js         54.43 kB │ gzip: 17.93 kB
+
+✓ built in 823ms
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 130 modules transformed.
+rendering chunks...
+computing gzip size...
+node_modules/.nitro/vite/services/ssr/.vite/manifest.json                      5.07 kB │ gzip:  0.72 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-BFh_BMTA.css         8.38 kB │ gzip:  2.24 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_...404_-Dl1-Z-7N.js       0.32 kB │ gzip:  0.18 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/PageTitle-CczxDPXu.js      0.44 kB │ gzip:  0.28 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/format-BvCBfF-K.js         0.51 kB │ gzip:  0.35 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/NotFound-CCoaqg0y.js       0.56 kB │ gzip:  0.34 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/Section-BvCVCwE3.js        0.57 kB │ gzip:  0.32 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/TypeBadge-_aOkVS_H.js      1.08 kB │ gzip:  0.48 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-BvdTSakb.js          1.14 kB │ gzip:  0.56 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/createAsync-C9_ulEa9.js    1.58 kB │ gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/PokemonCard-BIlHe7i7.js    1.62 kB │ gzip:  0.65 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-DUIcpTTj.js         1.82 kB │ gzip:  0.73 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-DruHJNrX.js         2.39 kB │ gzip:  0.89 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-CYtr899a.js         3.14 kB │ gzip:  1.02 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-B5Re7IN3.js          4.77 kB │ gzip:  1.54 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-C3eBZzgz.js         9.91 kB │ gzip:  2.73 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/model-E3QIfdmv.js         12.65 kB │ gzip:  4.32 kB
+node_modules/.nitro/vite/services/ssr/index.js                               144.18 kB │ gzip: 41.06 kB
+
+✓ built in 1.25s
+
+[nitro] ◐ Building [Nitro] (preset: node-server, compatibility: 2026-10-26)
+[nitro] ✔ Generated public .output/public
+vite v8.3.5 building nitro environment for production...
+`output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.
+transforming...
+✓ 91 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/server/_...404_-Dl1-Z-7N.mjs            0.34 kB │ gzip:  0.23 kB
+.output/server/_ssr/PageTitle-CczxDPXu.mjs      0.49 kB │ gzip:  0.31 kB
+.output/server/_ssr/format-BvCBfF-K.mjs         0.56 kB │ gzip:  0.39 kB
+.output/server/_ssr/NotFound-CCoaqg0y.mjs       0.61 kB │ gzip:  0.38 kB
+.output/server/_ssr/Section-BvCVCwE3.mjs        0.62 kB │ gzip:  0.36 kB
+.output/server/_ssr/createAsync-C9_ulEa9.mjs    0.84 kB │ gzip:  0.46 kB
+.output/server/_chunks/ssr-renderer.mjs         0.90 kB │ gzip:  0.48 kB
+.output/server/_ssr/index-BvdTSakb.mjs          1.13 kB │ gzip:  0.60 kB
+.output/server/_ssr/TypeBadge-_aOkVS_H.mjs      1.14 kB │ gzip:  0.52 kB
+.output/server/_libs/hookable.mjs               1.14 kB │ gzip:  0.50 kB
+.output/server/_ssr/PokemonCard-BIlHe7i7.mjs    1.65 kB │ gzip:  0.68 kB
+.output/server/_name_-DUIcpTTj.mjs              1.85 kB │ gzip:  0.77 kB
+.output/server/_libs/ufo.mjs                    2.18 kB │ gzip:  0.70 kB
+.output/server/_name_-DruHJNrX.mjs              2.42 kB │ gzip:  0.93 kB
+.output/server/_name_-CYtr899a.mjs              3.17 kB │ gzip:  1.06 kB
+.output/server/_libs/radix3.mjs                 4.08 kB │ gzip:  1.36 kB
+.output/server/_ssr/index-B5Re7IN3.mjs          4.76 kB │ gzip:  1.58 kB
+.output/server/_name_-C3eBZzgz.mjs              9.90 kB │ gzip:  2.76 kB
+.output/server/_ssr/model-E3QIfdmv.mjs         12.67 kB │ gzip:  4.35 kB
+.output/server/index.mjs                       14.34 kB │ gzip:  4.52 kB
+.output/server/_libs/seroval-plugins.mjs       31.49 kB │ gzip:  3.55 kB
+.output/server/_libs/solid-js.mjs              34.16 kB │ gzip:  9.56 kB
+.output/server/_libs/srvx.mjs                  51.30 kB │ gzip: 12.07 kB
+.output/server/_libs/h3+rou3+srvx.mjs          70.98 kB │ gzip: 19.57 kB
+.output/server/_ssr/ssr.mjs                   125.55 kB │ gzip: 35.76 kB
+.output/server/_libs/seroval.mjs              138.62 kB │ gzip: 30.48 kB
+
+✓ built in 516ms
+ℹ Generated .output/nitro.json
+
+[nitro] ✔ You can preview this build using npx vite preview
+Lighthouse:
+  home           perf 1  LCP 1203ms  TBT 11ms  CLS 0  JS 40KiB
+  home-filtered  perf 1  LCP 1203ms  TBT 9ms  CLS 0  JS 40KiB
+  pokemon        perf 0.99  LCP 2108ms  TBT 17ms  CLS 0  JS 41KiB
+  move           perf 1  LCP 1128ms  TBT 11ms  CLS 0  JS 40KiB
+  ability        perf 1  LCP 1203ms  TBT 9ms  CLS 0  JS 40KiB
+  type           perf 1  LCP 1203ms  TBT 10ms  CLS 0  JS 40KiB
+Wrote /results/results.json

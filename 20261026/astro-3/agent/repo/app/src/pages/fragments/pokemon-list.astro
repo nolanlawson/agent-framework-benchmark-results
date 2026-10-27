@@ -1,0 +1,10 @@
+---
+// HTML fragment of the home page results, fetched by the filter script.
+import PokemonResults from '../../components/PokemonResults.astro';
+import { parseListQuery } from '../../lib/api';
+
+export const partial = true;
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+
+<PokemonResults query={parseListQuery(Astro.url.searchParams)} />

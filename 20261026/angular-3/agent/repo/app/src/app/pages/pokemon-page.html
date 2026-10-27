@@ -1,0 +1,117 @@
+@if (pokemon(); as p) {
+  <div class="summary">
+    <div class="summary__art">
+      @if (p.artwork) {
+        <img [src]="p.artwork" [alt]="p.label" width="288" height="288" />
+      }
+    </div>
+    <div class="summary__info">
+      <p class="summary__dex muted">{{ dex(p.id) }}</p>
+      <h1>{{ p.label }}</h1>
+      @if (p.genus) {
+        <p class="summary__genus muted">{{ p.genus }}</p>
+      }
+      <div class="type-badges summary__types">
+        @for (t of p.types; track t.name) {
+          <app-type-badge [type]="t" />
+        }
+      </div>
+      <dl class="facts summary__facts">
+        <div>
+          <dt>Height</dt>
+          <dd>{{ p.height }}</dd>
+        </div>
+        <div>
+          <dt>Weight</dt>
+          <dd>{{ p.weight }}</dd>
+        </div>
+      </dl>
+      @if (p.flavorText) {
+        <p class="summary__flavor">{{ p.flavorText }}</p>
+      }
+    </div>
+  </div>
+
+  <section class="panel" aria-labelledby="stats-heading">
+    <h2 id="stats-heading">Base stats</h2>
+    <table class="stats">
+      <tbody>
+        @for (s of p.stats; track s.label) {
+          <tr>
+            <th scope="row">{{ s.label }}</th>
+            <td class="stats__value">{{ s.value }}</td>
+            <td class="stats__bar" aria-hidden="true">
+              <span class="bar"><span class="bar__fill" [style.width]="barWidth(s.value)"></span></span>
+            </td>
+          </tr>
+        }
+        <tr class="stats__total">
+          <th scope="row">Total</th>
+          <td class="stats__value">{{ total() }}</td>
+          <td class="stats__bar" aria-hidden="true">
+            <span class="bar"><span class="bar__fill" [style.width]="barWidth(total(), totalMax())"></span></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" aria-labelledby="abilities-heading">
+    <h2 id="abilities-heading">Abilities</h2>
+    <ul class="links">
+      @for (a of p.abilities; track a.name) {
+        <li>
+          <a [routerLink]="['/abilities', a.name]">{{ a.label }}</a>
+          @if (a.hidden) {
+            (hidden)
+          }
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="panel" aria-labelledby="evolution-heading">
+    <h2 id="evolution-heading">Evolution</h2>
+    @if (p.evolution) {
+      <ng-container *ngTemplateOutlet="evolutionList; context: { $implicit: [p.evolution] }" />
+    } @else {
+      <p>—</p>
+    }
+  </section>
+
+  <section class="panel" id="moves" aria-labelledby="moves-heading">
+    <h2 id="moves-heading">Moves</h2>
+    @if (p.games.length) {
+      <div class="game">
+        <label for="game">Game</label>
+        <select id="game" (change)="onGameChange($any($event.target).value)">
+          @for (g of p.games; track g.name) {
+            <option [value]="g.name" [selected]="g.name === p.game" [attr.selected]="g.name === p.game ? '' : null">
+              {{ g.label }}
+            </option>
+          }
+        </select>
+      </div>
+      @for (m of p.methods; track m.name) {
+        <app-move-table [method]="m" />
+      }
+    } @else {
+      <p>—</p>
+    }
+  </section>
+} @else {
+  <app-not-found />
+}
+
+<ng-template #evolutionList let-nodes>
+  <ul class="links">
+    @for (node of nodes; track node.name) {
+      <li>
+        <a [routerLink]="['/pokemon', node.name]">{{ node.label }}</a>
+        @if (node.children.length) {
+          <ng-container *ngTemplateOutlet="evolutionList; context: { $implicit: node.children }" />
+        }
+      </li>
+    }
+  </ul>
+</ng-template>

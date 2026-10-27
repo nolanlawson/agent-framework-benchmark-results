@@ -1,0 +1,157 @@
+---
+import TypeBadge from './TypeBadge.astro';
+import { show } from '../lib/api';
+import type { MoveTablesData } from '../lib/moves';
+
+interface Props {
+  tables: MoveTablesData;
+  pokemonName: string;
+}
+const { tables: data, pokemonName } = Astro.props;
+
+type Column = { key: string; label: string; numeric: boolean };
+const COLUMNS: Column[] = [
+  { key: 'move', label: 'Move', numeric: false },
+  { key: 'type', label: 'Type', numeric: false },
+  { key: 'category', label: 'Category', numeric: false },
+  { key: 'power', label: 'Power', numeric: true },
+  { key: 'accuracy', label: 'Accuracy', numeric: true },
+  { key: 'pp', label: 'PP', numeric: true },
+];
+const LEVEL: Column = { key: 'level', label: 'Level', numeric: true };
+---
+
+{
+  data.games.length > 0 && (
+    <form class="game-picker" method="get" action={`/pokemon/${pokemonName}#moves`} data-game-form>
+      <label for="game-select">Game</label>
+      <select id="game-select" name="game">
+        {data.games.map((g) => (
+          <option value={g.name} selected={g.name === data.selected}>
+            {g.label}
+          </option>
+        ))}
+      </select>
+      <noscript>
+        <button type="submit">Show</button>
+      </noscript>
+    </form>
+  )
+}
+
+<div class="move-tables" data-move-tables>
+  {data.tables.length === 0 && <p class="muted">No moves.</p>}
+  {
+    data.tables.map((table) => {
+      const columns = table.method === 'level-up' ? [LEVEL, ...COLUMNS] : COLUMNS;
+      return (
+        <div class="table-scroll">
+          <table class="moves-table" data-sortable>
+            <caption>{table.label}</caption>
+            <thead>
+              <tr>
+                {columns.map((c) => (
+                  <th scope="col" data-numeric={c.numeric ? '' : undefined}>
+                    <button type="button" class="sort-button" data-sort-col={c.key}>
+                      {c.label}
+                    </button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {table.rows.map((row) => (
+                <tr>
+                  {table.method === 'level-up' && <td data-col="level" data-value={row.level ?? ''}>{show(row.level)}</td>}
+                  <td data-col="move" data-value={row.label}>
+                    <a href={`/moves/${row.name}`}>{row.label}</a>
+                  </td>
+                  <td data-col="type" data-value={row.type?.label ?? ''}>
+                    {row.type ? <TypeBadge name={row.type.name} label={row.type.label} link /> : '—'}
+                  </td>
+                  <td data-col="category" data-value={row.category ?? ''}>{show(row.category)}</td>
+                  <td data-col="power" data-value={row.power ?? ''}>{show(row.power)}</td>
+                  <td data-col="accuracy" data-value={row.accuracy ?? ''}>{show(row.accuracy)}</td>
+                  <td data-col="pp" data-value={row.pp ?? ''}>{show(row.pp)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    })
+  }
+</div>
+
+<script>
+  // Sortable tables: clicking a header sorts by that column, ascending first, then toggles.
+  // Missing values always sort last.
+  document.addEventListener('click', (event) => {
+    const button = (event.target as Element | null)?.closest<HTMLButtonElement>('button[data-sort-col]');
+    const table = button?.closest('table[data-sortable]');
+    if (!button || !table) return;
+    const th = button.closest('th')!;
+    const col = button.dataset.sortCol!;
+    const numeric = th.hasAttribute('data-numeric');
+    const direction = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+    const sign = direction === 'ascending' ? 1 : -1;
+
+    for (const other of table.querySelectorAll('thead th')) other.removeAttribute('aria-sort');
+    th.setAttribute('aria-sort', direction);
+
+    const tbody = table.tBodies[0];
+    const value = (row: HTMLTableRowElement, key: string) =>
+      row.querySelector<HTMLElement>(`[data-col="${key}"]`)?.dataset.value ?? '';
+    const rows = [...tbody.rows].map((row, index) => ({ row, index, v: value(row, col), name: value(row, 'move') }));
+    rows.sort((a, b) => {
+      if (!a.v || !b.v) return (a.v ? 0 : 1) - (b.v ? 0 : 1) || a.index - b.index;
+      const diff = numeric ? Number(a.v) - Number(b.v) : a.v.localeCompare(b.v);
+      return diff * sign || a.name.localeCompare(b.name) || a.index - b.index;
+    });
+    tbody.append(...rows.map((r) => r.row));
+  });
+
+  // Switching games swaps the tables in place and records the choice in the URL.
+  const form = document.querySelector<HTMLFormElement>('[data-game-form]');
+  const select = form?.querySelector('select');
+  let controller: AbortController | undefined;
+
+  async function loadTables(url: string) {
+    controller?.abort();
+    controller = new AbortController();
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+      const fresh = doc.querySelector('[data-move-tables]');
+      const current = document.querySelector('[data-move-tables]');
+      if (fresh && current) current.replaceWith(fresh);
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') location.assign(url);
+    }
+  }
+
+  function gameUrl(game: string) {
+    const url = new URL(location.href);
+    url.searchParams.set('game', game);
+    return url;
+  }
+
+  select?.addEventListener('change', () => {
+    const url = gameUrl(select.value);
+    history.pushState(null, '', url);
+    url.hash = '';
+    loadTables(url.href);
+  });
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    select?.dispatchEvent(new Event('change'));
+  });
+  window.addEventListener('popstate', () => {
+    const params = new URLSearchParams(location.search);
+    const game = params.get('game');
+    if (select && game) select.value = game;
+    const url = new URL(location.href);
+    url.hash = '';
+    loadTables(url.href);
+  });
+</script>

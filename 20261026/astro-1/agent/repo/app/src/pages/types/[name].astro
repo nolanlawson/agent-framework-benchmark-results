@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NotFound from '../../components/NotFound.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import PokemonCards from '../../components/PokemonCards.astro';
+import { getByName, getTypeLabels, typeLabel, cardsFor } from '../../lib/api.js';
+import { englishName, humanize } from '../../lib/format.js';
+
+const RELATIONS = [
+  ['Super effective against', 'double_damage_to'],
+  ['Not very effective against', 'half_damage_to'],
+  ['No effect against', 'no_damage_to'],
+  ['Weak to', 'double_damage_from'],
+  ['Resists', 'half_damage_from'],
+  ['Immune to', 'no_damage_from'],
+] as const;
+
+const type = await getByName('type', Astro.params.name);
+const [typeLabels, cards] = type ? await Promise.all([getTypeLabels(), cardsFor(type.pokemon ?? [])]) : [new Map(), []];
+const moves = (type?.moves ?? [])
+  .map((m: { name: string }) => ({ name: m.name, label: humanize(m.name) }))
+  .sort((a: { label: string }, b: { label: string }) => a.label.localeCompare(b.label));
+---
+
+{
+  !type ? (
+    <NotFound />
+  ) : (
+    <Layout title={englishName(type)}>
+      <h1>{englishName(type)}</h1>
+
+      <Section id="relations" title="Damage relations">
+        <dl class="relations">
+          {RELATIONS.map(([term, key]) => {
+            const related = type.damage_relations?.[key] ?? [];
+            return (
+              <div>
+                <dt>{term}</dt>
+                <dd>
+                  {related.length ? (
+                    <ul class="badge-list">
+                      {related.map((t: { name: string }) => (
+                        <li>
+                          <TypeBadge name={t.name} label={typeLabel(typeLabels, t.name)} />
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    'None'
+                  )}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
+      </Section>
+
+      <Section id="pokemon" title="Pokémon">
+        <p class="count">{cards.length} Pokémon</p>
+        <PokemonCards cards={cards} />
+      </Section>
+
+      <Section id="moves" title="Moves">
+        <p class="count">{moves.length} moves</p>
+        <ul class="move-list">
+          {moves.map((m) => (
+            <li>
+              <a href={`/moves/${m.name}`}>{m.label}</a>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    </Layout>
+  )
+}

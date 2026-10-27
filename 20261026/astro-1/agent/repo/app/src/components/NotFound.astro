@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Rendered in place of a page whose resource doesn't exist.
+Astro.response.status = 404;
+---
+
+<Layout title="Not found">
+  <h1>Not found</h1>
+  <p class="not-found"><a href="/">Back to the Pokédex</a></p>
+</Layout>

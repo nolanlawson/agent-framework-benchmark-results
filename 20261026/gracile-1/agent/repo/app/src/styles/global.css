@@ -1,0 +1,292 @@
+@import './tokens.css';
+@import './badges.css';
+@import './cards.css';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-sans);
+	font-size: 100%;
+	line-height: var(--leading-normal);
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+}
+
+a {
+	color: var(--color-link);
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-focus);
+	outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: var(--weight-normal);
+	line-height: var(--leading-tight);
+}
+
+h1 {
+	margin: var(--space-5) 0 var(--space-4);
+	font-size: var(--text-2xl);
+}
+
+h2 {
+	margin-bottom: var(--space-4);
+	font-size: var(--text-lg);
+}
+
+.wrap {
+	width: 100%;
+	max-width: var(--content-max-width);
+	margin: 0 auto;
+	padding-inline: var(--space-4);
+}
+
+/* MARK: Header and footer */
+
+.site-header {
+	background: var(--color-accent);
+	color: var(--color-on-accent);
+}
+.site-header .wrap {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-4);
+	height: var(--header-height);
+}
+.site-header a {
+	color: var(--color-on-accent);
+	text-decoration: none;
+}
+.site-header a:hover {
+	text-decoration: underline;
+}
+.site-header :focus-visible {
+	outline-color: var(--color-on-accent);
+}
+.brand {
+	font-size: var(--text-lg);
+}
+.site-nav ul {
+	display: flex;
+	gap: var(--space-5);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+main {
+	flex: 1;
+	padding-bottom: var(--space-7);
+}
+
+.site-footer {
+	padding: var(--space-5) var(--space-4);
+	border-top: 1px solid var(--color-border);
+	color: var(--color-text-muted);
+	font-size: var(--text-sm);
+	text-align: center;
+}
+.site-footer p {
+	margin: 0;
+}
+
+/* MARK: Panels */
+
+.panel {
+	margin-top: var(--space-5);
+	padding: var(--space-5) var(--space-4);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	background: var(--color-surface);
+}
+.panel > p:last-child {
+	margin-bottom: 0;
+}
+.panel ul:not([class]) {
+	margin: 0;
+	padding-left: var(--space-4);
+}
+#abilities ul {
+	padding-left: var(--space-5);
+}
+.panel ul:not([class]) ul {
+	padding-left: var(--space-5);
+}
+
+.facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2) var(--space-6);
+	margin: 0;
+}
+.facts dt {
+	color: var(--color-text-muted);
+	font-size: var(--text-sm);
+}
+.facts dd {
+	margin: 0;
+}
+
+/* MARK: Pokémon page */
+
+.pokemon-summary {
+	display: grid;
+	grid-template-columns: var(--artwork-size) 1fr;
+	gap: var(--space-6);
+	align-items: start;
+	margin-top: var(--space-5);
+}
+.artwork {
+	display: block;
+	width: var(--artwork-size);
+	height: var(--artwork-size);
+	padding: var(--space-3);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	background: var(--color-surface);
+	object-fit: contain;
+}
+.pokemon-info .dex {
+	margin: var(--space-4) 0 0;
+	color: var(--color-text-muted);
+}
+.pokemon-info h1 {
+	margin: 0 0 var(--space-1);
+}
+.pokemon-info .genus {
+	margin: 0 0 var(--space-3);
+	color: var(--color-text-muted);
+}
+.pokemon-info .badges {
+	margin-bottom: var(--space-4);
+}
+.pokemon-info .facts {
+	margin-bottom: var(--space-4);
+}
+.pokemon-info .flavor {
+	margin: 0;
+}
+
+.stats {
+	width: 100%;
+	border-collapse: collapse;
+}
+.stats th {
+	width: 6rem;
+	padding: var(--space-1) 0;
+	color: var(--color-text-muted);
+	font-weight: var(--weight-normal);
+	text-align: left;
+}
+.stats td {
+	padding: var(--space-1) 0;
+}
+.stats td:first-of-type {
+	width: 3rem;
+}
+.stats .total th,
+.stats .total td {
+	padding-top: var(--space-2);
+	border-top: 1px solid var(--color-border);
+}
+.bar {
+	height: 0.5rem;
+	border-radius: var(--radius-pill);
+	background: var(--color-stat-track);
+	overflow: hidden;
+}
+.bar span {
+	display: block;
+	height: 100%;
+	background: var(--color-stat-bar);
+}
+
+@media (max-width: 40rem) {
+	.pokemon-summary {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+	.artwork {
+		margin: 0 auto;
+	}
+}
+
+/* MARK: Move page */
+
+.move-facts {
+	margin-top: 0;
+}
+
+/* MARK: Types */
+
+.type-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+	gap: var(--space-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.type-grid a {
+	display: block;
+	padding: var(--space-2);
+	border-radius: var(--radius-sm);
+	background: var(--badge-color);
+	color: var(--color-on-type);
+	text-align: center;
+	text-decoration: none;
+}
+.type-grid a:hover {
+	text-decoration: underline;
+}
+
+.relations {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--space-3);
+	margin: 0;
+}
+.relations dt {
+	margin-bottom: var(--space-1);
+	color: var(--color-text-muted);
+	font-size: var(--text-sm);
+}
+.relations dd {
+	margin: 0;
+}
+@media (max-width: 40rem) {
+	.relations {
+		grid-template-columns: 1fr;
+	}
+}
+
+.move-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	gap: var(--space-2) var(--space-5);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--text-sm);
+}
+
+.not-found-link {
+	margin: 0;
+}

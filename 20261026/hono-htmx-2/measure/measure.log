@@ -1,0 +1,15 @@
+Measuring /repo/app
+
+added 7 packages in 621ms
+
+> build
+> tsc -p tsconfig.json
+
+Lighthouse:
+  home           perf 1  LCP 977ms  TBT 0ms  CLS 0  JS 18KiB
+  home-filtered  perf 1  LCP 977ms  TBT 0ms  CLS 0  JS 18KiB
+  pokemon        perf 0.99  LCP 2103ms  TBT 0ms  CLS 0  JS 18KiB
+  move           perf 1  LCP 978ms  TBT 0ms  CLS 0  JS 18KiB
+  ability        perf 1  LCP 976ms  TBT 0ms  CLS 0  JS 18KiB
+  type           perf 1  LCP 998ms  TBT 0ms  CLS 0  JS 18KiB
+Wrote /results/results.json

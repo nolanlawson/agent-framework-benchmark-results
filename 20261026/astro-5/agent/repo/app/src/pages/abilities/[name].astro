@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import NotFound from '../../components/NotFound.astro';
+import { api, resourcePath } from '../../lib/api';
+import { cardsForPokemon, englishName, englishShortEffect, getSpeciesIndex, latestFlavorText, MISSING } from '../../lib/pokedex';
+
+const [record, index] = await Promise.all([api(resourcePath('ability', Astro.params.name!)), getSpeciesIndex()]);
+if (!record) Astro.response.status = 404;
+
+const name = record ? englishName(record.names, record.name) : '';
+const effect = record
+  ? (englishShortEffect(record.effect_entries) ?? latestFlavorText(record.flavor_text_entries) ?? MISSING)
+  : '';
+const cards = record ? cardsForPokemon(index, record.pokemon ?? [], (p: any) => ({ hidden: Boolean(p.is_hidden) })) : [];
+---
+
+{
+  record ? (
+    <Layout title={name}>
+      <h1>{name}</h1>
+
+      <Section id="effect" title="Effect">
+        <p>{effect}</p>
+      </Section>
+
+      <Section id="pokemon" title="Pokémon">
+        <p class="count">{cards.length} Pokémon</p>
+        {cards.length > 0 && <CardGrid cards={cards} />}
+      </Section>
+    </Layout>
+  ) : (
+    <NotFound />
+  )
+}

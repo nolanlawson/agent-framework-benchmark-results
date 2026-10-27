@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NotFound from '../../components/NotFound.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import PokemonCards from '../../components/PokemonCards.astro';
+import { getByName, getTypeLabels, typeLabel, cardsFor } from '../../lib/api.js';
+import { englishName, humanize, shortEffect, latestFlavorText, orDash, DASH } from '../../lib/format.js';
+
+const move = await getByName('move', Astro.params.name);
+const [typeLabels, cards] = move
+  ? await Promise.all([getTypeLabels(), cardsFor(move.learned_by_pokemon ?? [])])
+  : [new Map(), []];
+const effect = move ? shortEffect(move) || latestFlavorText(move) || DASH : DASH;
+---
+
+{
+  !move ? (
+    <NotFound />
+  ) : (
+    <Layout title={englishName(move)}>
+      <h1>{englishName(move)}</h1>
+      <dl class="facts panel">
+        <div>
+          <dt>Type</dt>
+          <dd>{move.type ? <TypeBadge name={move.type.name} label={typeLabel(typeLabels, move.type.name)} /> : DASH}</dd>
+        </div>
+        <div>
+          <dt>Category</dt>
+          <dd>{move.damage_class ? humanize(move.damage_class.name) : DASH}</dd>
+        </div>
+        <div>
+          <dt>Power</dt>
+          <dd>{orDash(move.power)}</dd>
+        </div>
+        <div>
+          <dt>Accuracy</dt>
+          <dd>{orDash(move.accuracy)}</dd>
+        </div>
+        <div>
+          <dt>PP</dt>
+          <dd>{orDash(move.pp)}</dd>
+        </div>
+      </dl>
+
+      <Section id="effect" title="Effect">
+        <p>{effect}</p>
+      </Section>
+
+      <Section id="learned-by" title="Learned by">
+        <p class="count">{cards.length} Pokémon</p>
+        <PokemonCards cards={cards} />
+      </Section>
+    </Layout>
+  )
+}

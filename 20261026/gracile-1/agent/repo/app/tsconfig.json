@@ -1,0 +1,5 @@
+{
+	"extends": "@gracile/gracile/tsconfigs/strict",
+	"compilerOptions": { "noEmit": true },
+	"include": ["src", "vite.config.ts"]
+}

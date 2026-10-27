@@ -1,0 +1,34 @@
+<div class="table-scroll">
+  <table class="moves">
+    <caption>{{ method().label }}</caption>
+    <thead>
+      <tr>
+        @for (c of columns(); track c.key) {
+          <th scope="col" [attr.aria-sort]="ariaSort(c.key)">
+            <button type="button" (click)="toggle(c.key)">
+              {{ c.label }}
+              <span class="sort-icon" aria-hidden="true">{{
+                ariaSort(c.key) === 'ascending' ? '▲' : ariaSort(c.key) === 'descending' ? '▼' : ''
+              }}</span>
+            </button>
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track $index) {
+        <tr>
+          @if (method().name === 'level-up') {
+            <td>{{ show(row.level) }}</td>
+          }
+          <td><a [routerLink]="['/moves', row.move.name]">{{ row.move.label }}</a></td>
+          <td><app-type-badge [type]="row.move.type" /></td>
+          <td>{{ show(row.move.category) }}</td>
+          <td>{{ show(row.move.power) }}</td>
+          <td>{{ show(row.move.accuracy) }}</td>
+          <td>{{ show(row.move.pp) }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

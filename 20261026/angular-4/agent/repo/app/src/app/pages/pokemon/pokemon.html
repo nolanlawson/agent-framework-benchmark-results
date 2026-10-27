@@ -1,0 +1,127 @@
+@if (data(); as data) {
+  @let p = data.summary;
+  <div class="intro">
+    <div class="artwork">
+      @if (p.artwork) {
+        <img [ngSrc]="p.artwork" width="256" height="256" [alt]="p.label" priority />
+      }
+    </div>
+    <div class="intro-text">
+      <p class="dex">{{ p.dex }}</p>
+      <h1>{{ p.label }}</h1>
+      @if (p.genus) {
+        <p class="genus">{{ p.genus }}</p>
+      }
+      <ul class="type-list" role="list" aria-label="Types">
+        @for (type of p.types; track type.name) {
+          <li><app-type-badge [type]="type" /></li>
+        }
+      </ul>
+      <dl class="facts">
+        <div>
+          <dt>Height</dt>
+          <dd>{{ p.height }}</dd>
+        </div>
+        <div>
+          <dt>Weight</dt>
+          <dd>{{ p.weight }}</dd>
+        </div>
+      </dl>
+      @if (p.flavorText) {
+        <p class="flavor">{{ p.flavorText }}</p>
+      }
+    </div>
+  </div>
+
+  <section class="panel" aria-labelledby="stats-heading">
+    <h2 id="stats-heading">Base stats</h2>
+    <table class="stats">
+      <tbody>
+        @for (stat of p.stats; track stat.label) {
+          <tr>
+            <th scope="row">{{ stat.label }}</th>
+            <td class="stat-value">{{ stat.value }}</td>
+            <td class="stat-bar-cell">
+              <div class="stat-bar" aria-hidden="true">
+                <div class="stat-bar-fill" [style.width]="barWidth(stat.value)"></div>
+              </div>
+            </td>
+          </tr>
+        }
+        <tr class="stats-total">
+          <th scope="row">Total</th>
+          <td class="stat-value">{{ total() }}</td>
+          <td class="stat-bar-cell">
+            <div class="stat-bar" aria-hidden="true">
+              <div class="stat-bar-fill" [style.width]="barWidth(total(), totalMax())"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" aria-labelledby="abilities-heading">
+    <h2 id="abilities-heading">Abilities</h2>
+    <ul class="bulleted">
+      @for (ability of p.abilities; track ability.name) {
+        <li>
+          <a [routerLink]="['/abilities', ability.name]">{{ ability.label }}</a>
+          @if (ability.hidden) {
+            (hidden)
+          }
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="panel" aria-labelledby="evolution-heading">
+    <h2 id="evolution-heading">Evolution</h2>
+    <ng-template #evolutionItem let-node>
+      <li>
+        <a [routerLink]="['/pokemon', node.name]">{{ node.label }}</a>
+        @if (node.evolvesTo.length) {
+          <ul class="bulleted">
+            @for (next of node.evolvesTo; track next.name) {
+              <ng-container *ngTemplateOutlet="evolutionItem; context: { $implicit: next }" />
+            }
+          </ul>
+        }
+      </li>
+    </ng-template>
+    <ul class="bulleted evolution">
+      @if (p.evolution) {
+        <ng-container *ngTemplateOutlet="evolutionItem; context: { $implicit: p.evolution }" />
+      } @else {
+        <li><a [routerLink]="['/pokemon', p.name]">{{ p.label }}</a></li>
+      }
+    </ul>
+  </section>
+
+  <section class="panel" id="moves" aria-labelledby="moves-heading">
+    <h2 id="moves-heading">Moves</h2>
+    @if (p.games.length) {
+      <div class="game-field">
+        <label for="game">Game</label>
+        <select id="game" (change)="onGameChange($event)">
+          @for (game of p.games; track game.name) {
+            <option
+              [value]="game.name"
+              [selected]="game.name === data.game"
+              [attr.selected]="game.name === data.game ? '' : null"
+            >
+              {{ game.label }}
+            </option>
+          }
+        </select>
+      </div>
+      @for (table of data.moveTables; track table.method) {
+        <app-move-table [table]="table" />
+      }
+    } @else {
+      <p>No moves recorded.</p>
+    }
+  </section>
+} @else {
+  <app-not-found />
+}

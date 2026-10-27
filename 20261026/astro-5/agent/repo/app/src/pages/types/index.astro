@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getTypes } from '../../lib/pokedex';
+
+const types = await getTypes();
+---
+
+<Layout title="Types">
+  <h1>Types</h1>
+  <ul class="type-grid">
+    {
+      types.map((t) => (
+        <li>
+          <a href={`/types/${t.name}`} style={`--type-color: var(--type-${t.name})`}>
+            {t.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
+
+<style>
+  .type-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  a {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--type-color);
+    color: var(--color-on-type);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

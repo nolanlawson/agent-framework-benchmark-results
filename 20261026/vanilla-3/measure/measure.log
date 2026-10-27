@@ -1,0 +1,25 @@
+Measuring /repo/app
+
+added 17 packages in 698ms
+
+> build
+> tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 13 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.99 kB │ gzip: 0.48 kB
+dist/assets/index-yUCM9bk0.css   9.24 kB │ gzip: 2.46 kB
+dist/assets/index-CwXX3gdh.js   17.09 kB │ gzip: 6.41 kB
+
+✓ built in 79ms
+Lighthouse:
+  home           perf 0.97  LCP 764ms  TBT 0ms  CLS 0.111  JS 7KiB
+  home-filtered  perf 0.97  LCP 1518ms  TBT 0ms  CLS 0.111  JS 7KiB
+  pokemon        perf 0.8  LCP 4661ms  TBT 114ms  CLS 0.111  JS 7KiB
+  move           perf 0.97  LCP 1671ms  TBT 0ms  CLS 0.111  JS 7KiB
+  ability        perf 0.97  LCP 1519ms  TBT 0ms  CLS 0.111  JS 7KiB
+  type           perf 0.97  LCP 1521ms  TBT 0ms  CLS 0.111  JS 7KiB
+Wrote /results/results.json

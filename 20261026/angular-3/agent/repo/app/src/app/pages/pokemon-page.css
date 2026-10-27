@@ -1,0 +1,151 @@
+.summary {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.summary__art {
+  flex: none;
+  width: var(--artwork-size);
+  height: var(--artwork-size);
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.summary__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.summary__info {
+  flex: 1;
+  min-width: 0;
+  padding-top: var(--space-4);
+}
+
+.summary__info h1 {
+  margin: 0;
+}
+
+.summary__dex,
+.summary__genus {
+  margin: 0;
+}
+
+.summary__dex {
+  font-size: var(--text-sm);
+}
+
+.summary__genus {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.summary__types {
+  margin-top: var(--space-3);
+}
+
+.summary__facts {
+  margin-top: var(--space-4);
+}
+
+.summary__flavor {
+  margin: var(--space-4) 0 0;
+}
+
+.stats {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats th,
+.stats td {
+  padding: var(--space-1) 0;
+  font-weight: var(--weight-normal);
+  text-align: left;
+}
+
+.stats th {
+  width: 5rem;
+  font-size: var(--text-sm);
+}
+
+.stats__value {
+  width: 3rem;
+}
+
+.stats__total th,
+.stats__total td {
+  padding-top: var(--space-3);
+}
+
+.bar {
+  display: block;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-stat-track);
+  overflow: hidden;
+}
+
+.bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-stat-bar);
+}
+
+.links {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.links .links {
+  padding-left: var(--space-5);
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.game label {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.game select {
+  min-width: 16.5rem;
+  height: 2.5rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+@media (max-width: 40rem) {
+  .summary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summary__art {
+    align-self: center;
+  }
+
+  .summary__info {
+    padding-top: 0;
+  }
+
+  .game select {
+    min-width: 0;
+    flex: 1;
+  }
+}

@@ -1,0 +1,104 @@
+
+> test
+> node tests/run.mjs
+
+$ npm install --no-audit --no-fund --include=dev  (in app)
+
+added 30 packages in 4s
+$ npm run build  (in app)
+
+> build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 22ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 133ms
+  Running TypeScript ...
+  Finished TypeScript in 176ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/4) ...
+  Generating static pages using 9 workers (1/4) 
+  Generating static pages using 9 workers (2/4) 
+  Generating static pages using 9 workers (3/4) 
+✓ Generating static pages using 9 workers (4/4) in 260ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /abilities/[name]
+├ ƒ /moves/[name]
+├ ƒ /pokemon/[name]
+├ ƒ /types
+└ ƒ /types/[name]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+Running 54 tests using 4 workers
+
+  ✓   4 tests/specs/details.spec.mjs:44:3 › Move page › falls back to flavor text when there is no effect text (840ms)
+  ✓   2 tests/specs/details.spec.mjs:32:3 › Move page › maps Pokémon to their species and leaves out alternate forms (1.1s)
+  ✓   1 tests/specs/details.spec.mjs:21:3 › Move page › lists the Pokémon that learn it (1.7s)
+  ✓   6 tests/specs/details.spec.mjs:56:3 › Move page › includes Pokémon added after the build (750ms)
+  ✓   3 tests/specs/details.spec.mjs:7:3 › Move page › shows the move details (1.8s)
+  ✓   5 tests/specs/details.spec.mjs:51:3 › Move page › shows a missing power as an em dash (1.1s)
+  ✓   9 tests/specs/details.spec.mjs:82:3 › Ability page › uses the English name for the heading (605ms)
+  ✓   8 tests/specs/details.spec.mjs:74:3 › Ability page › marks hidden abilities (662ms)
+  ✓  10 tests/specs/details.spec.mjs:87:3 › Ability page › includes Pokémon added after the build (567ms)
+  ✓   7 tests/specs/details.spec.mjs:63:3 › Ability page › shows the effect and the Pokémon with the ability (830ms)
+  ✓  11 tests/specs/details.spec.mjs:94:3 › Type list › links to the 18 types in order (770ms)
+  ✓  14 tests/specs/details.spec.mjs:146:3 › Type page › cards link to species pages (961ms)
+  ✓  13 tests/specs/details.spec.mjs:129:3 › Type page › lists Pokémon and moves of the type (1.4s)
+  ✓  12 tests/specs/details.spec.mjs:104:3 › Type page › shows damage relations (1.6s)
+  ✓  15 tests/specs/details.spec.mjs:153:3 › Type page › includes Pokémon added after the build (1.0s)
+  ✓  16 tests/specs/details.spec.mjs:161:5 › Not found › /pokemon/missingno shows a not-found page (853ms)
+  ✓  17 tests/specs/details.spec.mjs:161:5 › Not found › /moves/not-a-move shows a not-found page (600ms)
+  ✓  18 tests/specs/details.spec.mjs:161:5 › Not found › /abilities/not-an-ability shows a not-found page (559ms)
+  ✓  19 tests/specs/details.spec.mjs:161:5 › Not found › /types/not-a-type shows a not-found page (587ms)
+  ✓  20 tests/specs/details.spec.mjs:161:5 › Not found › /no/such/page shows a not-found page (592ms)
+  ✓  22 tests/specs/home.spec.mjs:29:3 › Pokémon list › has labelled search, type and generation controls (887ms)
+  ✓  21 tests/specs/home.spec.mjs:8:3 › Pokémon list › shows the first page of all species (1.2s)
+  ✓  24 tests/specs/home.spec.mjs:54:3 › Pokémon list › last page includes species added after the build (906ms)
+  ✓  23 tests/specs/home.spec.mjs:43:3 › Pokémon list › paginates with Previous and Next links (1.6s)
+  ✓  26 tests/specs/home.spec.mjs:80:3 › Pokémon list › type filter matches either type slot (695ms)
+  ✓  25 tests/specs/home.spec.mjs:66:3 › Pokémon list › filters by type and generation from the URL (1.1s)
+  ✓  28 tests/specs/home.spec.mjs:96:3 › Pokémon list › search matches humanized names (653ms)
+  ✓  31 tests/specs/home.spec.mjs:120:3 › Pokémon list › shows a message when nothing matches (552ms)
+  ✓  27 tests/specs/home.spec.mjs:85:3 › Pokémon list › search updates the results while typing (1.7s)
+  ✓  29 tests/specs/home.spec.mjs:101:3 › Pokémon list › search finds species added after the build (1.5s)
+  ✓  30 tests/specs/home.spec.mjs:108:3 › Pokémon list › changing a filter updates the URL and resets to page 1 (1.4s)
+  ✓  32 tests/specs/layout.spec.mjs:16:5 › Every page › / has the shared layout (1.2s)
+  ✓  35 tests/specs/layout.spec.mjs:16:5 › Every page › /abilities/static has the shared layout (899ms)
+  ✓  33 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/pikachu has the shared layout (1.5s)
+  ✓  36 tests/specs/layout.spec.mjs:16:5 › Every page › /types has the shared layout (678ms)
+  ✓  34 tests/specs/layout.spec.mjs:16:5 › Every page › /moves/thunderbolt has the shared layout (1.6s)
+  ✓  38 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/missingno has the shared layout (688ms)
+  ✓  37 tests/specs/layout.spec.mjs:16:5 › Every page › /types/fire has the shared layout (987ms)
+  ✓  40 tests/specs/pokemon.spec.mjs:32:3 › Pokémon page › uses the English name for the heading (493ms)
+  ✓  39 tests/specs/pokemon.spec.mjs:13:3 › Pokémon page › shows the summary (956ms)
+  ✓  41 tests/specs/pokemon.spec.mjs:38:3 › Pokémon page › works for species whose default Pokémon has a different name (787ms)
+  ✓  43 tests/specs/pokemon.spec.mjs:55:3 › Pokémon page › lists abilities with the hidden one marked (599ms)
+  ✓  42 tests/specs/pokemon.spec.mjs:44:3 › Pokémon page › shows base stats in a table (1.1s)
+  ✓  44 tests/specs/pokemon.spec.mjs:64:3 › Pokémon page › shows the evolution chain as a nested list (700ms)
+  ✓  45 tests/specs/pokemon.spec.mjs:75:3 › Pokémon page › shows branching evolutions (654ms)
+  ✓  46 tests/specs/pokemon.spec.mjs:86:3 › Pokémon page › #moves jumps to the moves section (636ms)
+  ✓  47 tests/specs/pokemon.spec.mjs:94:3 › Pokémon page › defaults to the latest game and lists games in order (611ms)
+  ✓  48 tests/specs/pokemon.spec.mjs:102:3 › Pokémon page › shows one table per learn method in a fixed order (1.0s)
+  ✓  51 tests/specs/pokemon.spec.mjs:167:3 › Pokémon page › changing the game updates the URL and the tables (779ms)
+  ✓  52 tests/specs/pokemon.spec.mjs:177:3 › Pokémon page › links point at species pages (477ms)
+  ✓  49 tests/specs/pokemon.spec.mjs:119:3 › Pokémon page › shows move details in each row (1.8s)
+  ✓  53 tests/specs/pokemon.spec.mjs:186:3 › Pokémon page with live data › reflects changed values (697ms)
+  ✓  54 tests/specs/pokemon.spec.mjs:197:3 › Pokémon page with live data › shows a species added after the build (409ms)
+  ✓  50 tests/specs/pokemon.spec.mjs:137:3 › Pokémon page › sorts a table by clicking a column header (2.3s)
+
+  54 passed (14.7s)

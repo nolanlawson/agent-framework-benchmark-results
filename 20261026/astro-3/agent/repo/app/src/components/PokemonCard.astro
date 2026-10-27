@@ -1,0 +1,28 @@
+---
+import TypeBadge from './TypeBadge.astro';
+import { dexNumber, spriteUrl, type CardData } from '../lib/api';
+
+interface Props {
+  pokemon: CardData;
+  typeLabels?: Map<string, string>;
+}
+const { pokemon, typeLabels } = Astro.props;
+---
+
+<li>
+  <a class="card" href={`/pokemon/${pokemon.name}`}>
+    <img class="card__sprite" src={spriteUrl(pokemon.id)} alt="" width="96" height="96" loading="lazy" decoding="async" />
+    <span class="card__dex">{dexNumber(pokemon.id)}</span>
+    <span class="card__name">{pokemon.label}</span>
+    {
+      pokemon.types && pokemon.types.length > 0 && (
+        <span class="card__types">
+          {pokemon.types.map((t) => (
+            <TypeBadge name={t} label={typeLabels?.get(t) ?? t} />
+          ))}
+        </span>
+      )
+    }
+    {pokemon.hidden && <span class="card__note">Hidden ability</span>}
+  </a>
+</li>

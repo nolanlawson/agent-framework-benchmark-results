@@ -1,0 +1,68 @@
+Measuring /repo/app
+
+added 112 packages in 1s
+
+> build
+> vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 174 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client/assets/app-B5lhNRDx.css               7.98 kB │ gzip:  2.13 kB
+dist/client/assets/_-DkYZKqGB.js                  0.07 kB │ gzip:  0.09 kB
+dist/client/assets/abilities._name-DkYZKqGB.js    0.07 kB │ gzip:  0.09 kB
+dist/client/assets/moves._name-DkYZKqGB.js        0.07 kB │ gzip:  0.09 kB
+dist/client/assets/pokemon._name-DkYZKqGB.js      0.07 kB │ gzip:  0.09 kB
+dist/client/assets/types._name-DkYZKqGB.js        0.07 kB │ gzip:  0.09 kB
+dist/client/assets/Section-Dob3oAlD.js            0.24 kB │ gzip:  0.20 kB
+dist/client/assets/types.index-B84amVf3.js        0.48 kB │ gzip:  0.31 kB
+dist/client/assets/TypeBadge-DwoxJPSv.js          0.50 kB │ gzip:  0.29 kB
+dist/client/assets/abilities._name-B4zzYq0S.js    0.57 kB │ gzip:  0.33 kB
+dist/client/assets/PokemonCards-DW6KZUeK.js       0.76 kB │ gzip:  0.39 kB
+dist/client/assets/types._name-BCghmnkQ.js        1.10 kB │ gzip:  0.49 kB
+dist/client/assets/moves._name-De41OfzH.js        1.23 kB │ gzip:  0.48 kB
+dist/client/assets/routes-BXjMB4vE.js             2.48 kB │ gzip:  0.97 kB
+dist/client/assets/pokemon._name-CDiTsENP.js      5.02 kB │ gzip:  1.75 kB
+dist/client/assets/link-D-PdS6ty.js              72.28 kB │ gzip: 25.94 kB
+dist/client/assets/index-B0zVTirh.js            278.18 kB │ gzip: 88.43 kB
+
+✓ built in 324ms
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 88 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/server/assets/start-COmmreO7.js                        0.12 kB │ gzip:  0.12 kB
+dist/server/assets/_-Dp2LRZq5.js                            0.19 kB │ gzip:  0.14 kB
+dist/server/assets/empty-plugin-adapters-CeyhLWeJ.js        0.20 kB │ gzip:  0.14 kB
+dist/server/assets/moves._name-2IrdMfYt.js                  0.20 kB │ gzip:  0.15 kB
+dist/server/assets/types._name-oNh1w-7i.js                  0.20 kB │ gzip:  0.15 kB
+dist/server/assets/pokemon._name-DyCd6fch.js                0.20 kB │ gzip:  0.15 kB
+dist/server/assets/abilities._name-CehYINO4.js              0.21 kB │ gzip:  0.15 kB
+dist/server/assets/Section-CMawIvSE.js                      0.44 kB │ gzip:  0.29 kB
+dist/server/assets/format-C0M3JnBX.js                       0.53 kB │ gzip:  0.34 kB
+dist/server/assets/types.index-qCV24ACw.js                  0.76 kB │ gzip:  0.43 kB
+dist/server/assets/TypeBadge-BEBTDpaN.js                    0.88 kB │ gzip:  0.43 kB
+dist/server/assets/abilities._name-DcICj6sC.js              0.89 kB │ gzip:  0.45 kB
+dist/server/assets/PokemonCards-CNVCvKFj.js                 1.28 kB │ gzip:  0.53 kB
+dist/server/assets/functions-DEMXG3h6.js                    1.60 kB │ gzip:  0.74 kB
+dist/server/assets/types._name-Cs9TR0vB.js                  1.72 kB │ gzip:  0.64 kB
+dist/server/assets/moves._name-D5u_hkut.js                  1.91 kB │ gzip:  0.62 kB
+dist/server/assets/_tanstack-start-manifest_v-Cm62FAcI.js   2.09 kB │ gzip:  0.56 kB
+dist/server/assets/routes-CpENMtZ_.js                       4.22 kB │ gzip:  1.36 kB
+dist/server/assets/pokemon._name-CgmsSK5g.js                7.97 kB │ gzip:  2.34 kB
+dist/server/assets/router-Cc6_2ETy.js                       9.53 kB │ gzip:  2.59 kB
+dist/server/assets/functions-E8NxSD05.js                   15.87 kB │ gzip:  5.17 kB
+dist/server/server.js                                      99.93 kB │ gzip: 25.52 kB
+
+✓ built in 158ms
+Lighthouse:
+  home           perf 0.99  LCP 2028ms  TBT 1ms  CLS 0  JS 119KiB
+  home-filtered  perf 0.99  LCP 1954ms  TBT 0ms  CLS 0  JS 119KiB
+  pokemon        perf 1  LCP 1804ms  TBT 0ms  CLS 0  JS 119KiB
+  move           perf 0.99  LCP 2030ms  TBT 0ms  CLS 0  JS 118KiB
+  ability        perf 1  LCP 1355ms  TBT 12ms  CLS 0  JS 118KiB
+  type           perf 0.99  LCP 2103ms  TBT 4ms  CLS 0  JS 118KiB
+Wrote /results/results.json

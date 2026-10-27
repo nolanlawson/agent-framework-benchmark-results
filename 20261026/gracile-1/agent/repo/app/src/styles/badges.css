@@ -1,0 +1,38 @@
+/* Type badges: small pills coloured by type. */
+.badge {
+	display: inline-block;
+	padding: var(--space-1) var(--space-2);
+	border-radius: var(--radius-pill);
+	background: var(--badge-color, var(--color-text-muted));
+	color: var(--color-on-type);
+	font-size: var(--text-xs);
+	line-height: var(--leading-tight);
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.badge:hover {
+	text-decoration: underline;
+}
+.badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-1);
+}
+.t-normal { --badge-color: var(--type-normal); }
+.t-fighting { --badge-color: var(--type-fighting); }
+.t-flying { --badge-color: var(--type-flying); }
+.t-poison { --badge-color: var(--type-poison); }
+.t-ground { --badge-color: var(--type-ground); }
+.t-rock { --badge-color: var(--type-rock); }
+.t-bug { --badge-color: var(--type-bug); }
+.t-ghost { --badge-color: var(--type-ghost); }
+.t-steel { --badge-color: var(--type-steel); }
+.t-fire { --badge-color: var(--type-fire); }
+.t-water { --badge-color: var(--type-water); }
+.t-grass { --badge-color: var(--type-grass); }
+.t-electric { --badge-color: var(--type-electric); }
+.t-psychic { --badge-color: var(--type-psychic); }
+.t-ice { --badge-color: var(--type-ice); }
+.t-dragon { --badge-color: var(--type-dragon); }
+.t-dark { --badge-color: var(--type-dark); }
+.t-fairy { --badge-color: var(--type-fairy); }

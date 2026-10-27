@@ -1,0 +1,20 @@
+---
+interface Props {
+  name: string;
+  label: string;
+  link?: boolean;
+}
+const { name, label, link = true } = Astro.props;
+---
+
+{
+  link ? (
+    <a class="type-badge" href={`/types/${name}`} style={`--type-color: var(--type-${name}, var(--type-normal))`}>
+      {label}
+    </a>
+  ) : (
+    <span class="type-badge" style={`--type-color: var(--type-${name}, var(--type-normal))`}>
+      {label}
+    </span>
+  )
+}

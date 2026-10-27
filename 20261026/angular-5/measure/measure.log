@@ -1,0 +1,76 @@
+Measuring /repo/app
+
+added 303 packages in 3s
+npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   lmdb@3.5.6 (install: node-gyp-build-optional-packages)
+npm warn install-scripts   msgpackr-extract@3.0.4 (install: node-gyp-build-optional-packages)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+> pokedex@0.0.0 build
+> ng build
+
+❯ Building...
+✔ Building...
+Browser bundles     
+Initial chunk files  | Names            |  Raw size | Estimated transfer size
+main-FYJ6DNXT.js     | main             | 295.78 kB |                82.67 kB
+styles-B4GAPBAP.css  | styles           |   2.24 kB |               812 bytes
+
+                     | Initial total    | 298.02 kB |                83.48 kB
+
+Lazy chunk files     | Names            |  Raw size | Estimated transfer size
+chunk-DiRsqRcf.js    | pokemon-page     |  12.04 kB |                 3.56 kB
+chunk-Dxb67Y42.js    | home-page        |   4.51 kB |                 1.68 kB
+chunk-CtiNZmkU.js    | type-page        |   3.13 kB |                 1.11 kB
+chunk-BdUp31JA.js    | move-page        |   2.96 kB |                 1.07 kB
+chunk-pcMmngFi.js    | -                |   2.94 kB |                 1.15 kB
+chunk-CRTsFuFS.js    | ability-page     |   2.41 kB |               887 bytes
+chunk-BB3Gzgvy.js    | -                |   1.53 kB |               716 bytes
+chunk-DhaG4ZHT.js    | types-page       |   1.29 kB |               670 bytes
+chunk-CrAPM1n5.js    | -                | 915 bytes |               915 bytes
+chunk-D9bGRIhb.js    | -                | 534 bytes |               534 bytes
+chunk-DQK-fjzx.js    | not-found-page   | 355 bytes |               355 bytes
+chunk-Dl-1Zjpz.js    | -                | 300 bytes |               300 bytes
+
+
+Server bundles      
+Initial chunk files  | Names            |  Raw size
+server.mjs           | server           | 926.61 kB |                        
+main.server.mjs      | main.server      | 296.14 kB |                        
+chunk-3CLKJLRV.mjs   | -                | 291.86 kB |                        
+polyfills.server.mjs | polyfills.server | 235.58 kB |                        
+chunk-C2KJ4ATU.mjs   | -                |   1.54 kB |                        
+chunk-KYQQYI4M.mjs   | -                |   1.01 kB |                        
+
+Lazy chunk files     | Names            |  Raw size
+chunk-RBXOAK24.mjs   | xhr2             |  12.17 kB |                        
+chunk-XDZ7ZLR6.mjs   | xhr2             |  12.08 kB |                        
+chunk-X4RHZ75Z.mjs   | pokemon-page     |  11.79 kB |                        
+chunk-YZBA5GYL.mjs   | home-page        |   4.47 kB |                        
+chunk-6SSXBIIZ.mjs   | type-page        |   3.13 kB |                        
+chunk-RKB3JX3N.mjs   | move-page        |   2.96 kB |                        
+chunk-S3MRVHGY.mjs   | -                |   2.91 kB |                        
+chunk-6YNUXSRX.mjs   | ability-page     |   2.45 kB |                        
+chunk-3UODRHLA.mjs   | -                |   1.55 kB |                        
+chunk-E4WMHNUI.mjs   | types-page       |   1.34 kB |                        
+chunk-RPS6SMMQ.mjs   | -                | 933 bytes |                        
+chunk-AWW4DLXQ.mjs   | -                | 565 bytes |                        
+chunk-UDJV4H3C.mjs   | not-found-page   | 426 bytes |                        
+chunk-ZQSBULEV.mjs   | -                | 347 bytes |                        
+
+Prerendered 0 static routes.
+Application bundle generation complete. [2.418 seconds] - 2026-10-26T09:16:52.266Z
+
+Output location: /repo/app/dist/app
+
+Lighthouse:
+  home           perf 0.98  LCP 1955ms  TBT 103ms  CLS 0  JS 102KiB
+  home-filtered  perf 0.98  LCP 1955ms  TBT 140ms  CLS 0  JS 102KiB
+  pokemon        perf 0.94  LCP 2255ms  TBT 236ms  CLS 0  JS 104KiB
+  move           perf 0.97  LCP 1655ms  TBT 173ms  CLS 0  JS 103KiB
+  ability        perf 0.99  LCP 1654ms  TBT 91ms  CLS 0  JS 102KiB
+  type           perf 0.98  LCP 1655ms  TBT 128ms  CLS 0  JS 103KiB
+Wrote /results/results.json

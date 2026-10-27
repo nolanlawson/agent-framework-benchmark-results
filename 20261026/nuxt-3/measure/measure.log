@@ -1,0 +1,150 @@
+Measuring /repo/app
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+
+> postinstall
+> nuxt prepare
+
+◆ Types generated in .nuxt.
+
+added 561 packages in 4s
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+> build
+> nuxt build
+
+Building Nuxt for production...
+● Loading Nuxt config
+● Nuxt 4.6.2 (with Nitro 2.13.5, Vite 8.3.5 and Vue 3.5.44)
+● Setting up modules
+● Preparing app
+● Nitro preset: node-server
+● Generating types
+● Bundling client
+ℹ Building client...
+ℹ vite v8.3.5 building client environment for production...
+transforming...
+✓ 214 modules transformed.
+rendering chunks...
+computing gzip size...
+ℹ node_modules/.cache/nuxt/.nuxt/dist/client/manifest.json                  3.40 kB │ gzip:  0.61 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/pages.0qbZShSd.css       0.41 kB │ gzip:  0.24 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/types.BB3E5Ucj.css       0.46 kB │ gzip:  0.27 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/_name_.D4Gx7XsB.css      0.60 kB │ gzip:  0.27 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/CardList.08hh-KLo.css    0.77 kB │ gzip:  0.37 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/_name_.C3LVzn3Z.css      3.06 kB │ gzip:  0.88 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/entry.tdcsjyX8.css       4.00 kB │ gzip:  1.40 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/CsCFZQZm.js              0.16 kB │ gzip:  0.16 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/CnD9DHnw.js              0.47 kB │ gzip:  0.33 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BO3cuzF2.js              0.70 kB │ gzip:  0.47 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BWY5J-22.js              0.83 kB │ gzip:  0.52 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/pWpbWCr3.js              0.96 kB │ gzip:  0.49 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/qGoT0mdC.js              1.21 kB │ gzip:  0.64 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BWbex-4H.js              1.43 kB │ gzip:  0.76 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BXGvT-D3.js              1.49 kB │ gzip:  0.69 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BJkb-P_C.js              3.13 kB │ gzip:  1.47 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/qtkyUG5U.js              5.88 kB │ gzip:  2.43 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/B9iUAKUo.js             91.86 kB │ gzip: 35.46 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/D_hIQpGh.js            109.10 kB │ gzip: 39.81 kB
+
+ℹ ✓ built in 652ms
+✔ Client built in 665ms
+● Bundling server
+ℹ Building server...
+ℹ vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 134 modules transformed.
+rendering chunks...
+ℹ node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/AppFooter-styles.Cu1f8J84.mjs          0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/AppHeader-styles.BFImtgw-.mjs          0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/index-styles.Dh9Tm5du.mjs              0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/index-styles-2.CfnEfAZy.mjs            0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/CardList-styles.xOjjJSco.mjs           0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/MoveTable-styles.EwjUrksn.mjs          0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-styles.6cFrHlZ2.mjs             0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/PokemonCard-styles.CQ4UqC6V.mjs        0.09 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/entry-styles.DnJF3ID7.mjs              0.15 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-styles-2.rDbVpG6S.mjs           0.15 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/styles.mjs                                   1.11 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/CardList-styles-1.mjs-DbOOY_hE.js      0.50 kB │ map:   0.60 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/entry-styles-2.mjs-B908GF5d.js         0.55 kB │ map:   0.45 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/index-2-styles-1.mjs-BCkoOXD7.js       0.74 kB │ map:   5.10 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/index-styles-1.mjs-DvhhwvPu.js         0.78 kB │ map:   1.18 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/entry-styles-1.mjs-BA__jHcc.js         0.87 kB │ map:   0.78 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-3-styles-1.mjs-BvcH0cjF.js      0.93 kB │ map:   2.17 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/PokemonCard-styles-1.mjs-DQA8677Z.js   0.95 kB │ map:   1.48 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_...slug_-BZ1wWL-w.js                  1.00 kB │ map:   0.61 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-4-styles-1.mjs-BxlkYMt1.js      1.30 kB │ map:   1.22 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/PageSection-ftOINJMv.js                1.57 kB │ map:   1.31 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/types-8VbNMgXl.js                      2.17 kB │ map:   2.83 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-4-styles-2.mjs-BOxdVp6T.js      2.43 kB │ map:   6.87 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-KpOGhvSR.js                     3.01 kB │ map:   2.86 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/TypeBadges-DpYirjnB.js                 3.14 kB │ map:   2.42 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-DzWdSxDG.js                     3.84 kB │ map:   4.60 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/CardList-CA6L6piR.js                   4.76 kB │ map:   5.23 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-DJfW-Gj8.js                     5.64 kB │ map:   6.44 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/pages-CHqGCwoa.js                      6.28 kB │ map:  12.89 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-OH7tPlog.js                    17.24 kB │ map:  30.41 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/server.mjs                                  83.71 kB │ map: 242.96 kB
+
+ℹ ✓ built in 258ms
+✔ Server built in 264ms
+● Building Nitro server
+[nitro] ✔ Generated public .output/public
+[nitro] ℹ Building Nuxt Nitro server (preset: node-server, compatibility date: 2026-10-01)
+[nitro] ✔ Nuxt Nitro server built
+  ├─ .output/server/chunks/_/error-template.mjs (4.36 kB) (1.7 kB gzip)
+  ├─ .output/server/chunks/_/format.mjs (314 B) (249 B gzip)
+  ├─ .output/server/chunks/_/pokeapi.mjs (5.57 kB) (2.12 kB gzip)
+  ├─ .output/server/chunks/_/pokemon.mjs (1.61 kB) (737 B gzip)
+  ├─ .output/server/chunks/build/_...slug_-BZ1wWL-w.mjs (1.53 kB) (651 B gzip)
+  ├─ .output/server/chunks/build/_name_-4-styles-1.mjs-BxlkYMt1.mjs (1.3 kB) (539 B gzip)
+  ├─ .output/server/chunks/build/_name_-DJfW-Gj8.mjs (6.21 kB) (1.82 kB gzip)
+  ├─ .output/server/chunks/build/_name_-DzWdSxDG.mjs (4.36 kB) (1.45 kB gzip)
+  ├─ .output/server/chunks/build/_name_-KpOGhvSR.mjs (3.57 kB) (1.3 kB gzip)
+  ├─ .output/server/chunks/build/_name_-OH7tPlog.mjs (17.8 kB) (4.22 kB gzip)
+  ├─ .output/server/chunks/build/_name_-styles-2.rDbVpG6S.mjs (2.71 kB) (931 B gzip)
+  ├─ .output/server/chunks/build/_name_-styles.6cFrHlZ2.mjs (991 B) (459 B gzip)
+  ├─ .output/server/chunks/build/AppFooter-styles.Cu1f8J84.mjs (359 B) (218 B gzip)
+  ├─ .output/server/chunks/build/AppHeader-styles.BFImtgw-.mjs (359 B) (218 B gzip)
+  ├─ .output/server/chunks/build/CardList-CA6L6piR.mjs (4.76 kB) (1.4 kB gzip)
+  ├─ .output/server/chunks/build/CardList-styles.xOjjJSco.mjs (566 B) (341 B gzip)
+  ├─ .output/server/chunks/build/entry-styles-1.mjs-BA__jHcc.mjs (867 B) (431 B gzip)
+  ├─ .output/server/chunks/build/entry-styles-2.mjs-B908GF5d.mjs (548 B) (328 B gzip)
+  ├─ .output/server/chunks/build/entry-styles.DnJF3ID7.mjs (564 B) (256 B gzip)
+  ├─ .output/server/chunks/build/index-styles-2.CfnEfAZy.mjs (796 B) (419 B gzip)
+  ├─ .output/server/chunks/build/index-styles.Dh9Tm5du.mjs (843 B) (457 B gzip)
+  ├─ .output/server/chunks/build/MoveTable-styles.EwjUrksn.mjs (362 B) (219 B gzip)
+  ├─ .output/server/chunks/build/pages-CHqGCwoa.mjs (6.88 kB) (2.17 kB gzip)
+  ├─ .output/server/chunks/build/PageSection-ftOINJMv.mjs (1.58 kB) (723 B gzip)
+  ├─ .output/server/chunks/build/PokemonCard-styles.CQ4UqC6V.mjs (1.02 kB) (488 B gzip)
+  ├─ .output/server/chunks/build/TypeBadges-DpYirjnB.mjs (3.16 kB) (944 B gzip)
+  ├─ .output/server/chunks/build/types-8VbNMgXl.mjs (2.71 kB) (1.14 kB gzip)
+  ├─ .output/server/chunks/nitro/nitro.mjs (179 kB) (45.3 kB gzip)
+  ├─ .output/server/chunks/routes/api/abilities/_name_.get.mjs (1.23 kB) (546 B gzip)
+  ├─ .output/server/chunks/routes/api/index.get.mjs (621 B) (300 B gzip)
+  ├─ .output/server/chunks/routes/api/moves/_name_.get.mjs (1.32 kB) (597 B gzip)
+  ├─ .output/server/chunks/routes/api/pokedex.get.mjs (2.57 kB) (1.06 kB gzip)
+  ├─ .output/server/chunks/routes/api/pokemon/_name/moves.get.mjs (2.94 kB) (1.2 kB gzip)
+  ├─ .output/server/chunks/routes/api/pokemon/index.get.mjs (2.25 kB) (924 B gzip)
+  ├─ .output/server/chunks/routes/api/types/_name_.get.mjs (1.71 kB) (752 B gzip)
+  ├─ .output/server/chunks/routes/renderer.mjs (24.3 kB) (8.16 kB gzip)
+  ├─ .output/server/chunks/virtual/entry.mjs (88.2 kB) (23.7 kB gzip)
+  ├─ .output/server/chunks/virtual/precomputed.mjs (8.99 kB) (1.23 kB gzip)
+  ├─ .output/server/chunks/virtual/styles.mjs (1.57 kB) (530 B gzip)
+  ├─ .output/server/index.mjs (440 B) (234 B gzip)
+  └─ .output/server/package.json (800 B) (354 B gzip)
+Σ Total size: 2.21 MB (565 kB gzip)
+[nitro] ✔ You can preview this build using node .output/server/index.mjs
+config 102ms · modules 25ms · app 251ms · types 243ms · client 897ms · server 265ms · nitro 1.74s
+◆ ✨ Build complete in 3.52s!
+Lighthouse:
+  home           perf 1  LCP 1427ms  TBT 40ms  CLS 0  JS 83KiB
+  home-filtered  perf 1  LCP 1445ms  TBT 23ms  CLS 0  JS 83KiB
+  pokemon        perf 0.98  LCP 2107ms  TBT 103ms  CLS 0  JS 84KiB
+  move           perf 1  LCP 1577ms  TBT 62ms  CLS 0  JS 85KiB
+  ability        perf 1  LCP 1427ms  TBT 22ms  CLS 0  JS 84KiB
+  type           perf 1  LCP 1427ms  TBT 50ms  CLS 0  JS 84KiB
+Wrote /results/results.json

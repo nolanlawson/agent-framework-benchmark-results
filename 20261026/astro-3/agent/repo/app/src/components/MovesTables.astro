@@ -1,0 +1,65 @@
+---
+import TypeBadge from './TypeBadge.astro';
+import type { MoveTable } from '../lib/api';
+
+interface Props {
+  tables: MoveTable[];
+}
+const { tables } = Astro.props;
+const dash = '—';
+const num = (v: number | null) => (v == null ? '' : String(v));
+---
+
+<div class="moves-tables" data-moves-tables>
+  {tables.length === 0 && <p class="muted">No moves.</p>}
+  {
+    tables.map((table) => {
+      const isLevel = table.method === 'level-up';
+      const columns = [
+        ...(isLevel ? [['level', 'Level', 'number']] : []),
+        ['move', 'Move', 'text'],
+        ['type', 'Type', 'text'],
+        ['category', 'Category', 'text'],
+        ['power', 'Power', 'number'],
+        ['accuracy', 'Accuracy', 'number'],
+        ['pp', 'PP', 'number'],
+      ];
+      return (
+        <div class="table-wrap">
+          <table class="moves-table" data-sortable>
+            <caption>{table.label}</caption>
+            <thead>
+              <tr>
+                {columns.map(([key, label, kind]) => (
+                  <th scope="col" data-key={key} data-kind={kind} class:list={[`col-${key}`]}>
+                    <button type="button">
+                      {label}
+                      <span class="sort-indicator" aria-hidden="true" />
+                    </button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {table.rows.map((row) => (
+                <tr>
+                  {isLevel && <td data-v={row.level}>{row.level}</td>}
+                  <td data-v={row.label}>
+                    <a href={`/moves/${row.name}`}>{row.label}</a>
+                  </td>
+                  <td data-v={row.typeLabel}>
+                    <TypeBadge name={row.type} label={row.typeLabel} link />
+                  </td>
+                  <td data-v={row.category ?? ''}>{row.category ?? dash}</td>
+                  <td data-v={num(row.power)}>{row.power ?? dash}</td>
+                  <td data-v={num(row.accuracy)}>{row.accuracy ?? dash}</td>
+                  <td data-v={num(row.pp)}>{row.pp ?? dash}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    })
+  }
+</div>

@@ -1,0 +1,124 @@
+Measuring /repo/app
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+
+> postinstall
+> NUXT_TELEMETRY_DISABLED=1 nuxt prepare
+
+◆ Types generated in .nuxt.
+
+added 550 packages in 4s
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+> build
+> NUXT_TELEMETRY_DISABLED=1 nuxt build
+
+Building Nuxt for production...
+● Loading Nuxt config
+● Nuxt 4.6.2 (with Nitro 2.13.5, Vite 8.3.5 and Vue 3.5.44)
+● Setting up modules
+● Preparing app
+● Nitro preset: node-server
+● Generating types
+● Bundling client
+ℹ Building client...
+ℹ vite v8.3.5 building client environment for production...
+transforming...
+✓ 201 modules transformed.
+rendering chunks...
+computing gzip size...
+ℹ node_modules/.cache/nuxt/.nuxt/dist/client/manifest.json               3.53 kB │ gzip:  0.64 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/entry.D9YZ1IfR.css    8.17 kB │ gzip:  2.23 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/RUTiGbHW.js           0.07 kB │ gzip:  0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/Bjm5agMS.js           0.23 kB │ gzip:  0.19 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/Cz8f-u8c.js           0.39 kB │ gzip:  0.28 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BJ7TpavB.js           0.41 kB │ gzip:  0.29 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BzlKSAAl.js           0.45 kB │ gzip:  0.32 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/--XsK9xn.js           0.77 kB │ gzip:  0.51 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/REdfjeAW.js           0.79 kB │ gzip:  0.49 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/B0YcGIqJ.js           1.04 kB │ gzip:  0.60 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/N982v-vg.js           1.06 kB │ gzip:  0.63 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/mv0rsRLR.js           1.62 kB │ gzip:  0.84 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/xwLxUdUG.js           1.71 kB │ gzip:  0.82 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/DyDhmqW8.js           3.52 kB │ gzip:  1.63 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/DQ7XzW6_.js           6.46 kB │ gzip:  2.59 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/DKehWZQY.js          12.00 kB │ gzip:  4.56 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/DX2jZ59-.js          55.07 kB │ gzip: 20.86 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/DE2Qgc_U.js         132.63 kB │ gzip: 50.10 kB
+
+ℹ ✓ built in 427ms
+✔ Client built in 440ms
+● Bundling server
+ℹ Building server...
+ℹ vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 111 modules transformed.
+rendering chunks...
+ℹ node_modules/.cache/nuxt/.nuxt/dist/server/styles.mjs                      0.06 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/ssr-CIeRRcWi.js           0.80 kB │ map:   4.15 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_...slug_-Dzg3TWsI.js     1.00 kB │ map:   0.25 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/PageSection-D2MURlp3.js   1.45 kB │ map:   1.01 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/CardList-DeX14q6i.js      1.51 kB │ map:   1.13 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/NotFound-CQUpyYDJ.js      1.62 kB │ map:   1.03 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/TypeBadge-CJYq6b3L.js     1.94 kB │ map:   1.75 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/types-BFbdPF8H.js         2.11 kB │ map:   1.77 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-CCxoOCiw.js        3.37 kB │ map:   3.03 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/PokemonCard-Vx_MDC9Z.js   3.91 kB │ map:   3.35 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-DWjeWqGo.js        4.22 kB │ map:   4.66 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-DUFgm20p.js        6.01 kB │ map:   5.62 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/pages-LveMdw0t.js         6.15 kB │ map:  12.73 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_name_-BBXn7FkQ.js       15.16 kB │ map:  23.53 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/fetch-HHSS3r7M.js        19.98 kB │ map:  54.54 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/server.mjs                     58.32 kB │ map: 175.98 kB
+
+ℹ ✓ built in 198ms
+✔ Server built in 205ms
+● Building Nitro server
+[nitro] ✔ Generated public .output/public
+[nitro] ℹ Building Nuxt Nitro server (preset: node-server, compatibility date: 2026-10-01)
+[nitro] ✔ Nuxt Nitro server built
+  ├─ .output/server/chunks/_/data.mjs (4.74 kB) (1.8 kB gzip)
+  ├─ .output/server/chunks/_/error-template.mjs (4.36 kB) (1.7 kB gzip)
+  ├─ .output/server/chunks/_/format.mjs (436 B) (296 B gzip)
+  ├─ .output/server/chunks/build/_...slug_-Dzg3TWsI.mjs (1.52 kB) (674 B gzip)
+  ├─ .output/server/chunks/build/_name_-BBXn7FkQ.mjs (15.7 kB) (4.02 kB gzip)
+  ├─ .output/server/chunks/build/_name_-CCxoOCiw.mjs (4 kB) (1.46 kB gzip)
+  ├─ .output/server/chunks/build/_name_-DUFgm20p.mjs (6.65 kB) (1.95 kB gzip)
+  ├─ .output/server/chunks/build/_name_-DWjeWqGo.mjs (4.82 kB) (1.62 kB gzip)
+  ├─ .output/server/chunks/build/CardList-DeX14q6i.mjs (1.52 kB) (666 B gzip)
+  ├─ .output/server/chunks/build/fetch-HHSS3r7M.mjs (19.5 kB) (5.66 kB gzip)
+  ├─ .output/server/chunks/build/NotFound-CQUpyYDJ.mjs (1.64 kB) (753 B gzip)
+  ├─ .output/server/chunks/build/pages-LveMdw0t.mjs (6.74 kB) (2.33 kB gzip)
+  ├─ .output/server/chunks/build/PageSection-D2MURlp3.mjs (1.46 kB) (652 B gzip)
+  ├─ .output/server/chunks/build/PokemonCard-Vx_MDC9Z.mjs (3.92 kB) (1.36 kB gzip)
+  ├─ .output/server/chunks/build/ssr-CIeRRcWi.mjs (778 B) (404 B gzip)
+  ├─ .output/server/chunks/build/TypeBadge-CJYq6b3L.mjs (1.96 kB) (846 B gzip)
+  ├─ .output/server/chunks/build/types-BFbdPF8H.mjs (2.68 kB) (1.14 kB gzip)
+  ├─ .output/server/chunks/nitro/nitro.mjs (179 kB) (45.3 kB gzip)
+  ├─ .output/server/chunks/routes/api/abilities/_name_.get.mjs (1.16 kB) (527 B gzip)
+  ├─ .output/server/chunks/routes/api/index.get.mjs (599 B) (292 B gzip)
+  ├─ .output/server/chunks/routes/api/moves/_name_.get.mjs (1.63 kB) (706 B gzip)
+  ├─ .output/server/chunks/routes/api/pokemon/_name_.get.mjs (2.69 kB) (1.11 kB gzip)
+  ├─ .output/server/chunks/routes/api/pokemon/_name/moves.get.mjs (3.75 kB) (1.44 kB gzip)
+  ├─ .output/server/chunks/routes/api/species.get.mjs (2.21 kB) (875 B gzip)
+  ├─ .output/server/chunks/routes/api/types/_name_.get.mjs (1.68 kB) (734 B gzip)
+  ├─ .output/server/chunks/routes/renderer.mjs (24.3 kB) (8.14 kB gzip)
+  ├─ .output/server/chunks/virtual/entry.mjs (65.7 kB) (17.8 kB gzip)
+  ├─ .output/server/chunks/virtual/precomputed.mjs (8 kB) (1.1 kB gzip)
+  ├─ .output/server/chunks/virtual/styles.mjs (122 B) (113 B gzip)
+  ├─ .output/server/index.mjs (440 B) (234 B gzip)
+  └─ .output/server/package.json (800 B) (354 B gzip)
+Σ Total size: 2.19 MB (560 kB gzip)
+[nitro] ✔ You can preview this build using node .output/server/index.mjs
+config 105ms · modules 25ms · app 250ms · types 242ms · client 673ms · server 206ms · nitro 1.73s
+◆ ✨ Build complete in 3.23s!
+Lighthouse:
+  home           perf 0.99  LCP 1821ms  TBT 48ms  CLS 0  JS 84KiB
+  home-filtered  perf 0.99  LCP 1803ms  TBT 22ms  CLS 0  JS 84KiB
+  pokemon        perf 0.99  LCP 2104ms  TBT 83ms  CLS 0  JS 86KiB
+  move           perf 1  LCP 1577ms  TBT 64ms  CLS 0  JS 87KiB
+  ability        perf 1  LCP 1653ms  TBT 21ms  CLS 0  JS 85KiB
+  type           perf 0.99  LCP 1577ms  TBT 76ms  CLS 0  JS 86KiB
+Wrote /results/results.json

@@ -1,0 +1,12 @@
+[
+  {
+    "kind": "skill",
+    "repo": "remix-run/react-router",
+    "commit": "bb7c1f021363e96745dd3cfc5d2431e9b80ffe61",
+    "args": [
+      "--skill",
+      "react-router"
+    ],
+    "skillsCli": "1.7.4"
+  }
+]

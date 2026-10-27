@@ -1,0 +1,38 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import { pageTitle } from '../lib/format.js';
+
+interface Props {
+  title?: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle(title)}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__home" href="/">Pokédex</a>
+        <nav aria-label="Main">
+          <ul class="site-nav">
+            <li><a href="/">Pokémon</a></li>
+            <li><a href="/types">Types</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container site-main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p class="container">Data from PokéAPI. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+---
+import { dexNumber } from '../lib/format.js';
+import { spriteUrl } from '../lib/api.js';
+
+export interface Card {
+  id: number;
+  name: string;
+  display: string;
+  types?: { name: string; label: string }[];
+  note?: string;
+}
+interface Props {
+  cards: Card[];
+}
+const { cards } = Astro.props;
+---
+
+<ul class="card-grid">
+  {
+    cards.map((card) => (
+      <li class="card">
+        <a class="card__link" href={`/pokemon/${card.name}`}>
+          <img class="card__sprite" src={spriteUrl(card.id)} alt="" width="96" height="96" loading="lazy" decoding="async" />
+          <span class="card__dex">{dexNumber(card.id)}</span>
+          <span class="card__name">{card.display}</span>
+        </a>
+        {card.types?.length ? (
+          <ul class="card__types" aria-label="Types">
+            {card.types.map((t) => (
+              <li class="type-badge" style={`--type-color: var(--type-${t.name}, var(--type-normal))`}>
+                {t.label}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        {card.note && <span class="card__note">{card.note}</span>}
+      </li>
+    ))
+  }
+</ul>

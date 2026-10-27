@@ -1,0 +1,44 @@
+Measuring /repo/app
+
+added 29 packages in 4s
+
+> app@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 22ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 188ms
+  Running TypeScript ...
+  Finished TypeScript in 830ms ...
+  Collecting page data using 10 workers ...
+  Generating static pages using 10 workers (0/2) ...
+✓ Generating static pages using 10 workers (2/2) in 237ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /abilities/[name]
+├ ƒ /moves/[name]
+├ ƒ /pokemon/[name]
+├ ƒ /types
+└ ƒ /types/[name]
+
+
+ƒ  (Dynamic)  server-rendered on demand
+
+Lighthouse:
+  home           perf 0.99  LCP 2090ms  TBT 71ms  CLS 0  JS 142KiB
+  home-filtered  perf 0.99  LCP 1969ms  TBT 58ms  CLS 0  JS 142KiB
+  pokemon        perf 0.97  LCP 2553ms  TBT 61ms  CLS 0  JS 143KiB
+  move           perf 1  LCP 1803ms  TBT 59ms  CLS 0  JS 141KiB
+  ability        perf 1  LCP 1353ms  TBT 62ms  CLS 0  JS 141KiB
+  type           perf 0.99  LCP 2128ms  TBT 65ms  CLS 0  JS 141KiB
+Wrote /results/results.json

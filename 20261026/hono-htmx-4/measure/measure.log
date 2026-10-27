@@ -1,0 +1,15 @@
+Measuring /repo/app
+
+added 7 packages in 588ms
+
+> build
+> tsc && node scripts/copy-assets.mjs
+
+Lighthouse:
+  home           perf 1  LCP 978ms  TBT 0ms  CLS 0  JS 18KiB
+  home-filtered  perf 1  LCP 977ms  TBT 0ms  CLS 0  JS 18KiB
+  pokemon        perf 0.99  LCP 2104ms  TBT 0ms  CLS 0  JS 18KiB
+  move           perf 1  LCP 977ms  TBT 0ms  CLS 0  JS 18KiB
+  ability        perf 1  LCP 903ms  TBT 0ms  CLS 0  JS 18KiB
+  type           perf 1  LCP 978ms  TBT 0ms  CLS 0  JS 18KiB
+Wrote /results/results.json

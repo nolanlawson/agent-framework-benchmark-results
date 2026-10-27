@@ -1,0 +1,20 @@
+---
+import { humanize } from '../lib/api';
+
+type ChainLink = { species: { name: string }; evolves_to: ChainLink[] };
+interface Props {
+  nodes: ChainLink[];
+}
+const { nodes } = Astro.props;
+---
+
+<ul class="evolution">
+  {
+    nodes.map((node) => (
+      <li>
+        <a href={`/pokemon/${node.species.name}`}>{humanize(node.species.name)}</a>
+        {node.evolves_to.length > 0 && <Astro.self nodes={node.evolves_to} />}
+      </li>
+    ))
+  }
+</ul>

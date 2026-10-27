@@ -1,0 +1,49 @@
+<h1>Pokémon</h1>
+
+<form class="filters" role="search" (submit)="$event.preventDefault()">
+  <div class="field field--search">
+    <label for="search">Search</label>
+    <input
+      id="search"
+      type="search"
+      autocomplete="off"
+      [value]="search()"
+      (input)="onSearch($any($event.target).value)"
+    />
+  </div>
+  <div class="field">
+    <label for="type">Type</label>
+    <select id="type" (change)="applyFilters({ type: $any($event.target).value })">
+      <option value="" [selected]="!type()">All types</option>
+      @for (t of list().types; track t.name) {
+        <option [value]="t.name" [selected]="t.name === type()">{{ t.label }}</option>
+      }
+    </select>
+  </div>
+  <div class="field">
+    <label for="generation">Generation</label>
+    <select id="generation" (change)="applyFilters({ generation: $any($event.target).value })">
+      <option value="" [selected]="!generation()">All generations</option>
+      @for (g of list().generations; track g.name) {
+        <option [value]="g.name" [selected]="g.name === generation()">{{ g.label }}</option>
+      }
+    </select>
+  </div>
+</form>
+
+<p class="count" role="status">
+  {{ list().count ? list().count + ' Pokémon' : 'No Pokémon found' }}
+</p>
+
+@if (list().count) {
+  <app-pokemon-cards [cards]="list().cards" [priorityCount]="6" />
+  <nav class="pagination" aria-label="Pagination">
+    @if (pageLinkParams().previous; as params) {
+      <a routerLink="/" [queryParams]="params">Previous page</a>
+    }
+    <span>Page {{ list().page }} of {{ list().totalPages }}</span>
+    @if (pageLinkParams().next; as params) {
+      <a routerLink="/" [queryParams]="params">Next page</a>
+    }
+  </nav>
+}

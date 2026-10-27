@@ -1,0 +1,72 @@
+Measuring /repo/app
+
+added 303 packages in 3s
+npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   lmdb@3.5.6 (install: node-gyp-build-optional-packages)
+npm warn install-scripts   msgpackr-extract@3.0.4 (install: node-gyp-build-optional-packages)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+> app@0.0.0 build
+> ng build
+
+❯ Building...
+✔ Building...
+Browser bundles     
+Initial chunk files  | Names            |  Raw size | Estimated transfer size
+main-IW6SEVY4.js     | main             | 289.01 kB |                80.12 kB
+styles-24LO2RGP.css  | styles           |   3.93 kB |                 1.10 kB
+
+                     | Initial total    | 292.94 kB |                81.22 kB
+
+Lazy chunk files     | Names            |  Raw size | Estimated transfer size
+chunk-CoeD7KC5.js    | pokemon-page     |  12.34 kB |                 3.58 kB
+chunk-CFz4jNHb.js    | home-page        |   5.34 kB |                 1.96 kB
+chunk-Biy27C-M.js    | -                |   3.48 kB |                 1.25 kB
+chunk-Dcb_SCeu.js    | type-page        |   2.86 kB |                 1.18 kB
+chunk-BgnaS5gw.js    | move-page        |   1.98 kB |               898 bytes
+chunk-CaBlpd6z.js    | type-list-page   |   1.52 kB |               776 bytes
+chunk-n1omzOvz.js    | ability-page     |   1.34 kB |               716 bytes
+chunk-COUiYtg1.js    | -                | 619 bytes |               619 bytes
+chunk-CzUo0uzJ.js    | not-found        |  93 bytes |                93 bytes
+
+
+Server bundles      
+Initial chunk files  | Names            |  Raw size
+server.mjs           | server           | 925.60 kB |                        
+main.server.mjs      | main.server      | 295.79 kB |                        
+chunk-VL2CIDZU.mjs   | -                | 282.50 kB |                        
+polyfills.server.mjs | polyfills.server | 235.58 kB |                        
+chunk-C2KJ4ATU.mjs   | -                |   1.54 kB |                        
+chunk-KYQQYI4M.mjs   | -                |   1.01 kB |                        
+
+Lazy chunk files     | Names            |  Raw size
+chunk-RBXOAK24.mjs   | xhr2             |  12.17 kB |                        
+chunk-QIMGANLP.mjs   | pokemon-page     |  12.09 kB |                        
+chunk-XDZ7ZLR6.mjs   | xhr2             |  12.08 kB |                        
+chunk-5Q66H56E.mjs   | home-page        |   5.26 kB |                        
+chunk-KAHC3IFZ.mjs   | -                |   3.45 kB |                        
+chunk-VW5QV622.mjs   | type-page        |   2.84 kB |                        
+chunk-STZGCTRX.mjs   | move-page        |   1.99 kB |                        
+chunk-NAEPDZEI.mjs   | type-list-page   |   1.56 kB |                        
+chunk-MJORXIEA.mjs   | ability-page     |   1.38 kB |                        
+chunk-MKWTZPCU.mjs   | -                | 652 bytes |                        
+chunk-5LRNZYWK.mjs   | not-found        | 159 bytes |                        
+
+Prerendered 0 static routes.
+Application bundle generation complete. [2.387 seconds] - 2026-10-26T09:16:27.918Z
+
+Output location: /repo/app/dist/app
+
+Lighthouse:
+file:///home/agent/bench/measure.mjs:87
+        if (lhr.runtimeError) throw new Error(`${urlPath}: ${lhr.runtimeError.message}`);
+                                    ^
+
+Error: /: Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct URL and that the server is properly responding to all requests. (Status code: 400)
+    at runLighthouse (file:///home/agent/bench/measure.mjs:87:37)
+    at async file:///home/agent/bench/measure.mjs:140:24
+
+Node.js v24.22.1

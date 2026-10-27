@@ -1,0 +1,178 @@
+
+> test
+> node tests/run.mjs
+
+$ npm install --no-audit --no-fund --include=dev  (in app)
+
+> pokedex@0.0.1 prepare
+> svelte-kit sync || echo ''
+
+
+added 56 packages in 3s
+$ npm run build  (in app)
+
+> pokedex@0.0.1 build
+> vite build
+
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 199 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/server/.vite/manifest.json                                  9.70 kB │ gzip:  1.20 kB
+.svelte-kit/output/server/_app/immutable/assets/_error.CXjfpHL_.css            0.05 kB │ gzip:  0.07 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.BlNo1NZx.css             0.18 kB │ gzip:  0.14 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.BAQFTxm7.css             0.39 kB │ gzip:  0.24 kB
+.svelte-kit/output/server/_app/immutable/assets/TypeList.N3HyK6kK.css          0.41 kB │ gzip:  0.25 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.Kqarp9zl.css             0.48 kB │ gzip:  0.25 kB
+.svelte-kit/output/server/_app/immutable/assets/CardList.D4JbHjbW.css          0.75 kB │ gzip:  0.37 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.DesMEpYO.css             0.85 kB │ gzip:  0.38 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.D8buY7db.css             3.32 kB │ gzip:  0.85 kB
+.svelte-kit/output/server/_app/immutable/assets/_layout.CqLOBkYR.css           3.48 kB │ gzip:  1.33 kB
+.svelte-kit/output/server/chunks/index-server.js                               0.03 kB │ gzip:  0.05 kB
+.svelte-kit/output/server/handler.js                                           0.05 kB │ gzip:  0.07 kB
+.svelte-kit/output/server/adapter-env.js                                       0.06 kB │ gzip:  0.08 kB
+.svelte-kit/output/server/env.js                                               0.13 kB │ gzip:  0.12 kB
+.svelte-kit/output/server/chunks/server.js                                     0.21 kB │ gzip:  0.14 kB │ map:   0.56 kB
+.svelte-kit/output/server/entries/pages/types/_page.server.ts.js               0.28 kB │ gzip:  0.22 kB │ map:   0.55 kB
+.svelte-kit/output/server/chunks/Section.js                                    0.50 kB │ gzip:  0.31 kB │ map:   0.72 kB
+.svelte-kit/output/server/chunks/navigation.js                                 0.58 kB │ gzip:  0.28 kB │ map:   1.19 kB
+.svelte-kit/output/server/chunks/functions.js                                  0.62 kB │ gzip:  0.36 kB │ map:   0.96 kB
+.svelte-kit/output/server/entries/pages/abilities/_name_/_page.server.ts.js    0.62 kB │ gzip:  0.37 kB │ map:   1.04 kB
+.svelte-kit/output/server/entries/pages/_layout.svelte.js                      0.84 kB │ gzip:  0.43 kB │ map:   1.95 kB
+.svelte-kit/output/server/entries/pages/moves/_name_/_page.server.ts.js        0.90 kB │ gzip:  0.48 kB │ map:   1.48 kB
+.svelte-kit/output/server/entries/pages/types/_page.svelte.js                  1.04 kB │ gzip:  0.55 kB │ map:   1.42 kB
+.svelte-kit/output/server/entries/pages/types/_name_/_page.server.ts.js        1.23 kB │ gzip:  0.61 kB │ map:   2.09 kB
+.svelte-kit/output/server/chunks/TypeList.js                                   1.24 kB │ gzip:  0.54 kB │ map:   2.02 kB
+.svelte-kit/output/server/chunks/format.js                                     1.25 kB │ gzip:  0.68 kB │ map:   2.56 kB
+.svelte-kit/output/server/entries/pages/abilities/_name_/_page.svelte.js       1.34 kB │ gzip:  0.54 kB │ map:   1.18 kB
+.svelte-kit/output/server/entries/pages/_error.svelte.js                       1.56 kB │ gzip:  0.68 kB │ map:   3.03 kB
+.svelte-kit/output/server/entries/pages/_page.server.ts.js                     1.57 kB │ gzip:  0.72 kB │ map:   3.01 kB
+.svelte-kit/output/server/chunks/CardList.js                                   1.60 kB │ gzip:  0.66 kB │ map:   2.63 kB
+.svelte-kit/output/server/entries/pages/moves/_name_/_page.svelte.js           1.99 kB │ gzip:  0.67 kB │ map:   2.19 kB
+.svelte-kit/output/server/adapter-node-env.js                                  2.08 kB │ gzip:  0.92 kB │ map:   3.52 kB
+.svelte-kit/output/server/chunks/shared.js                                     2.23 kB │ gzip:  0.97 kB │ map:   3.11 kB
+.svelte-kit/output/server/index.js                                             2.31 kB │ gzip:  0.91 kB │ map:   3.33 kB
+.svelte-kit/output/server/entries/pages/types/_name_/_page.svelte.js           2.67 kB │ gzip:  0.88 kB │ map:   2.78 kB
+.svelte-kit/output/server/adapter-index.js                                     3.04 kB │ gzip:  1.15 kB │ map:   5.72 kB
+.svelte-kit/output/server/entries/pages/pokemon/_name_/_page.server.ts.js      3.60 kB │ gzip:  1.49 kB │ map:   6.59 kB
+.svelte-kit/output/server/entries/pages/_page.svelte.js                        4.36 kB │ gzip:  1.38 kB │ map:   6.29 kB
+.svelte-kit/output/server/chunks/config.js                                     4.54 kB │ gzip:  1.77 kB │ map:   7.96 kB
+.svelte-kit/output/server/entries/pages/pokemon/_name_/_page.svelte.js         9.40 kB │ gzip:  2.44 kB │ map:  14.38 kB
+.svelte-kit/output/server/chunks/pokedex.js                                    9.96 kB │ gzip:  3.48 kB │ map:  25.00 kB
+.svelte-kit/output/server/chunks/uneval.js                                    19.26 kB │ gzip:  5.33 kB │ map:  40.76 kB
+.svelte-kit/output/server/adapter-node-handler.js                             20.35 kB │ gzip:  7.05 kB │ map:  36.92 kB
+.svelte-kit/output/server/chunks/server-errors.js                             25.04 kB │ gzip:  4.69 kB │ map:  34.89 kB
+.svelte-kit/output/server/chunks/exports.js                                   27.24 kB │ gzip:  7.06 kB │ map:  56.92 kB
+.svelte-kit/output/server/chunks/server2.js                                   44.11 kB │ gzip: 12.31 kB │ map: 126.78 kB
+.svelte-kit/output/server/remote-entry.js                                     54.27 kB │ gzip: 11.80 kB │ map:  89.77 kB
+.svelte-kit/output/server/chunks/internal.js                                  96.50 kB │ gzip: 25.91 kB │ map: 205.61 kB
+.svelte-kit/output/server/chunks/instance.js                                 125.78 kB │ gzip: 34.29 kB │ map: 254.28 kB
+
+✓ built in 232ms
+Analysing routes
+Building app
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 202 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/client/_app/version.json                             0.02 kB │ gzip:  0.04 kB
+.svelte-kit/output/client/.vite/manifest.json                           6.60 kB │ gzip:  0.95 kB
+.svelte-kit/output/client/_app/immutable/assets/1.CXjfpHL_.css          0.05 kB │ gzip:  0.07 kB
+.svelte-kit/output/client/_app/immutable/assets/4.BlNo1NZx.css          0.18 kB │ gzip:  0.14 kB
+.svelte-kit/output/client/_app/immutable/assets/6.BAQFTxm7.css          0.39 kB │ gzip:  0.24 kB
+.svelte-kit/output/client/_app/immutable/assets/TypeList.N3HyK6kK.css   0.41 kB │ gzip:  0.25 kB
+.svelte-kit/output/client/_app/immutable/assets/7.Kqarp9zl.css          0.48 kB │ gzip:  0.25 kB
+.svelte-kit/output/client/_app/immutable/assets/CardList.D4JbHjbW.css   0.75 kB │ gzip:  0.37 kB
+.svelte-kit/output/client/_app/immutable/assets/2.DesMEpYO.css          0.85 kB │ gzip:  0.38 kB
+.svelte-kit/output/client/_app/immutable/assets/5.D8buY7db.css          3.32 kB │ gzip:  0.85 kB
+.svelte-kit/output/client/_app/immutable/assets/0.CqLOBkYR.css          3.48 kB │ gzip:  1.33 kB
+.svelte-kit/output/client/_app/immutable/chunks/B13TaaN3.js             0.05 kB │ gzip:  0.06 kB
+.svelte-kit/output/client/_app/immutable/entry/payload.DSmR2FwN.js      0.06 kB │ gzip:  0.07 kB
+.svelte-kit/output/client/_app/immutable/chunks/Cbjs7IzH.js             0.36 kB │ gzip:  0.26 kB
+.svelte-kit/output/client/_app/immutable/entry/start.BheGioQS.js        0.54 kB │ gzip:  0.31 kB
+.svelte-kit/output/client/_app/immutable/nodes/6.5cvuhk61.js            0.66 kB │ gzip:  0.44 kB
+.svelte-kit/output/client/_app/immutable/nodes/1.CJkp25yf.js            0.69 kB │ gzip:  0.49 kB
+.svelte-kit/output/client/_app/immutable/nodes/0.UNCfU8Gc.js            0.77 kB │ gzip:  0.41 kB
+.svelte-kit/output/client/_app/immutable/nodes/3.BeitvcL1.js            0.94 kB │ gzip:  0.56 kB
+.svelte-kit/output/client/_app/immutable/chunks/BZjBVitk.js             0.98 kB │ gzip:  0.51 kB
+.svelte-kit/output/client/_app/immutable/chunks/TT7YRYiY.js             1.03 kB │ gzip:  0.59 kB
+.svelte-kit/output/client/_app/immutable/chunks/Bjy-W4x2.js             1.36 kB │ gzip:  0.65 kB
+.svelte-kit/output/client/_app/immutable/chunks/CRzLMJPS.js             1.53 kB │ gzip:  0.80 kB
+.svelte-kit/output/client/_app/immutable/nodes/4.DLO4lQ30.js            1.68 kB │ gzip:  0.83 kB
+.svelte-kit/output/client/_app/immutable/nodes/7.CY2iKUqx.js            1.76 kB │ gzip:  0.89 kB
+.svelte-kit/output/client/_app/immutable/entry/app.D2uQUg2v.js          2.15 kB │ gzip:  0.88 kB
+.svelte-kit/output/client/_app/immutable/nodes/2.X_e8akOi.js            3.41 kB │ gzip:  1.50 kB
+.svelte-kit/output/client/_app/immutable/chunks/BO-Ha1OS.js             4.34 kB │ gzip:  1.96 kB
+.svelte-kit/output/client/_app/immutable/nodes/5.JyjTo3B7.js            7.32 kB │ gzip:  2.91 kB
+.svelte-kit/output/client/_app/immutable/chunks/BQX0aJMK.js            41.98 kB │ gzip: 16.28 kB
+.svelte-kit/output/client/_app/immutable/chunks/BK6Qiq9R.js            43.52 kB │ gzip: 16.02 kB
+
+✓ built in 134ms
+
+Run npm run preview to preview your production build locally.
+
+> Using @sveltejs/adapter-node
+Copying assets
+Compressing and hashing assets
+✔ done
+
+Running 54 tests using 4 workers
+
+  ✓   4 tests/specs/details.spec.mjs:44:3 › Move page › falls back to flavor text when there is no effect text (568ms)
+  ✓   3 tests/specs/details.spec.mjs:32:3 › Move page › maps Pokémon to their species and leaves out alternate forms (900ms)
+  ✓   6 tests/specs/details.spec.mjs:56:3 › Move page › includes Pokémon added after the build (486ms)
+  ✓   5 tests/specs/details.spec.mjs:51:3 › Move page › shows a missing power as an em dash (849ms)
+  ✓   2 tests/specs/details.spec.mjs:21:3 › Move page › lists the Pokémon that learn it (1.5s)
+  ✓   1 tests/specs/details.spec.mjs:7:3 › Move page › shows the move details (1.7s)
+  ✓   8 tests/specs/details.spec.mjs:74:3 › Ability page › marks hidden abilities (413ms)
+  ✓   9 tests/specs/details.spec.mjs:82:3 › Ability page › uses the English name for the heading (449ms)
+  ✓   7 tests/specs/details.spec.mjs:63:3 › Ability page › shows the effect and the Pokémon with the ability (532ms)
+  ✓  10 tests/specs/details.spec.mjs:87:3 › Ability page › includes Pokémon added after the build (395ms)
+  ✓  11 tests/specs/details.spec.mjs:94:3 › Type list › links to the 18 types in order (447ms)
+  ✓  14 tests/specs/details.spec.mjs:146:3 › Type page › cards link to species pages (843ms)
+  ✓  13 tests/specs/details.spec.mjs:129:3 › Type page › lists Pokémon and moves of the type (1.2s)
+  ✓  15 tests/specs/details.spec.mjs:153:3 › Type page › includes Pokémon added after the build (796ms)
+  ✓  12 tests/specs/details.spec.mjs:104:3 › Type page › shows damage relations (1.3s)
+  ✓  16 tests/specs/details.spec.mjs:161:5 › Not found › /pokemon/missingno shows a not-found page (303ms)
+  ✓  17 tests/specs/details.spec.mjs:161:5 › Not found › /moves/not-a-move shows a not-found page (354ms)
+  ✓  18 tests/specs/details.spec.mjs:161:5 › Not found › /abilities/not-an-ability shows a not-found page (362ms)
+  ✓  19 tests/specs/details.spec.mjs:161:5 › Not found › /types/not-a-type shows a not-found page (363ms)
+  ✓  20 tests/specs/details.spec.mjs:161:5 › Not found › /no/such/page shows a not-found page (313ms)
+  ✓  22 tests/specs/home.spec.mjs:29:3 › Pokémon list › has labelled search, type and generation controls (795ms)
+  ✓  24 tests/specs/home.spec.mjs:54:3 › Pokémon list › last page includes species added after the build (837ms)
+  ✓  21 tests/specs/home.spec.mjs:8:3 › Pokémon list › shows the first page of all species (1.1s)
+  ✓  23 tests/specs/home.spec.mjs:43:3 › Pokémon list › paginates with Previous and Next links (1.2s)
+  ✓  26 tests/specs/home.spec.mjs:80:3 › Pokémon list › type filter matches either type slot (660ms)
+  ✓  25 tests/specs/home.spec.mjs:66:3 › Pokémon list › filters by type and generation from the URL (864ms)
+  ✓  28 tests/specs/home.spec.mjs:96:3 › Pokémon list › search matches humanized names (430ms)
+  ✓  31 tests/specs/home.spec.mjs:120:3 › Pokémon list › shows a message when nothing matches (499ms)
+  ✓  27 tests/specs/home.spec.mjs:85:3 › Pokémon list › search updates the results while typing (1.4s)
+  ✓  30 tests/specs/home.spec.mjs:108:3 › Pokémon list › changing a filter updates the URL and resets to page 1 (900ms)
+  ✓  29 tests/specs/home.spec.mjs:101:3 › Pokémon list › search finds species added after the build (1.2s)
+  ✓  32 tests/specs/layout.spec.mjs:16:5 › Every page › / has the shared layout (781ms)
+  ✓  35 tests/specs/layout.spec.mjs:16:5 › Every page › /abilities/static has the shared layout (589ms)
+  ✓  36 tests/specs/layout.spec.mjs:16:5 › Every page › /types has the shared layout (398ms)
+  ✓  33 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/pikachu has the shared layout (931ms)
+  ✓  38 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/missingno has the shared layout (397ms)
+  ✓  34 tests/specs/layout.spec.mjs:16:5 › Every page › /moves/thunderbolt has the shared layout (1.4s)
+  ✓  40 tests/specs/pokemon.spec.mjs:32:3 › Pokémon page › uses the English name for the heading (263ms)
+  ✓  37 tests/specs/layout.spec.mjs:16:5 › Every page › /types/fire has the shared layout (800ms)
+  ✓  39 tests/specs/pokemon.spec.mjs:13:3 › Pokémon page › shows the summary (883ms)
+  ✓  41 tests/specs/pokemon.spec.mjs:38:3 › Pokémon page › works for species whose default Pokémon has a different name (608ms)
+  ✓  43 tests/specs/pokemon.spec.mjs:55:3 › Pokémon page › lists abilities with the hidden one marked (504ms)
+  ✓  44 tests/specs/pokemon.spec.mjs:64:3 › Pokémon page › shows the evolution chain as a nested list (489ms)
+  ✓  42 tests/specs/pokemon.spec.mjs:44:3 › Pokémon page › shows base stats in a table (802ms)
+  ✓  45 tests/specs/pokemon.spec.mjs:75:3 › Pokémon page › shows branching evolutions (504ms)
+  ✓  46 tests/specs/pokemon.spec.mjs:86:3 › Pokémon page › #moves jumps to the moves section (529ms)
+  ✓  47 tests/specs/pokemon.spec.mjs:94:3 › Pokémon page › defaults to the latest game and lists games in order (505ms)
+  ✓  48 tests/specs/pokemon.spec.mjs:102:3 › Pokémon page › shows one table per learn method in a fixed order (791ms)
+  ✓  51 tests/specs/pokemon.spec.mjs:167:3 › Pokémon page › changing the game updates the URL and the tables (594ms)
+  ✓  52 tests/specs/pokemon.spec.mjs:177:3 › Pokémon page › links point at species pages (386ms)
+  ✓  54 tests/specs/pokemon.spec.mjs:197:3 › Pokémon page with live data › shows a species added after the build (324ms)
+  ✓  53 tests/specs/pokemon.spec.mjs:186:3 › Pokémon page with live data › reflects changed values (574ms)
+  ✓  49 tests/specs/pokemon.spec.mjs:119:3 › Pokémon page › shows move details in each row (1.5s)
+  ✓  50 tests/specs/pokemon.spec.mjs:137:3 › Pokémon page › sorts a table by clicking a column header (1.9s)
+
+  54 passed (11.8s)

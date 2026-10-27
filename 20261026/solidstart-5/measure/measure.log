@@ -1,0 +1,86 @@
+Measuring /repo/app
+
+added 180 packages in 2s
+
+> build
+> vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 121 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/public/.vite/manifest.json                       3.58 kB │ gzip:  0.52 kB
+.output/public/_build/assets/entry-client-fX0B39Z_.css   9.90 kB │ gzip:  2.58 kB
+.output/public/_build/assets/_...404_-owU72B-d.js        0.09 kB │ gzip:  0.10 kB
+.output/public/_build/assets/index-DHVOqRxm.js           0.63 kB │ gzip:  0.40 kB
+.output/public/_build/assets/createAsync-Cm2W4uqA.js     0.73 kB │ gzip:  0.38 kB
+.output/public/_build/assets/_name_-CmaQOKv2.js          0.77 kB │ gzip:  0.42 kB
+.output/public/_build/assets/_name_-CsRdSSHO.js          1.06 kB │ gzip:  0.55 kB
+.output/public/_build/assets/_name_-eiHOVcDB.js          1.44 kB │ gzip:  0.66 kB
+.output/public/_build/assets/index-DMDEQNdL.js           3.67 kB │ gzip:  1.54 kB
+.output/public/_build/assets/_name_-BZKC2B9Y.js          6.97 kB │ gzip:  2.65 kB
+.output/public/_build/assets/entry-client-GXzVMZTe.js   17.39 kB │ gzip:  6.71 kB
+.output/public/_build/assets/ui-gD2eRA4t.js             31.95 kB │ gzip: 12.12 kB
+.output/public/_build/assets/data-d2Vd-lY0.js           54.50 kB │ gzip: 17.97 kB
+
+✓ built in 787ms
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 126 modules transformed.
+rendering chunks...
+computing gzip size...
+node_modules/.nitro/vite/services/ssr/.vite/manifest.json                      3.16 kB │ gzip:  0.46 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-fX0B39Z_.css         9.90 kB │ gzip:  2.58 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_...404_-DDd8DFVX.js       0.32 kB │ gzip:  0.21 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-BtUbixRz.js          1.03 kB │ gzip:  0.51 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/createAsync-C9_ulEa9.js    1.58 kB │ gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-sKfM1kts.js         1.60 kB │ gzip:  0.64 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-BkDIzodW.js         2.12 kB │ gzip:  0.81 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-DZzBDc83.js         2.81 kB │ gzip:  0.90 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-BT6zainM.js          4.59 kB │ gzip:  1.52 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-CkyyGOx2.js        10.17 kB │ gzip:  2.87 kB
+node_modules/.nitro/vite/services/ssr/index.js                               161.17 kB │ gzip: 46.46 kB
+
+✓ built in 1.27s
+
+[nitro] ◐ Building [Nitro] (preset: node-server, compatibility: 2026-10-26)
+[nitro] ✔ Generated public .output/public
+vite v8.3.5 building nitro environment for production...
+`output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.
+transforming...
+✓ 84 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/server/_...404_-DDd8DFVX.mjs            0.34 kB │ gzip:  0.25 kB
+.output/server/_ssr/createAsync-C9_ulEa9.mjs    0.84 kB │ gzip:  0.46 kB
+.output/server/_chunks/ssr-renderer.mjs         0.90 kB │ gzip:  0.48 kB
+.output/server/_ssr/index-BtUbixRz.mjs          1.02 kB │ gzip:  0.55 kB
+.output/server/_libs/hookable.mjs               1.14 kB │ gzip:  0.50 kB
+.output/server/_name_-sKfM1kts.mjs              1.60 kB │ gzip:  0.68 kB
+.output/server/_name_-BkDIzodW.mjs              2.12 kB │ gzip:  0.86 kB
+.output/server/_libs/ufo.mjs                    2.18 kB │ gzip:  0.70 kB
+.output/server/_name_-DZzBDc83.mjs              2.81 kB │ gzip:  0.95 kB
+.output/server/_libs/radix3.mjs                 4.08 kB │ gzip:  1.36 kB
+.output/server/_ssr/index-BT6zainM.mjs          4.58 kB │ gzip:  1.57 kB
+.output/server/_name_-CkyyGOx2.mjs             10.13 kB │ gzip:  2.89 kB
+.output/server/index.mjs                       12.80 kB │ gzip:  4.17 kB
+.output/server/_libs/seroval-plugins.mjs       31.49 kB │ gzip:  3.55 kB
+.output/server/_libs/solid-js.mjs              34.15 kB │ gzip:  9.56 kB
+.output/server/_libs/srvx.mjs                  51.30 kB │ gzip: 12.07 kB
+.output/server/_libs/h3+rou3+srvx.mjs          70.98 kB │ gzip: 19.57 kB
+.output/server/_libs/seroval.mjs              138.62 kB │ gzip: 30.48 kB
+.output/server/_ssr/ssr.mjs                   142.90 kB │ gzip: 41.24 kB
+
+✓ built in 527ms
+ℹ Generated .output/nitro.json
+
+[nitro] ✔ You can preview this build using npx vite preview
+Lighthouse:
+  home           perf 1  LCP 1203ms  TBT 12ms  CLS 0  JS 40KiB
+  home-filtered  perf 1  LCP 1202ms  TBT 9ms  CLS 0  JS 40KiB
+  pokemon        perf 0.99  LCP 2108ms  TBT 15ms  CLS 0  JS 41KiB
+  move           perf 1  LCP 1127ms  TBT 12ms  CLS 0  JS 39KiB
+  ability        perf 1  LCP 1202ms  TBT 9ms  CLS 0  JS 39KiB
+  type           perf 1  LCP 1203ms  TBT 11ms  CLS 0  JS 39KiB
+Wrote /results/results.json

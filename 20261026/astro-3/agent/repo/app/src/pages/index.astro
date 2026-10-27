@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PokemonResults from '../components/PokemonResults.astro';
+import { getGenerations, getTypes, parseListQuery } from '../lib/api';
+
+const query = parseListQuery(Astro.url.searchParams);
+const [types, generations] = await Promise.all([getTypes(), getGenerations()]);
+---
+
+<Layout>
+  <h1>Pokémon</h1>
+  <form class="filters" method="get" action="/" data-filters>
+    <div class="field field--search">
+      <label for="q">Search</label>
+      <input id="q" name="q" type="search" value={query.q} autocomplete="off" spellcheck="false" />
+    </div>
+    <div class="field">
+      <label for="type">Type</label>
+      <select id="type" name="type">
+        <option value="">All types</option>
+        {types.map((t) => <option value={t.name} selected={t.name === query.type}>{t.label}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="generation">Generation</label>
+      <select id="generation" name="generation">
+        <option value="">All generations</option>
+        {generations.map((g) => <option value={g.name} selected={g.name === query.generation}>{g.label}</option>)}
+      </select>
+    </div>
+    <noscript><button type="submit">Apply</button></noscript>
+  </form>
+  <div class="results" id="results" aria-live="polite">
+    <PokemonResults query={query} />
+  </div>
+</Layout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-filters]')!;
+  const results = document.getElementById('results')!;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let controller: AbortController | undefined;
+
+  function queryString() {
+    const params = new URLSearchParams();
+    for (const [key, value] of new FormData(form)) {
+      const v = String(value).trim();
+      if (v) params.set(key, v);
+    }
+    const s = params.toString();
+    return s ? `?${s}` : '';
+  }
+
+  async function update() {
+    clearTimeout(timer);
+    const qs = queryString();
+    // Filters always go back to page 1, so `page` is dropped.
+    history.replaceState(history.state, '', `/${qs}`);
+    controller?.abort();
+    controller = new AbortController();
+    try {
+      const res = await fetch(`/fragments/pokemon-list${qs}`, { signal: controller.signal });
+      if (!res.ok) throw new Error(String(res.status));
+      results.innerHTML = await res.text();
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') location.assign(`/${qs}`);
+    }
+  }
+
+  form.addEventListener('input', (event) => {
+    if ((event.target as HTMLElement).matches('input[type="search"]')) {
+      clearTimeout(timer);
+      timer = setTimeout(update, 150);
+    }
+  });
+  form.addEventListener('change', (event) => {
+    if ((event.target as HTMLElement).matches('select')) update();
+  });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    update();
+  });
+</script>

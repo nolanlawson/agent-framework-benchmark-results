@@ -1,0 +1,35 @@
+Measuring /repo/app
+
+added 205 packages in 2s
+
+> build
+> astro build
+
+▶ Astro collects anonymous usage data.
+  This information helps us improve Astro.
+  Run "astro telemetry disable" to opt-out.
+  https://astro.build/telemetry
+
+09:34:25 [types] Generated 90ms
+09:34:25 [build] output: "server"
+09:34:25 [build] mode: "server"
+09:34:25 [build] directory: /repo/app/dist/
+09:34:25 [build] adapter: @astrojs/node
+09:34:25 [build] Collecting build info...
+09:34:25 [build] ✓ Completed in 115ms.
+09:34:25 [build] Building server entrypoints...
+09:34:25 [vite] ✓ built in 77ms
+09:34:25 [vite] ✓ built in 116ms
+09:34:25 [vite] ✓ built in 12ms
+09:34:25 [build] Rearranging server assets...
+09:34:25 [build] ✓ Completed in 231ms.
+09:34:25 [build] Server built in 348ms
+09:34:25 [build] Complete!
+Lighthouse:
+  home           perf 1  LCP 810ms  TBT 0ms  CLS 0  JS 0KiB
+  home-filtered  perf 1  LCP 785ms  TBT 0ms  CLS 0  JS 0KiB
+  pokemon        perf 0.99  LCP 2104ms  TBT 0ms  CLS 0  JS 0KiB
+  move           perf 1  LCP 856ms  TBT 0ms  CLS 0  JS 0KiB
+  ability        perf 1  LCP 786ms  TBT 0ms  CLS 0  JS 0KiB
+  type           perf 1  LCP 810ms  TBT 0ms  CLS 0  JS 0KiB
+Wrote /results/results.json

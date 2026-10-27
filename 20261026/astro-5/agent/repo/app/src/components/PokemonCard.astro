@@ -1,0 +1,80 @@
+---
+import { spriteUrl } from '../lib/api';
+import { dexNumber, type Card } from '../lib/pokedex';
+import TypeBadge from './TypeBadge.astro';
+
+interface Props {
+  card: Card;
+  /** Type API name → English name, needed when the card shows types. */
+  typeLabels?: Map<string, string>;
+}
+
+const { card, typeLabels } = Astro.props;
+---
+
+<li>
+  <a class="card" href={`/pokemon/${card.name}`}>
+    <img src={spriteUrl(card.id)} alt="" width="96" height="96" loading="lazy" decoding="async" />
+    <span class="dex">{dexNumber(card.id)}</span>
+    <span class="name">{card.label}</span>
+    {
+      card.types && card.types.length > 0 && (
+        <span class="badges">
+          {card.types.map((t) => (
+            <TypeBadge name={t} label={typeLabels?.get(t) ?? t} link={false} />
+          ))}
+        </span>
+      )
+    }
+    {card.hidden && <span class="note">Hidden ability</span>}
+  </a>
+</li>
+
+<style>
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-2) var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .card:hover {
+    border-color: var(--color-link);
+  }
+
+  .card:hover .name {
+    text-decoration: underline;
+  }
+
+  img {
+    width: var(--sprite-size);
+    height: var(--sprite-size);
+    image-rendering: pixelated;
+  }
+
+  .dex {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .name {
+    font-size: var(--text-base);
+  }
+
+  .badges {
+    justify-content: center;
+  }
+
+  .note {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+</style>

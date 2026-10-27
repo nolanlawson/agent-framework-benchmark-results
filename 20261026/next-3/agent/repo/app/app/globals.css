@@ -1,0 +1,544 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+h1,
+h2,
+p,
+dl,
+dd,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-link);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* Header and footer */
+
+.site-header {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: var(--header-height);
+}
+
+.site-header a {
+  color: var(--color-on-accent);
+  text-decoration: none;
+}
+
+.site-header a:hover {
+  text-decoration: underline;
+}
+
+.site-header a:focus-visible {
+  outline-color: var(--color-on-accent);
+}
+
+.site-header__brand {
+  font-size: var(--text-lg);
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-5);
+  list-style: none;
+}
+
+.site-main {
+  flex: 1;
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-7);
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-6);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+/* Common pieces */
+
+.page-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+.count {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.panel__title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+.plain-list {
+  padding-left: var(--space-5);
+}
+
+.type-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: inherit;
+  gap: var(--space-1);
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 0.1875rem var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--type-color);
+  color: var(--color-on-type);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.type-badge:hover {
+  text-decoration: underline;
+}
+
+/* Home filters */
+
+.filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.field label,
+.game-select label {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+input[type="search"],
+select {
+  width: 100%;
+  height: 2.5rem;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+input[type="search"] {
+  height: 2.625rem;
+}
+
+@media (max-width: 40rem) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pokémon cards */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding: var(--space-3) var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-align: center;
+  text-decoration: none;
+}
+
+.card:hover {
+  border-color: var(--color-link);
+}
+
+.card__sprite {
+  width: var(--sprite-size);
+  height: var(--sprite-size);
+  margin-bottom: var(--space-1);
+}
+
+.card__number {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  margin-bottom: var(--space-1);
+}
+
+.card .type-list {
+  justify-content: center;
+}
+
+.card .type-list,
+.card__note {
+  margin-top: var(--space-1);
+}
+
+.card__note {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+}
+
+/* Pokémon page */
+
+.summary {
+  display: grid;
+  grid-template-columns: var(--artwork-size) 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.summary__art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.summary__art img {
+  width: 100%;
+  height: auto;
+}
+
+.summary__info {
+  padding-top: var(--space-4);
+}
+
+.summary__number {
+  color: var(--color-text-muted);
+}
+
+.summary__name {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-1);
+}
+
+.summary__genus {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.summary .type-list {
+  margin-bottom: var(--space-4);
+}
+
+.type-badge--md {
+  padding: 0.1875rem var(--space-2);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.facts dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.facts--panel {
+  padding: var(--space-4);
+  margin-bottom: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 40rem) {
+  .summary {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .summary__art {
+    width: var(--artwork-size);
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .summary__info {
+    padding-top: 0;
+  }
+}
+
+.stats {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats th,
+.stats td {
+  vertical-align: middle;
+}
+
+.stats th {
+  width: 6rem;
+  padding: var(--space-1) 0;
+  color: var(--color-text-muted);
+  font-weight: var(--weight-normal);
+  text-align: left;
+}
+
+.stats__value {
+  width: 3rem;
+}
+
+.stats__total th,
+.stats__total td {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+
+.stat-bar {
+  display: block;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-stat-track);
+  overflow: hidden;
+}
+
+.stat-bar__fill {
+  display: block;
+  height: 100%;
+  background: var(--color-stat-bar);
+}
+
+.evolution {
+  padding-left: var(--space-4);
+}
+
+.evolution .evolution {
+  padding-left: var(--space-4);
+}
+
+/* Moves */
+
+.game-select {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.game-select select {
+  width: 16.5rem;
+  max-width: 100%;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+}
+
+.move-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.move-table caption {
+  padding-bottom: var(--space-1);
+  font-size: var(--text-base);
+  text-align: left;
+}
+
+.move-table th {
+  padding: 0;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: var(--weight-normal);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.move-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.move-table td:first-child {
+  padding-left: var(--space-3);
+}
+
+.sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  border: 0;
+  background: none;
+  color: var(--color-text-muted);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  color: var(--color-text);
+}
+
+.sort-button__icon {
+  font-size: 0.625rem;
+}
+
+/* Types */
+
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.type-grid a {
+  display: block;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--type-color);
+  color: var(--color-on-type);
+  text-align: center;
+  text-decoration: none;
+}
+
+.type-grid a:hover {
+  text-decoration: underline;
+}
+
+.relations {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-4);
+}
+
+.relations dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+}
+
+@media (max-width: 40rem) {
+  .relations {
+    grid-template-columns: 1fr;
+  }
+}
+
+.move-list {
+  columns: 9rem;
+  column-gap: var(--space-4);
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.move-list li {
+  break-inside: avoid;
+  padding-block: 0.125rem;
+}
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-link);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

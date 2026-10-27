@@ -1,0 +1,13 @@
+---
+interface Props {
+  name: string;
+  label: string;
+  /** Render as a link to the type page. */
+  link?: boolean;
+  size?: 'sm' | 'md';
+}
+const { name, label, link = false, size = 'sm' } = Astro.props;
+const Tag = link ? 'a' : 'span';
+---
+
+<Tag class:list={['type-badge', `type-badge--${size}`]} style={`--type-color: var(--type-${name}, var(--color-text-muted))`} href={link ? `/types/${name}` : undefined}>{label}</Tag>

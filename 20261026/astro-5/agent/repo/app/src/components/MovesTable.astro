@@ -1,0 +1,121 @@
+---
+import { display, humanize, type MoveInfo } from '../lib/pokedex';
+import TypeBadge from './TypeBadge.astro';
+
+export type MoveRow = { level: number; move: MoveInfo };
+
+interface Props {
+  method: string;
+  rows: MoveRow[];
+  typeLabels: Map<string, string>;
+}
+
+const { method, rows, typeLabels } = Astro.props;
+const showLevel = method === 'level-up';
+const columns = [
+  ...(showLevel ? [{ key: 'level', label: 'Level', numeric: true }] : []),
+  { key: 'move', label: 'Move', numeric: false },
+  { key: 'type', label: 'Type', numeric: false },
+  { key: 'category', label: 'Category', numeric: false },
+  { key: 'power', label: 'Power', numeric: true },
+  { key: 'accuracy', label: 'Accuracy', numeric: true },
+  { key: 'pp', label: 'PP', numeric: true },
+];
+const sortValue = (value: number | null) => (value === null ? '' : String(value));
+---
+
+<div class="table-wrap">
+  <table class="moves-table" data-sortable>
+    <caption>{humanize(method)}</caption>
+    <thead>
+      <tr>
+        {
+          columns.map((c) => (
+            <th scope="col" data-type={c.numeric ? 'number' : 'text'}>
+              <button type="button">
+                {c.label}
+                <span class="sort-indicator" aria-hidden="true" />
+              </button>
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map(({ level, move }) => {
+          const typeLabel = typeLabels.get(move.type) ?? humanize(move.type ?? '');
+          return (
+            <tr>
+              {showLevel && <td data-sort={level}>{level}</td>}
+              <td data-sort={move.label}>
+                <a href={`/moves/${move.name}`}>{move.label}</a>
+              </td>
+              <td data-sort={typeLabel}>{move.type ? <TypeBadge name={move.type} label={typeLabel} /> : display(null)}</td>
+              <td data-sort={move.category}>{move.category}</td>
+              <td data-sort={sortValue(move.power)}>{display(move.power)}</td>
+              <td data-sort={sortValue(move.accuracy)}>{display(move.accuracy)}</td>
+              <td data-sort={sortValue(move.pp)}>{display(move.pp)}</td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  caption {
+    text-align: left;
+    font-size: var(--text-base);
+    padding-bottom: var(--space-3);
+  }
+
+  th {
+    text-align: left;
+    font-weight: var(--weight-normal);
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  th button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    background: none;
+    color: inherit;
+    font-size: var(--text-sm);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  th[aria-sort='ascending'] .sort-indicator::after {
+    content: '▲';
+    font-size: 0.625em;
+  }
+
+  th[aria-sort='descending'] .sort-indicator::after {
+    content: '▼';
+    font-size: 0.625em;
+  }
+
+  td {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+</style>

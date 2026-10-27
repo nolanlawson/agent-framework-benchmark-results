@@ -1,0 +1,22 @@
+---
+import { humanize } from '../lib/pokedex';
+
+interface Props {
+  link: { species: { name: string }; evolves_to: Props['link'][] };
+}
+
+const { link } = Astro.props;
+---
+
+<li>
+  <a href={`/pokemon/${link.species.name}`}>{humanize(link.species.name)}</a>
+  {
+    link.evolves_to.length > 0 && (
+      <ul>
+        {link.evolves_to.map((next) => (
+          <Astro.self link={next} />
+        ))}
+      </ul>
+    )
+  }
+</li>

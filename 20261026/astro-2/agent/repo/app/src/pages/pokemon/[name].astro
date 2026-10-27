@@ -1,0 +1,134 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import NotFound from '../../components/NotFound.astro';
+import EvolutionTree from '../../components/EvolutionTree.astro';
+import MoveTables from '../../components/MoveTables.astro';
+import { dexNumber, englishName, getJson, getTypeLabels, humanize, latestEnglishFlavorText } from '../../lib/api';
+import { getMoveTables } from '../../lib/moves';
+
+const STAT_LABELS: Record<string, string> = {
+  hp: 'HP',
+  attack: 'Attack',
+  defense: 'Defense',
+  'special-attack': 'Sp. Atk',
+  'special-defense': 'Sp. Def',
+  speed: 'Speed',
+};
+const MAX_STAT = 255;
+
+const species = await getJson(`pokemon-species/${encodeURIComponent(Astro.params.name!.toLowerCase())}`);
+const [pokemon, chain, typeLabels] = species
+  ? await Promise.all([
+      getJson(`pokemon/${species.id}`),
+      species.evolution_chain?.url ? getJson(species.evolution_chain.url) : null,
+      getTypeLabels(),
+    ])
+  : [null, null, null];
+
+if (!species || !pokemon) Astro.response.status = 404;
+
+const name = species ? englishName(species) : '';
+const genus = species?.genera?.find((g: any) => g.language.name === 'en')?.genus ?? null;
+const types = pokemon
+  ? [...pokemon.types]
+      .sort((a: any, b: any) => a.slot - b.slot)
+      .map((t: any) => ({ name: t.type.name, label: typeLabels?.get(t.type.name) ?? humanize(t.type.name) }))
+  : [];
+const artwork = pokemon?.sprites?.other?.['official-artwork']?.front_default ?? pokemon?.sprites?.front_default ?? null;
+const flavor = species ? latestEnglishFlavorText(species.flavor_text_entries) : null;
+const stats: { label: string; value: number }[] = pokemon
+  ? pokemon.stats.map((s: any) => ({ label: STAT_LABELS[s.stat.name] ?? humanize(s.stat.name), value: s.base_stat }))
+  : [];
+const total = stats.reduce((sum, s) => sum + s.value, 0);
+const abilities = pokemon ? [...pokemon.abilities].sort((a: any, b: any) => a.slot - b.slot) : [];
+const moves = pokemon ? await getMoveTables(pokemon, Astro.url.searchParams.get('game')) : null;
+---
+
+{
+  !species || !pokemon ? (
+    <NotFound />
+  ) : (
+    <Layout title={name}>
+      <div class="pokemon-hero">
+        <div class="pokemon-hero__art">
+          {artwork && <img src={artwork} alt={name} width="475" height="475" />}
+        </div>
+        <div class="pokemon-hero__info">
+          <p class="pokemon-hero__dex">{dexNumber(species.id)}</p>
+          <h1>{name}</h1>
+          {genus && <p class="pokemon-hero__genus">{genus}</p>}
+          <ul class="type-list" aria-label="Types">
+            {types.map((t) => (
+              <li>
+                <TypeBadge name={t.name} label={t.label} link />
+              </li>
+            ))}
+          </ul>
+          <dl class="facts">
+            <div>
+              <dt>Height</dt>
+              <dd>{(pokemon.height / 10).toFixed(1)} m</dd>
+            </div>
+            <div>
+              <dt>Weight</dt>
+              <dd>{(pokemon.weight / 10).toFixed(1)} kg</dd>
+            </div>
+          </dl>
+          {flavor && <p class="pokemon-hero__flavor">{flavor}</p>}
+        </div>
+      </div>
+
+      <Section id="stats" heading="Base stats">
+        <table class="stats">
+          <tbody>
+            {stats.map((s) => (
+              <tr>
+                <th scope="row">{s.label}</th>
+                <td>{s.value}</td>
+                <td class="stats__bar" aria-hidden="true">
+                  <span style={`width: ${Math.min(100, (s.value / MAX_STAT) * 100).toFixed(1)}%`} />
+                </td>
+              </tr>
+            ))}
+            <tr class="stats__total">
+              <th scope="row">Total</th>
+              <td>{total}</td>
+              <td class="stats__bar" aria-hidden="true">
+                <span style={`width: ${Math.min(100, (total / (MAX_STAT * Math.max(1, stats.length))) * 100).toFixed(1)}%`} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Section>
+
+      <Section id="abilities" heading="Abilities">
+        <ul class="plain-list">
+          {abilities.map((a: any) => (
+            <li>
+              <a href={`/abilities/${a.ability.name}`}>{humanize(a.ability.name)}</a>
+              {a.is_hidden && ' (hidden)'}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="evolution" heading="Evolution">
+        {chain ? (
+          <EvolutionTree nodes={[chain.chain]} />
+        ) : (
+          <ul class="evolution">
+            <li>
+              <a href={`/pokemon/${species.name}`}>{humanize(species.name)}</a>
+            </li>
+          </ul>
+        )}
+      </Section>
+
+      <Section id="moves" heading="Moves">
+        <MoveTables tables={moves!} pokemonName={species.name} />
+      </Section>
+    </Layout>
+  )
+}

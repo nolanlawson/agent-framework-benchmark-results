@@ -1,0 +1,26 @@
+---
+import { humanize } from '../lib/format.js';
+
+export interface ChainLink {
+  species: { name: string };
+  evolves_to: ChainLink[];
+}
+interface Props {
+  links: ChainLink[];
+  current: string;
+}
+const { links, current } = Astro.props;
+---
+
+<ul class="evolution">
+  {
+    links.map((link) => (
+      <li>
+        <a href={`/pokemon/${link.species.name}`} aria-current={link.species.name === current ? 'page' : undefined}>
+          {humanize(link.species.name)}
+        </a>
+        {link.evolves_to.length > 0 && <Astro.self links={link.evolves_to} current={current} />}
+      </li>
+    ))
+  }
+</ul>

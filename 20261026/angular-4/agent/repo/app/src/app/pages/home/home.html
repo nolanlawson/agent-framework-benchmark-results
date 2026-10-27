@@ -1,0 +1,63 @@
+<h1>Pokémon</h1>
+
+<!--
+  Controls bind both the DOM property (for live updates) and the attribute: server rendering
+  only serializes attributes, so the attribute is what shows the URL's filters before hydration.
+-->
+<form class="filters" role="search" (submit)="$event.preventDefault()">
+  <div class="field field-search">
+    <label for="search">Search</label>
+    <input
+      id="search"
+      type="search"
+      autocomplete="off"
+      [value]="searchText()"
+      [attr.value]="searchText()"
+      (input)="onSearchInput($event)"
+    />
+  </div>
+  <div class="field">
+    <label for="type">Type</label>
+    <select id="type" (change)="onTypeChange($event)">
+      <option value="" [selected]="!type()" [attr.selected]="type() ? null : ''">All types</option>
+      @for (t of data().types; track t.name) {
+        <option [value]="t.name" [selected]="t.name === type()" [attr.selected]="t.name === type() ? '' : null">
+          {{ t.label }}
+        </option>
+      }
+    </select>
+  </div>
+  <div class="field">
+    <label for="generation">Generation</label>
+    <select id="generation" (change)="onGenerationChange($event)">
+      <option value="" [selected]="!generation()" [attr.selected]="generation() ? null : ''">
+        All generations
+      </option>
+      @for (g of data().generations; track g.name) {
+        <option
+          [value]="g.name"
+          [selected]="g.name === generation()"
+          [attr.selected]="g.name === generation() ? '' : null"
+        >
+          {{ g.label }}
+        </option>
+      }
+    </select>
+  </div>
+</form>
+
+@if (matches().length) {
+  <p class="count">{{ matches().length }} Pokémon</p>
+  <app-pokemon-card-list [cards]="cards()" />
+  <nav class="pagination" aria-label="Pagination">
+    @if (currentPage() > 1) {
+      <a routerLink="/" [queryParams]="previousPageParams()">Previous page</a>
+    }
+    <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
+    @if (currentPage() < totalPages()) {
+      <a routerLink="/" [queryParams]="nextPageParams()">Next page</a>
+    }
+  </nav>
+} @else {
+  <p class="count">No Pokémon found</p>
+}

@@ -1,0 +1,26 @@
+---
+import type { Card } from '../lib/pokedex';
+import PokemonCard from './PokemonCard.astro';
+
+interface Props {
+  cards: Card[];
+  typeLabels?: Map<string, string>;
+}
+
+const { cards, typeLabels } = Astro.props;
+---
+
+<ul class="card-grid">
+  {cards.map((card) => <PokemonCard card={card} typeLabels={typeLabels} />)}
+</ul>
+
+<style>
+  .card-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+    gap: var(--space-3);
+  }
+</style>

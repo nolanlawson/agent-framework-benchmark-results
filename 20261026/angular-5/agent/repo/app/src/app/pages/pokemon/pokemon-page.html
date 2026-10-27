@@ -1,0 +1,94 @@
+@if (pokemon(); as p) {
+  <div class="summary">
+    <div class="artwork">
+      @if (p.artwork) {
+        <img [ngSrc]="p.artwork" width="256" height="256" [alt]="p.label" priority />
+      }
+    </div>
+    <div class="info">
+      <p class="dex">{{ dex(p.id) }}</p>
+      <h1>{{ p.label }}</h1>
+      @if (p.genus) {
+        <p class="genus">{{ p.genus }}</p>
+      }
+      <p class="types">
+        @for (type of p.types; track type.name) {
+          <app-type-badge [type]="type" />
+        }
+      </p>
+      <dl class="measures">
+        <div>
+          <dt>Height</dt>
+          <dd>{{ p.height / 10 | number: '1.1-1' : 'en-US' }} m</dd>
+        </div>
+        <div>
+          <dt>Weight</dt>
+          <dd>{{ p.weight / 10 | number: '1.1-1' : 'en-US' }} kg</dd>
+        </div>
+      </dl>
+      @if (p.flavorText) {
+        <p class="flavor">{{ p.flavorText }}</p>
+      }
+    </div>
+  </div>
+
+  <app-section heading="Base stats">
+    <table class="stats">
+      <tbody>
+        @for (stat of stats().rows; track $index) {
+          <tr>
+            <th scope="row">{{ stat.label }}</th>
+            <td class="stats__value">{{ stat.value }}</td>
+            <td class="stats__bar" aria-hidden="true"><span [style.width.%]="stat.percent"></span></td>
+          </tr>
+        }
+        <tr class="stats__total">
+          <th scope="row">{{ stats().total.label }}</th>
+          <td class="stats__value">{{ stats().total.value }}</td>
+          <td class="stats__bar" aria-hidden="true"><span [style.width.%]="stats().total.percent"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </app-section>
+
+  <app-section heading="Abilities">
+    <ul class="plain-list">
+      @for (ability of p.abilities; track ability.name) {
+        <li>
+          <a [routerLink]="['/abilities', ability.name]">{{ ability.label }}</a>
+          @if (ability.hidden) {
+            (hidden)
+          }
+        </li>
+      }
+    </ul>
+  </app-section>
+
+  <app-section heading="Evolution">
+    @if (p.evolution) {
+      <app-evolution-tree class="root" [nodes]="[p.evolution]" />
+    } @else {
+      <p>{{ orMissing(null) }}</p>
+    }
+  </app-section>
+
+  <app-section heading="Moves" anchor="moves">
+    @if (p.games.length) {
+      <div class="game">
+        <label for="game">Game</label>
+        <select id="game" (change)="selectGame($any($event.target).value)">
+          @for (game of p.games; track game.name) {
+            <option [value]="game.name" [selected]="game.name === p.game">{{ game.label }}</option>
+          }
+        </select>
+      </div>
+      @for (table of p.moveTables; track table.method) {
+        <app-moves-table [table]="table" />
+      }
+    } @else {
+      <p>This Pokémon doesn't learn any moves.</p>
+    }
+  </app-section>
+} @else {
+  <app-not-found />
+}

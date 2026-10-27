@@ -1,0 +1,48 @@
+Measuring /repo/app
+
+added 281 packages in 3s
+npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   lmdb@3.5.6 (install: node-gyp-build-optional-packages)
+npm warn install-scripts   msgpackr-extract@3.0.4 (install: node-gyp-build-optional-packages)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+> app@0.0.0 build
+> ng build
+
+❯ Building...
+✔ Building...
+Initial chunk files | Names         |  Raw size | Estimated transfer size
+main-D5DVILL7.js    | main          | 233.72 kB |                64.15 kB
+styles-QFCB6XOL.css | styles        |   8.96 kB |                 2.13 kB
+
+                    | Initial total | 242.68 kB |                66.28 kB
+
+Lazy chunk files    | Names         |  Raw size | Estimated transfer size
+chunk-D907Raso.js   | pokemon-page  |  12.36 kB |                 4.44 kB
+chunk-CvBN61Xr.js   | home          |   5.96 kB |                 2.23 kB
+chunk-DusfHzMw.js   | -             |   4.06 kB |                 1.79 kB
+chunk-De3rZFgf.js   | type-page     |   3.08 kB |                 1.28 kB
+chunk-DtUklJfv.js   | move-page     |   2.50 kB |                 1.13 kB
+chunk-fYM9gZCa.js   | -             |   1.77 kB |               876 bytes
+chunk-lgG4AyXX.js   | ability-page  |   1.77 kB |               864 bytes
+chunk-C_qK06a7.js   | types-page    |   1.17 kB |               640 bytes
+chunk-CYKNcbPQ.js   | -             | 846 bytes |               846 bytes
+chunk-iBIWcjbX.js   | -             | 398 bytes |               398 bytes
+chunk-DGRX8TXa.js   | -             | 290 bytes |               290 bytes
+chunk-BnkuIGAM.js   | not-found     |  89 bytes |                89 bytes
+
+Application bundle generation complete. [1.633 seconds] - 2026-10-26T09:08:58.202Z
+
+Output location: /repo/app/dist/app
+
+Lighthouse:
+  home           perf 0.96  LCP 1351ms  TBT 93ms  CLS 0.111  JS 81KiB
+  home-filtered  perf 0.97  LCP 1351ms  TBT 39ms  CLS 0.111  JS 81KiB
+  pokemon        perf 0.61  LCP 4956ms  TBT 714ms  CLS 0.111  JS 84KiB
+  move           perf 0.96  LCP 1320ms  TBT 82ms  CLS 0.111  JS 81KiB
+  ability        perf 0.97  LCP 1322ms  TBT 30ms  CLS 0.111  JS 81KiB
+  type           perf 0.97  LCP 1318ms  TBT 56ms  CLS 0.111  JS 81KiB
+Wrote /results/results.json

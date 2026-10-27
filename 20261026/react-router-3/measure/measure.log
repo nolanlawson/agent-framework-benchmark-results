@@ -1,0 +1,52 @@
+Measuring /repo/app
+
+added 166 packages in 1s
+
+> build
+> react-router build
+
+Using Vite Environment API
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 114 modules transformed.
+rendering chunks...
+computing gzip size...
+build/client/.vite/manifest.json                3.77 kB │ gzip:  0.56 kB
+build/client/assets/root-BWwGCPHV.css           8.20 kB │ gzip:  2.22 kB
+build/client/assets/not-found-NyT-iXbR.js       0.09 kB │ gzip:  0.11 kB
+build/client/assets/jsx-runtime-DntPaX5q.js     0.43 kB │ gzip:  0.29 kB
+build/client/assets/types-DcfAW2h7.js           0.51 kB │ gzip:  0.31 kB
+build/client/assets/ability-DTMXLak2.js         0.54 kB │ gzip:  0.31 kB
+build/client/assets/type-DsQ0_ork.js            0.97 kB │ gzip:  0.46 kB
+build/client/assets/move-s0eBU1_F.js            1.17 kB │ gzip:  0.45 kB
+build/client/assets/ui-k7hCQezQ.js              1.56 kB │ gzip:  0.67 kB
+build/client/assets/root-D2fUhyYK.js            1.60 kB │ gzip:  0.69 kB
+build/client/assets/home-SsnM-zPP.js            2.69 kB │ gzip:  1.11 kB
+build/client/assets/pokemon-DCcOdWJm.js         5.14 kB │ gzip:  1.74 kB
+build/client/assets/format-GVXX86hJ.js         10.24 kB │ gzip:  4.08 kB
+build/client/assets/components-CeXvoCCx.js    122.19 kB │ gzip: 39.92 kB
+build/client/assets/entry.client-W8-pxiZ3.js  223.06 kB │ gzip: 69.78 kB
+
+✓ built in 214ms
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 19 modules transformed.
+rendering chunks...
+
+✓ 1 asset cleaned from React Router server build.
+build/server/assets/server-build-BWwGCPHV.css
+
+computing gzip size...
+build/server/.vite/manifest.json                0.22 kB │ gzip:  0.15 kB
+build/server/assets/server-build-BWwGCPHV.css   8.20 kB │ gzip:  2.22 kB
+build/server/index.js                          43.68 kB │ gzip: 10.58 kB
+
+✓ built in 64ms
+Lighthouse:
+  home           perf 1  LCP 1729ms  TBT 26ms  CLS 0  JS 115KiB
+  home-filtered  perf 1  LCP 1659ms  TBT 0ms  CLS 0  JS 115KiB
+  pokemon        perf 1  LCP 1729ms  TBT 0ms  CLS 0  JS 115KiB
+  move           perf 1  LCP 1729ms  TBT 24ms  CLS 0  JS 114KiB
+  ability        perf 1  LCP 1354ms  TBT 31ms  CLS 0  JS 114KiB
+  type           perf 1  LCP 1655ms  TBT 27ms  CLS 0  JS 114KiB
+Wrote /results/results.json

@@ -1,0 +1,84 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  /** The page's h1 text; omit for the home page. */
+  title?: string;
+}
+
+const { title } = Astro.props;
+const documentTitle = title ? `${title} – Pokédex` : 'Pokédex';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{documentTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="/">Pokédex</a>
+        <nav aria-label="Main">
+          <ul>
+            <li><a href="/">Pokémon</a></li>
+            <li><a href="/types">Types</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p class="container">Data from PokéAPI. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .site-header-inner {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .site-header a {
+    color: var(--color-on-accent);
+    text-decoration: none;
+  }
+
+  .site-header a:hover {
+    text-decoration: underline;
+  }
+
+  .brand {
+    font-size: var(--text-lg);
+  }
+
+  nav ul {
+    display: flex;
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-6);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

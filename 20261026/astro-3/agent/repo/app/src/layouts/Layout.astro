@@ -1,0 +1,42 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  /** The page's h1 text; omitted on the home page. */
+  title?: string;
+}
+const { title } = Astro.props;
+const path = Astro.url.pathname;
+const section = path === '/' || path.startsWith('/pokemon') ? 'pokemon' : path.startsWith('/types') ? 'types' : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>{title ? `${title} – Pokédex` : 'Pokédex'}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="/">Pokédex</a>
+        <nav aria-label="Main">
+          <ul>
+            <li><a href="/" aria-current={section === 'pokemon' ? 'page' : undefined}>Pokémon</a></li>
+            <li><a href="/types" aria-current={section === 'types' ? 'page' : undefined}>Types</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p class="container">Data from PokéAPI. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
+    </footer>
+  </body>
+</html>

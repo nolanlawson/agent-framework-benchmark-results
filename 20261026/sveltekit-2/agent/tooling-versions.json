@@ -1,0 +1,10 @@
+[
+  {
+    "kind": "claude plugin",
+    "name": "svelte@svelte",
+    "repo": "sveltejs/ai-tools",
+    "commit": "b2589f890e9c5c4a788a557315aa5012d1fba4ba",
+    "mcpPackage": "@sveltejs/mcp",
+    "mcpVersion": "0.1.27"
+  }
+]

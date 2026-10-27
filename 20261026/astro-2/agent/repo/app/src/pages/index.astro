@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PokemonCard from '../components/PokemonCard.astro';
+import { getPokemonIndex } from '../lib/api';
+
+const PAGE_SIZE = 48;
+
+const params = Astro.url.searchParams;
+const q = (params.get('q') ?? '').trim();
+const { entries, types, generations } = await getPokemonIndex();
+const type = types.some((t) => t.name === params.get('type')) ? params.get('type')! : '';
+const generation = generations.some((g) => g.name === params.get('generation')) ? params.get('generation')! : '';
+
+const needle = q.toLowerCase();
+const matches = entries.filter(
+  (e) =>
+    (!needle || e.label.toLowerCase().includes(needle)) &&
+    (!type || e.types.some((t) => t.name === type)) &&
+    (!generation || e.generation === generation),
+);
+
+const totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE));
+const requestedPage = Number.parseInt(params.get('page') ?? '1', 10);
+const page = Number.isFinite(requestedPage) ? Math.min(Math.max(requestedPage, 1), totalPages) : 1;
+const shown = matches.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+function pageHref(n: number) {
+  const search = new URLSearchParams();
+  if (q) search.set('q', q);
+  if (type) search.set('type', type);
+  if (generation) search.set('generation', generation);
+  if (n > 1) search.set('page', String(n));
+  const s = search.toString();
+  return s ? `/?${s}` : '/';
+}
+---
+
+<Layout>
+  <h1>Pokémon</h1>
+  <form class="filters" method="get" action="/" role="search" data-filters>
+    <div class="field filters__search">
+      <label for="filter-q">Search</label>
+      <input id="filter-q" type="search" name="q" value={q} autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="filter-type">Type</label>
+      <select id="filter-type" name="type">
+        <option value="" selected={!type}>All types</option>
+        {
+          types.map((t) => (
+            <option value={t.name} selected={t.name === type}>
+              {t.label}
+            </option>
+          ))
+        }
+      </select>
+    </div>
+    <div class="field">
+      <label for="filter-generation">Generation</label>
+      <select id="filter-generation" name="generation">
+        <option value="" selected={!generation}>All generations</option>
+        {
+          generations.map((g) => (
+            <option value={g.name} selected={g.name === generation}>
+              {g.label}
+            </option>
+          ))
+        }
+      </select>
+    </div>
+  </form>
+
+  <div id="results" data-results aria-live="polite">
+    {
+      matches.length === 0 ? (
+        <p class="count">No Pokémon found</p>
+      ) : (
+        <>
+          <p class="count">{matches.length} Pokémon</p>
+          <ul class="card-grid">
+            {shown.map((e) => (
+              <PokemonCard id={e.id} name={e.name} types={e.types} />
+            ))}
+          </ul>
+          <nav class="pagination" aria-label="Pagination">
+            {page > 1 && <a href={pageHref(page - 1)}>Previous page</a>}
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            {page < totalPages && <a href={pageHref(page + 1)}>Next page</a>}
+          </nav>
+        </>
+      )
+    }
+  </div>
+</Layout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-filters]')!;
+  const search = form.querySelector<HTMLInputElement>('input[name="q"]')!;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let controller: AbortController | undefined;
+
+  function urlFromForm(): string {
+    const params = new URLSearchParams();
+    for (const [key, value] of new FormData(form)) {
+      const v = String(value).trim();
+      if (v) params.set(key, v);
+    }
+    const s = params.toString();
+    return s ? `/?${s}` : '/';
+  }
+
+  function syncForm() {
+    const params = new URLSearchParams(location.search);
+    for (const el of form.elements) {
+      if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement) {
+        if (el === document.activeElement) continue;
+        el.value = params.get(el.name) ?? '';
+      }
+    }
+  }
+
+  async function loadResults(url: string) {
+    controller?.abort();
+    controller = new AbortController();
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+      const fresh = doc.querySelector('[data-results]');
+      const current = document.querySelector('[data-results]');
+      if (fresh && current) current.innerHTML = fresh.innerHTML;
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') location.assign(url);
+    }
+  }
+
+  function update(push: boolean) {
+    clearTimeout(timer);
+    const url = urlFromForm();
+    if (url === location.pathname + location.search) return;
+    if (push) history.pushState(null, '', url);
+    else history.replaceState(null, '', url);
+    loadResults(url);
+  }
+
+  search.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => update(false), 150);
+  });
+  form.addEventListener('change', (event) => {
+    if (event.target instanceof HTMLSelectElement) update(true);
+  });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    update(false);
+  });
+  window.addEventListener('popstate', () => {
+    syncForm();
+    loadResults(location.pathname + location.search);
+  });
+</script>

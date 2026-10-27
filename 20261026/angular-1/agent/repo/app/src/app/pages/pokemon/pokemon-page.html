@@ -1,0 +1,128 @@
+@if (data.hasValue()) {
+  @let view = data.value();
+  <div class="pokemon-summary">
+    <div class="artwork">
+      @if (view.artwork) {
+        <img [src]="view.artwork" [alt]="view.name" width="475" height="475" fetchpriority="high" />
+      }
+    </div>
+    <div class="pokemon-intro">
+      <p class="dex-number">{{ dexNumber(view.species.id) }}</p>
+      <h1>{{ view.name }}</h1>
+      @if (view.genus) {
+        <p class="genus">{{ view.genus }}</p>
+      }
+      <p class="badges">
+        @for (type of view.types; track type.name) {
+          <app-type-badge [name]="type.name" [label]="type.label" />
+        }
+      </p>
+      <dl class="facts">
+        <div>
+          <dt>Height</dt>
+          <dd>{{ view.height }}</dd>
+        </div>
+        <div>
+          <dt>Weight</dt>
+          <dd>{{ view.weight }}</dd>
+        </div>
+      </dl>
+      @if (view.flavorText) {
+        <p class="flavor-text">{{ view.flavorText }}</p>
+      }
+    </div>
+  </div>
+
+  <section class="panel" aria-labelledby="stats-heading">
+    <h2 id="stats-heading">Base stats</h2>
+    <table class="stats-table">
+      <thead class="visually-hidden">
+        <tr>
+          <th scope="col">Stat</th>
+          <th scope="col">Value</th>
+          <th scope="col">Chart</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (stat of view.stats; track stat.label) {
+          <tr>
+            <th scope="row">{{ stat.label }}</th>
+            <td>{{ stat.value }}</td>
+            <td><span class="stat-bar" aria-hidden="true"><span [style.width]="statWidth(stat.value)"></span></span></td>
+          </tr>
+        }
+        <tr class="stats-total">
+          <th scope="row">Total</th>
+          <td>{{ view.statTotal }}</td>
+          <td>
+            <span class="stat-bar" aria-hidden="true">
+              <span [style.width]="statWidth(view.statTotal, maxStat * view.stats.length)"></span>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" aria-labelledby="abilities-heading">
+    <h2 id="abilities-heading">Abilities</h2>
+    <ul class="bullets">
+      @for (ability of view.abilities; track ability.name) {
+        <li>
+          <a [routerLink]="['/abilities', ability.name]">{{ humanize(ability.name) }}</a>
+          @if (ability.hidden) {
+            (hidden)
+          }
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="panel" aria-labelledby="evolution-heading">
+    <h2 id="evolution-heading">Evolution</h2>
+    <ng-container *ngTemplateOutlet="evolutionList; context: { $implicit: [view.evolution] }" />
+    <ng-template #evolutionList let-nodes>
+      <ul class="bullets evolution">
+        @for (node of nodes; track node.name) {
+          <li>
+            <a [routerLink]="['/pokemon', node.name]" [attr.aria-current]="node.name === view.species.name ? 'page' : null">{{
+              humanize(node.name)
+            }}</a>
+            @if (node.evolvesTo.length) {
+              <ng-container *ngTemplateOutlet="evolutionList; context: { $implicit: node.evolvesTo }" />
+            }
+          </li>
+        }
+      </ul>
+    </ng-template>
+  </section>
+
+  <section class="panel" id="moves" aria-labelledby="moves-heading">
+    <h2 id="moves-heading">Moves</h2>
+    @if (view.games.length) {
+      <div class="game-field">
+        <label for="game">Game</label>
+        <select id="game" (change)="selectGame($event)">
+          @for (game of view.games; track game.name) {
+            <option [value]="game.name" [selected]="game.name === selectedGame()?.name">{{ game.label }}</option>
+          }
+        </select>
+      </div>
+      @if (moves.error()) {
+        <p class="notice">The moves couldn't be loaded. Please try again.</p>
+      } @else if (moves.hasValue()) {
+        @for (table of moves.value(); track selectedGame()?.name + table.method) {
+          <div class="table-scroll">
+            <app-moves-table [table]="table" />
+          </div>
+        }
+      } @else {
+        <p class="loading" role="status">Loading moves…</p>
+      }
+    } @else {
+      <p class="notice">This Pokémon doesn't learn any moves.</p>
+    }
+  </section>
+} @else {
+  <app-load-state [error]="data.error()" />
+}

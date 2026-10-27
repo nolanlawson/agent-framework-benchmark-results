@@ -1,0 +1,124 @@
+
+> test
+> node tests/run.mjs
+
+$ npm install --no-audit --no-fund --include=dev  (in app)
+
+added 112 packages in 1s
+$ npm run build  (in app)
+
+> build
+> vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 174 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client/assets/app-B5lhNRDx.css               7.98 kB │ gzip:  2.13 kB
+dist/client/assets/_-DkYZKqGB.js                  0.07 kB │ gzip:  0.09 kB
+dist/client/assets/abilities._name-DkYZKqGB.js    0.07 kB │ gzip:  0.09 kB
+dist/client/assets/moves._name-DkYZKqGB.js        0.07 kB │ gzip:  0.09 kB
+dist/client/assets/pokemon._name-DkYZKqGB.js      0.07 kB │ gzip:  0.09 kB
+dist/client/assets/types._name-DkYZKqGB.js        0.07 kB │ gzip:  0.09 kB
+dist/client/assets/Section-Dob3oAlD.js            0.24 kB │ gzip:  0.20 kB
+dist/client/assets/types.index-B84amVf3.js        0.48 kB │ gzip:  0.31 kB
+dist/client/assets/TypeBadge-DwoxJPSv.js          0.50 kB │ gzip:  0.29 kB
+dist/client/assets/abilities._name-B4zzYq0S.js    0.57 kB │ gzip:  0.33 kB
+dist/client/assets/PokemonCards-DW6KZUeK.js       0.76 kB │ gzip:  0.39 kB
+dist/client/assets/types._name-BCghmnkQ.js        1.10 kB │ gzip:  0.49 kB
+dist/client/assets/moves._name-De41OfzH.js        1.23 kB │ gzip:  0.48 kB
+dist/client/assets/routes-BXjMB4vE.js             2.48 kB │ gzip:  0.97 kB
+dist/client/assets/pokemon._name-CDiTsENP.js      5.02 kB │ gzip:  1.75 kB
+dist/client/assets/link-D-PdS6ty.js              72.28 kB │ gzip: 25.94 kB
+dist/client/assets/index-B0zVTirh.js            278.18 kB │ gzip: 88.43 kB
+
+✓ built in 290ms
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 88 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/server/assets/start-COmmreO7.js                        0.12 kB │ gzip:  0.12 kB
+dist/server/assets/_-Dp2LRZq5.js                            0.19 kB │ gzip:  0.14 kB
+dist/server/assets/empty-plugin-adapters-CeyhLWeJ.js        0.20 kB │ gzip:  0.14 kB
+dist/server/assets/moves._name-2IrdMfYt.js                  0.20 kB │ gzip:  0.15 kB
+dist/server/assets/types._name-oNh1w-7i.js                  0.20 kB │ gzip:  0.15 kB
+dist/server/assets/pokemon._name-DyCd6fch.js                0.20 kB │ gzip:  0.15 kB
+dist/server/assets/abilities._name-CehYINO4.js              0.21 kB │ gzip:  0.15 kB
+dist/server/assets/Section-CMawIvSE.js                      0.44 kB │ gzip:  0.29 kB
+dist/server/assets/format-C0M3JnBX.js                       0.53 kB │ gzip:  0.34 kB
+dist/server/assets/types.index-qCV24ACw.js                  0.76 kB │ gzip:  0.43 kB
+dist/server/assets/TypeBadge-BEBTDpaN.js                    0.88 kB │ gzip:  0.43 kB
+dist/server/assets/abilities._name-DcICj6sC.js              0.89 kB │ gzip:  0.45 kB
+dist/server/assets/PokemonCards-CNVCvKFj.js                 1.28 kB │ gzip:  0.53 kB
+dist/server/assets/functions-DEMXG3h6.js                    1.60 kB │ gzip:  0.74 kB
+dist/server/assets/types._name-Cs9TR0vB.js                  1.72 kB │ gzip:  0.64 kB
+dist/server/assets/moves._name-D5u_hkut.js                  1.91 kB │ gzip:  0.62 kB
+dist/server/assets/_tanstack-start-manifest_v-Dx3FFsjS.js   2.18 kB │ gzip:  0.57 kB
+dist/server/assets/routes-CpENMtZ_.js                       4.22 kB │ gzip:  1.36 kB
+dist/server/assets/pokemon._name-CgmsSK5g.js                7.97 kB │ gzip:  2.34 kB
+dist/server/assets/router-Cc6_2ETy.js                       9.53 kB │ gzip:  2.59 kB
+dist/server/assets/functions-E8NxSD05.js                   15.87 kB │ gzip:  5.17 kB
+dist/server/server.js                                      99.93 kB │ gzip: 25.52 kB
+
+✓ built in 158ms
+
+Running 54 tests using 4 workers
+
+  ✓   3 tests/specs/details.spec.mjs:44:3 › Move page › falls back to flavor text when there is no effect text (701ms)
+  ✓   2 tests/specs/details.spec.mjs:32:3 › Move page › maps Pokémon to their species and leaves out alternate forms (891ms)
+  ✓   6 tests/specs/details.spec.mjs:56:3 › Move page › includes Pokémon added after the build (395ms)
+  ✓   4 tests/specs/details.spec.mjs:21:3 › Move page › lists the Pokémon that learn it (1.4s)
+  ✓   5 tests/specs/details.spec.mjs:51:3 › Move page › shows a missing power as an em dash (752ms)
+  ✓   1 tests/specs/details.spec.mjs:7:3 › Move page › shows the move details (1.5s)
+  ✓   8 tests/specs/details.spec.mjs:74:3 › Ability page › marks hidden abilities (496ms)
+  ✓   7 tests/specs/details.spec.mjs:63:3 › Ability page › shows the effect and the Pokémon with the ability (596ms)
+  ✓   9 tests/specs/details.spec.mjs:82:3 › Ability page › uses the English name for the heading (421ms)
+  ✓  10 tests/specs/details.spec.mjs:87:3 › Ability page › includes Pokémon added after the build (420ms)
+  ✓  11 tests/specs/details.spec.mjs:94:3 › Type list › links to the 18 types in order (592ms)
+  ✓  14 tests/specs/details.spec.mjs:146:3 › Type page › cards link to species pages (963ms)
+  ✓  12 tests/specs/details.spec.mjs:129:3 › Type page › lists Pokémon and moves of the type (1.1s)
+  ✓  13 tests/specs/details.spec.mjs:104:3 › Type page › shows damage relations (1.3s)
+  ✓  15 tests/specs/details.spec.mjs:153:3 › Type page › includes Pokémon added after the build (795ms)
+  ✓  16 tests/specs/details.spec.mjs:161:5 › Not found › /pokemon/missingno shows a not-found page (408ms)
+  ✓  17 tests/specs/details.spec.mjs:161:5 › Not found › /moves/not-a-move shows a not-found page (397ms)
+  ✓  18 tests/specs/details.spec.mjs:161:5 › Not found › /abilities/not-an-ability shows a not-found page (397ms)
+  ✓  19 tests/specs/details.spec.mjs:161:5 › Not found › /types/not-a-type shows a not-found page (392ms)
+  ✓  20 tests/specs/details.spec.mjs:161:5 › Not found › /no/such/page shows a not-found page (477ms)
+  ✓  22 tests/specs/home.spec.mjs:29:3 › Pokémon list › has labelled search, type and generation controls (697ms)
+  ✓  21 tests/specs/home.spec.mjs:8:3 › Pokémon list › shows the first page of all species (1.0s)
+  ✓  24 tests/specs/home.spec.mjs:54:3 › Pokémon list › last page includes species added after the build (766ms)
+  ✓  23 tests/specs/home.spec.mjs:43:3 › Pokémon list › paginates with Previous and Next links (1.0s)
+  ✓  26 tests/specs/home.spec.mjs:80:3 › Pokémon list › type filter matches either type slot (602ms)
+  ✓  28 tests/specs/home.spec.mjs:96:3 › Pokémon list › search matches humanized names (489ms)
+  ✓  25 tests/specs/home.spec.mjs:66:3 › Pokémon list › filters by type and generation from the URL (844ms)
+  ✓  31 tests/specs/home.spec.mjs:120:3 › Pokémon list › shows a message when nothing matches (367ms)
+  ✓  27 tests/specs/home.spec.mjs:85:3 › Pokémon list › search updates the results while typing (1.3s)
+  ✓  30 tests/specs/home.spec.mjs:108:3 › Pokémon list › changing a filter updates the URL and resets to page 1 (797ms)
+  ✓  29 tests/specs/home.spec.mjs:101:3 › Pokémon list › search finds species added after the build (1.2s)
+  ✓  32 tests/specs/layout.spec.mjs:16:5 › Every page › / has the shared layout (784ms)
+  ✓  33 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/pikachu has the shared layout (909ms)
+  ✓  35 tests/specs/layout.spec.mjs:16:5 › Every page › /abilities/static has the shared layout (516ms)
+  ✓  36 tests/specs/layout.spec.mjs:16:5 › Every page › /types has the shared layout (397ms)
+  ✓  34 tests/specs/layout.spec.mjs:16:5 › Every page › /moves/thunderbolt has the shared layout (1.3s)
+  ✓  38 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/missingno has the shared layout (486ms)
+  ✓  37 tests/specs/layout.spec.mjs:16:5 › Every page › /types/fire has the shared layout (741ms)
+  ✓  40 tests/specs/pokemon.spec.mjs:32:3 › Pokémon page › uses the English name for the heading (308ms)
+  ✓  39 tests/specs/pokemon.spec.mjs:13:3 › Pokémon page › shows the summary (854ms)
+  ✓  41 tests/specs/pokemon.spec.mjs:38:3 › Pokémon page › works for species whose default Pokémon has a different name (567ms)
+  ✓  43 tests/specs/pokemon.spec.mjs:55:3 › Pokémon page › lists abilities with the hidden one marked (531ms)
+  ✓  44 tests/specs/pokemon.spec.mjs:64:3 › Pokémon page › shows the evolution chain as a nested list (501ms)
+  ✓  45 tests/specs/pokemon.spec.mjs:75:3 › Pokémon page › shows branching evolutions (503ms)
+  ✓  42 tests/specs/pokemon.spec.mjs:44:3 › Pokémon page › shows base stats in a table (867ms)
+  ✓  46 tests/specs/pokemon.spec.mjs:86:3 › Pokémon page › #moves jumps to the moves section (492ms)
+  ✓  47 tests/specs/pokemon.spec.mjs:94:3 › Pokémon page › defaults to the latest game and lists games in order (501ms)
+  ✓  48 tests/specs/pokemon.spec.mjs:102:3 › Pokémon page › shows one table per learn method in a fixed order (710ms)
+  ✓  51 tests/specs/pokemon.spec.mjs:167:3 › Pokémon page › changing the game updates the URL and the tables (587ms)
+  ✓  52 tests/specs/pokemon.spec.mjs:177:3 › Pokémon page › links point at species pages (398ms)
+  ✓  54 tests/specs/pokemon.spec.mjs:197:3 › Pokémon page with live data › shows a species added after the build (312ms)
+  ✓  53 tests/specs/pokemon.spec.mjs:186:3 › Pokémon page with live data › reflects changed values (575ms)
+  ✓  49 tests/specs/pokemon.spec.mjs:119:3 › Pokémon page › shows move details in each row (1.5s)
+  ✓  50 tests/specs/pokemon.spec.mjs:137:3 › Pokémon page › sorts a table by clicking a column header (2.0s)
+
+  54 passed (11.6s)

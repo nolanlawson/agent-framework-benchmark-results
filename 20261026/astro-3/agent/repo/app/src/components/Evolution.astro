@@ -1,0 +1,20 @@
+---
+import type { EvolutionNode } from '../lib/api';
+
+interface Props {
+  nodes: EvolutionNode[];
+  current: string;
+}
+const { nodes, current } = Astro.props;
+---
+
+<ul>
+  {
+    nodes.map((node) => (
+      <li>
+        <a href={`/pokemon/${node.name}`} aria-current={node.name === current ? 'page' : undefined}>{node.label}</a>
+        {node.children.length > 0 && <Astro.self nodes={node.children} current={current} />}
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PokemonCards from '../components/PokemonCards.astro';
+import { getSpeciesList, getTypes, getGenerations, getPokemonTypes, typeLabel } from '../lib/api.js';
+
+const PAGE_SIZE = 48;
+
+const params = Astro.url.searchParams;
+const q = (params.get('q') ?? '').trim();
+const type = params.get('type') ?? '';
+const generation = params.get('generation') ?? '';
+const requestedPage = Number.parseInt(params.get('page') ?? '1', 10);
+
+const [species, types, generations, pokemonTypes] = await Promise.all([
+  getSpeciesList(),
+  getTypes(),
+  getGenerations(),
+  getPokemonTypes(),
+]);
+const typeLabels = new Map(types.map((t) => [t.name, t.label]));
+
+const needle = q.toLowerCase();
+const generationIds = generations.find((g) => g.name === generation)?.speciesIds;
+const matches = species.filter(
+  (s) =>
+    (!needle || s.display.toLowerCase().includes(needle)) &&
+    (!type || (pokemonTypes.get(s.id) ?? []).includes(type)) &&
+    (!generation || generationIds?.has(s.id)),
+);
+
+const totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE));
+const page = Math.min(Math.max(Number.isFinite(requestedPage) ? requestedPage : 1, 1), totalPages);
+const cards = matches.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE).map((s) => ({
+  ...s,
+  types: (pokemonTypes.get(s.id) ?? []).map((name) => ({ name, label: typeLabel(typeLabels, name) })),
+}));
+
+const pageHref = (n: number) => {
+  const next = new URLSearchParams();
+  if (q) next.set('q', q);
+  if (type) next.set('type', type);
+  if (generation) next.set('generation', generation);
+  if (n > 1) next.set('page', String(n));
+  const query = next.toString();
+  return query ? `/?${query}` : '/';
+};
+---
+
+<Layout>
+  <h1>Pokémon</h1>
+  <form class="filters" method="get" action="/" data-filters>
+    <div class="field field--search">
+      <label for="filter-q">Search</label>
+      <input id="filter-q" type="search" name="q" value={q} autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="filter-type">Type</label>
+      <select id="filter-type" name="type">
+        <option value="">All types</option>
+        {types.map((t) => <option value={t.name} selected={t.name === type}>{t.label}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="filter-generation">Generation</label>
+      <select id="filter-generation" name="generation">
+        <option value="">All generations</option>
+        {generations.map((g) => <option value={g.name} selected={g.name === generation}>{g.label}</option>)}
+      </select>
+    </div>
+  </form>
+
+  <div id="results" class="results">
+    <p class="count">{matches.length} Pokémon</p>
+    {
+      matches.length ? (
+        <>
+          <PokemonCards cards={cards} />
+          <nav class="pagination" aria-label="Pagination">
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            {page > 1 && <a href={pageHref(page - 1)}>Previous page</a>}
+            {page < totalPages && <a href={pageHref(page + 1)}>Next page</a>}
+          </nav>
+        </>
+      ) : (
+        <p class="empty">No Pokémon found</p>
+      )
+    }
+  </div>
+</Layout>
+
+<script>
+  import { swapFrom } from '../lib/swap.js';
+
+  const form = document.querySelector<HTMLFormElement>('[data-filters]');
+  if (form) {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const update = (push: boolean) => {
+      clearTimeout(timer);
+      const params = new URLSearchParams();
+      for (const [key, value] of new FormData(form)) {
+        const v = String(value).trim();
+        if (v) params.set(key, v);
+      }
+      const query = params.toString();
+      const url = query ? `/?${query}` : '/';
+      if (url === location.pathname + location.search) return;
+      if (push) history.pushState(null, '', url);
+      else history.replaceState(null, '', url);
+      swapFrom(url, ['#results']);
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      update(true);
+    });
+    form.addEventListener('change', (event) => {
+      if ((event.target as HTMLElement).matches('select')) update(true);
+    });
+    form.addEventListener('input', (event) => {
+      if ((event.target as HTMLElement).matches('input')) {
+        clearTimeout(timer);
+        timer = setTimeout(() => update(false), 150);
+      }
+    });
+    // Filters are re-rendered by the server, so reload when moving through history.
+    window.addEventListener('popstate', () => location.reload());
+  }
+</script>

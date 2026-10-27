@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getTypes } from '../../lib/api.js';
+
+const types = await getTypes();
+---
+
+<Layout title="Types">
+  <h1>Types</h1>
+  <ul class="type-grid">
+    {
+      types.map((t) => (
+        <li>
+          <a href={`/types/${t.name}`} style={`--type-color: var(--type-${t.name}, var(--type-normal))`}>
+            {t.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

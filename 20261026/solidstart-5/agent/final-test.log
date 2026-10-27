@@ -1,0 +1,142 @@
+
+> test
+> node tests/run.mjs
+
+$ npm install --no-audit --no-fund --include=dev  (in app)
+
+added 180 packages in 2s
+$ npm run build  (in app)
+
+> build
+> vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 121 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/public/.vite/manifest.json                       3.58 kB │ gzip:  0.52 kB
+.output/public/_build/assets/entry-client-fX0B39Z_.css   9.90 kB │ gzip:  2.58 kB
+.output/public/_build/assets/_...404_-owU72B-d.js        0.09 kB │ gzip:  0.10 kB
+.output/public/_build/assets/index-DrUgs5_j.js           0.63 kB │ gzip:  0.40 kB
+.output/public/_build/assets/createAsync-BcmGRXcY.js     0.73 kB │ gzip:  0.39 kB
+.output/public/_build/assets/_name_-UKHxjixd.js          0.77 kB │ gzip:  0.43 kB
+.output/public/_build/assets/_name_-gFB5sCHT.js          1.06 kB │ gzip:  0.56 kB
+.output/public/_build/assets/_name_-CrMMO5Yb.js          1.44 kB │ gzip:  0.66 kB
+.output/public/_build/assets/index-Cc8S4FNo.js           3.67 kB │ gzip:  1.54 kB
+.output/public/_build/assets/_name_-Kvn91xbx.js          6.97 kB │ gzip:  2.65 kB
+.output/public/_build/assets/entry-client-CSnXp39e.js   17.39 kB │ gzip:  6.72 kB
+.output/public/_build/assets/ui-gD2eRA4t.js             31.95 kB │ gzip: 12.12 kB
+.output/public/_build/assets/data-CJVIyZB5.js           54.50 kB │ gzip: 17.97 kB
+
+✓ built in 755ms
+vite v8.3.5 building ssr environment for production...
+transforming...
+✓ 126 modules transformed.
+rendering chunks...
+computing gzip size...
+node_modules/.nitro/vite/services/ssr/.vite/manifest.json                      3.16 kB │ gzip:  0.46 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-fX0B39Z_.css         9.90 kB │ gzip:  2.58 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_...404_-DDd8DFVX.js       0.32 kB │ gzip:  0.21 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-BtUbixRz.js          1.03 kB │ gzip:  0.51 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/createAsync-C9_ulEa9.js    1.58 kB │ gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-sKfM1kts.js         1.60 kB │ gzip:  0.64 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-BkDIzodW.js         2.12 kB │ gzip:  0.81 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-DZzBDc83.js         2.81 kB │ gzip:  0.90 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/index-BT6zainM.js          4.59 kB │ gzip:  1.52 kB
+node_modules/.nitro/vite/services/ssr/_build/assets/_name_-CkyyGOx2.js        10.17 kB │ gzip:  2.87 kB
+node_modules/.nitro/vite/services/ssr/index.js                               161.18 kB │ gzip: 46.47 kB
+
+✓ built in 1.27s
+
+[nitro] ◐ Building [Nitro] (preset: node-server, compatibility: 2026-10-26)
+[nitro] ✔ Generated public .output/public
+vite v8.3.5 building nitro environment for production...
+`output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.
+transforming...
+✓ 84 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/server/_...404_-DDd8DFVX.mjs            0.34 kB │ gzip:  0.25 kB
+.output/server/_ssr/createAsync-C9_ulEa9.mjs    0.84 kB │ gzip:  0.46 kB
+.output/server/_chunks/ssr-renderer.mjs         0.90 kB │ gzip:  0.48 kB
+.output/server/_ssr/index-BtUbixRz.mjs          1.02 kB │ gzip:  0.55 kB
+.output/server/_libs/hookable.mjs               1.14 kB │ gzip:  0.50 kB
+.output/server/_name_-sKfM1kts.mjs              1.60 kB │ gzip:  0.68 kB
+.output/server/_name_-BkDIzodW.mjs              2.12 kB │ gzip:  0.86 kB
+.output/server/_libs/ufo.mjs                    2.18 kB │ gzip:  0.70 kB
+.output/server/_name_-DZzBDc83.mjs              2.81 kB │ gzip:  0.95 kB
+.output/server/_libs/radix3.mjs                 4.08 kB │ gzip:  1.36 kB
+.output/server/_ssr/index-BT6zainM.mjs          4.58 kB │ gzip:  1.57 kB
+.output/server/_name_-CkyyGOx2.mjs             10.13 kB │ gzip:  2.89 kB
+.output/server/index.mjs                       12.80 kB │ gzip:  4.17 kB
+.output/server/_libs/seroval-plugins.mjs       31.49 kB │ gzip:  3.55 kB
+.output/server/_libs/solid-js.mjs              34.15 kB │ gzip:  9.56 kB
+.output/server/_libs/srvx.mjs                  51.30 kB │ gzip: 12.07 kB
+.output/server/_libs/h3+rou3+srvx.mjs          70.98 kB │ gzip: 19.57 kB
+.output/server/_libs/seroval.mjs              138.62 kB │ gzip: 30.48 kB
+.output/server/_ssr/ssr.mjs                   142.92 kB │ gzip: 41.25 kB
+
+✓ built in 438ms
+ℹ Generated .output/nitro.json
+
+[nitro] ✔ You can preview this build using npx vite preview
+
+Running 54 tests using 4 workers
+
+  ✓   1 tests/specs/details.spec.mjs:44:3 › Move page › falls back to flavor text when there is no effect text (496ms)
+  ✓   3 tests/specs/details.spec.mjs:32:3 › Move page › maps Pokémon to their species and leaves out alternate forms (666ms)
+  ✓   6 tests/specs/details.spec.mjs:56:3 › Move page › includes Pokémon added after the build (385ms)
+  ✓   5 tests/specs/details.spec.mjs:51:3 › Move page › shows a missing power as an em dash (696ms)
+  ✓   4 tests/specs/details.spec.mjs:21:3 › Move page › lists the Pokémon that learn it (1.4s)
+  ✓   7 tests/specs/details.spec.mjs:63:3 › Ability page › shows the effect and the Pokémon with the ability (379ms)
+  ✓   2 tests/specs/details.spec.mjs:7:3 › Move page › shows the move details (1.5s)
+  ✓   8 tests/specs/details.spec.mjs:74:3 › Ability page › marks hidden abilities (358ms)
+  ✓   9 tests/specs/details.spec.mjs:82:3 › Ability page › uses the English name for the heading (308ms)
+  ✓  11 tests/specs/details.spec.mjs:94:3 › Type list › links to the 18 types in order (392ms)
+  ✓  10 tests/specs/details.spec.mjs:87:3 › Ability page › includes Pokémon added after the build (396ms)
+  ✓  15 tests/specs/details.spec.mjs:153:3 › Type page › includes Pokémon added after the build (802ms)
+  ✓  14 tests/specs/details.spec.mjs:146:3 › Type page › cards link to species pages (824ms)
+  ✓  13 tests/specs/details.spec.mjs:129:3 › Type page › lists Pokémon and moves of the type (1.1s)
+  ✓  12 tests/specs/details.spec.mjs:104:3 › Type page › shows damage relations (1.2s)
+  ✓  16 tests/specs/details.spec.mjs:161:5 › Not found › /pokemon/missingno shows a not-found page (284ms)
+  ✓  17 tests/specs/details.spec.mjs:161:5 › Not found › /moves/not-a-move shows a not-found page (354ms)
+  ✓  18 tests/specs/details.spec.mjs:161:5 › Not found › /abilities/not-an-ability shows a not-found page (308ms)
+  ✓  19 tests/specs/details.spec.mjs:161:5 › Not found › /types/not-a-type shows a not-found page (308ms)
+  ✓  20 tests/specs/details.spec.mjs:161:5 › Not found › /no/such/page shows a not-found page (300ms)
+  ✓  22 tests/specs/home.spec.mjs:29:3 › Pokémon list › has labelled search, type and generation controls (635ms)
+  ✓  24 tests/specs/home.spec.mjs:54:3 › Pokémon list › last page includes species added after the build (584ms)
+  ✓  21 tests/specs/home.spec.mjs:8:3 › Pokémon list › shows the first page of all species (987ms)
+  ✓  23 tests/specs/home.spec.mjs:43:3 › Pokémon list › paginates with Previous and Next links (918ms)
+  ✓  26 tests/specs/home.spec.mjs:80:3 › Pokémon list › type filter matches either type slot (489ms)
+  ✓  25 tests/specs/home.spec.mjs:66:3 › Pokémon list › filters by type and generation from the URL (636ms)
+  ✓  28 tests/specs/home.spec.mjs:96:3 › Pokémon list › search matches humanized names (394ms)
+  ✓  31 tests/specs/home.spec.mjs:120:3 › Pokémon list › shows a message when nothing matches (328ms)
+  ✓  30 tests/specs/home.spec.mjs:108:3 › Pokémon list › changing a filter updates the URL and resets to page 1 (685ms)
+  ✓  27 tests/specs/home.spec.mjs:85:3 › Pokémon list › search updates the results while typing (1.2s)
+  ✓  32 tests/specs/layout.spec.mjs:16:5 › Every page › / has the shared layout (602ms)
+  ✓  29 tests/specs/home.spec.mjs:101:3 › Pokémon list › search finds species added after the build (1.1s)
+  ✓  36 tests/specs/layout.spec.mjs:16:5 › Every page › /types has the shared layout (322ms)
+  ✓  35 tests/specs/layout.spec.mjs:16:5 › Every page › /abilities/static has the shared layout (429ms)
+  ✓  33 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/pikachu has the shared layout (891ms)
+  ✓  38 tests/specs/layout.spec.mjs:16:5 › Every page › /pokemon/missingno has the shared layout (381ms)
+  ✓  34 tests/specs/layout.spec.mjs:16:5 › Every page › /moves/thunderbolt has the shared layout (1.2s)
+  ✓  37 tests/specs/layout.spec.mjs:16:5 › Every page › /types/fire has the shared layout (669ms)
+  ✓  40 tests/specs/pokemon.spec.mjs:32:3 › Pokémon page › uses the English name for the heading (275ms)
+  ✓  39 tests/specs/pokemon.spec.mjs:13:3 › Pokémon page › shows the summary (703ms)
+  ✓  41 tests/specs/pokemon.spec.mjs:38:3 › Pokémon page › works for species whose default Pokémon has a different name (498ms)
+  ✓  43 tests/specs/pokemon.spec.mjs:55:3 › Pokémon page › lists abilities with the hidden one marked (478ms)
+  ✓  44 tests/specs/pokemon.spec.mjs:64:3 › Pokémon page › shows the evolution chain as a nested list (483ms)
+  ✓  42 tests/specs/pokemon.spec.mjs:44:3 › Pokémon page › shows base stats in a table (718ms)
+  ✓  45 tests/specs/pokemon.spec.mjs:75:3 › Pokémon page › shows branching evolutions (354ms)
+  ✓  46 tests/specs/pokemon.spec.mjs:86:3 › Pokémon page › #moves jumps to the moves section (415ms)
+  ✓  47 tests/specs/pokemon.spec.mjs:94:3 › Pokémon page › defaults to the latest game and lists games in order (399ms)
+  ✓  48 tests/specs/pokemon.spec.mjs:102:3 › Pokémon page › shows one table per learn method in a fixed order (669ms)
+  ✓  51 tests/specs/pokemon.spec.mjs:167:3 › Pokémon page › changing the game updates the URL and the tables (416ms)
+  ✓  52 tests/specs/pokemon.spec.mjs:177:3 › Pokémon page › links point at species pages (306ms)
+  ✓  54 tests/specs/pokemon.spec.mjs:197:3 › Pokémon page with live data › shows a species added after the build (289ms)
+  ✓  53 tests/specs/pokemon.spec.mjs:186:3 › Pokémon page with live data › reflects changed values (551ms)
+  ✓  49 tests/specs/pokemon.spec.mjs:119:3 › Pokémon page › shows move details in each row (1.4s)
+  ✓  50 tests/specs/pokemon.spec.mjs:137:3 › Pokémon page › sorts a table by clicking a column header (1.8s)
+
+  54 passed (10.3s)

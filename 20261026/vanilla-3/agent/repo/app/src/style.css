@@ -1,0 +1,576 @@
+/* Pokédex styles. Colors, spacing and type sizes come from tokens.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+h1,
+h2,
+p,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+a {
+  color: var(--color-link);
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* ---- Header and footer ---------------------------------------------------- */
+
+.site-header {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: var(--header-height);
+}
+
+.site-header a {
+  color: var(--color-on-accent);
+  text-decoration: none;
+}
+
+.site-header a:hover {
+  text-decoration: underline;
+}
+
+.site-header__home {
+  font-size: var(--text-lg);
+  line-height: var(--leading-tight);
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-5);
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  flex: 1;
+  padding-block: var(--space-5) 0;
+}
+
+.site-footer {
+  margin-top: var(--space-7);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+.loading {
+  color: var(--color-text-muted);
+}
+
+/* ---- Page structure ------------------------------------------------------- */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.stack--tight {
+  gap: var(--space-4);
+}
+
+.page-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+}
+
+.filters + .results {
+  margin-top: calc(var(--space-4) - var(--space-5));
+}
+
+.stack > .page-title:not(:has(+ section)) {
+  margin-bottom: calc(var(--space-4) - var(--space-5));
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
+  min-width: 0;
+}
+
+.panel--compact {
+  padding: var(--space-4);
+}
+
+.panel__title {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+}
+
+.count {
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.empty {
+  color: var(--color-text-muted);
+}
+
+.bullets {
+  padding-left: var(--space-5);
+}
+
+.bullets .bullets {
+  padding-left: var(--space-5);
+}
+
+.evolution:not(.evolution .evolution) {
+  padding-left: var(--space-4);
+}
+
+/* ---- Form controls -------------------------------------------------------- */
+
+.filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.field__label {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.field--inline {
+  margin-bottom: var(--space-4);
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.input {
+  width: 100%;
+  height: 2.625rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+select.input {
+  height: 2.5rem;
+}
+
+.input--inline {
+  width: auto;
+  min-width: 16.5rem;
+  max-width: 100%;
+}
+
+/* ---- Pokémon cards -------------------------------------------------------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.card-grid__item {
+  display: flex;
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-align: center;
+  text-decoration: none;
+}
+
+.card:hover {
+  border-color: var(--color-link);
+}
+
+.card:hover .card__name {
+  text-decoration: underline;
+}
+
+.card__sprite {
+  width: var(--sprite-size);
+  height: var(--sprite-size);
+  image-rendering: pixelated;
+}
+
+.card__number {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.card__types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.card__note {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+}
+
+/* ---- Type badges and tiles ----------------------------------------------- */
+
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--type-normal);
+  color: var(--color-on-type);
+  font-size: var(--text-xs);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.type-badge:hover {
+  text-decoration: underline;
+}
+
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: 0;
+  list-style: none;
+}
+
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.type-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--type-normal);
+  color: var(--color-on-type);
+  text-decoration: none;
+}
+
+.type-tile:hover {
+  text-decoration: underline;
+}
+
+.type-badge--normal { background: var(--type-normal); }
+.type-badge--fighting { background: var(--type-fighting); }
+.type-badge--flying { background: var(--type-flying); }
+.type-badge--poison { background: var(--type-poison); }
+.type-badge--ground { background: var(--type-ground); }
+.type-badge--rock { background: var(--type-rock); }
+.type-badge--bug { background: var(--type-bug); }
+.type-badge--ghost { background: var(--type-ghost); }
+.type-badge--steel { background: var(--type-steel); }
+.type-badge--fire { background: var(--type-fire); }
+.type-badge--water { background: var(--type-water); }
+.type-badge--grass { background: var(--type-grass); }
+.type-badge--electric { background: var(--type-electric); }
+.type-badge--psychic { background: var(--type-psychic); }
+.type-badge--ice { background: var(--type-ice); }
+.type-badge--dragon { background: var(--type-dragon); }
+.type-badge--dark { background: var(--type-dark); }
+.type-badge--fairy { background: var(--type-fairy); }
+
+/* ---- Description lists ---------------------------------------------------- */
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+
+.facts dt,
+.relations dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.relations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.relations dd {
+  margin-top: var(--space-1);
+}
+
+/* ---- Pokémon page --------------------------------------------------------- */
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.summary__art {
+  flex: none;
+  width: var(--artwork-size);
+  height: var(--artwork-size);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.summary__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.summary__info {
+  min-width: 0;
+}
+
+.summary__number,
+.summary__genus {
+  color: var(--color-text-muted);
+}
+
+.summary__genus {
+  margin-top: var(--space-1);
+}
+
+.summary .badge-list {
+  margin-top: var(--space-3);
+}
+
+.summary .facts {
+  margin-top: var(--space-4);
+}
+
+.summary__flavor {
+  margin-top: var(--space-4);
+}
+
+.stats {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats th {
+  width: 6rem;
+  padding: var(--space-1) 0;
+  color: var(--color-text-muted);
+  font-weight: var(--weight-normal);
+  text-align: left;
+}
+
+.stats__value {
+  width: 3rem;
+  padding: var(--space-1) 0;
+}
+
+.stats__bar-cell {
+  padding: var(--space-1) 0;
+}
+
+.stats__track {
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-stat-track);
+  overflow: hidden;
+}
+
+.stats__bar {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-stat-bar);
+}
+
+.stats .stats__total > * {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+
+.evolution a[aria-current='page'] {
+  font-weight: var(--weight-semibold);
+}
+
+/* ---- Move tables ---------------------------------------------------------- */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.data-table caption {
+  padding-bottom: var(--space-2);
+  font-size: var(--text-base);
+  text-align: left;
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-table th {
+  color: var(--color-text-muted);
+  font-weight: var(--weight-normal);
+}
+
+.sort-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: inherit;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sort-button::after {
+  display: inline-block;
+  width: 1em;
+  content: '';
+}
+
+[aria-sort='ascending'] > .sort-button::after {
+  content: ' ▲';
+}
+
+[aria-sort='descending'] > .sort-button::after {
+  content: ' ▼';
+}
+
+[aria-sort] > .sort-button {
+  color: var(--color-text);
+}
+
+/* ---- Type page ------------------------------------------------------------ */
+
+.columns {
+  columns: 10rem;
+  column-gap: var(--space-5);
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.columns li {
+  break-inside: avoid;
+  padding-bottom: var(--space-2);
+}
+
+/* ---- Small screens -------------------------------------------------------- */
+
+@media (max-width: 40rem) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .summary {
+    gap: var(--space-4);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summary__art {
+    align-self: center;
+  }
+
+  .relations {
+    grid-template-columns: 1fr;
+  }
+}
